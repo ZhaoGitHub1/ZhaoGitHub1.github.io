@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="baidu-site-verification" content="L6Lm9d5Crl"/>
+  
+  
+  
+  
+  <title>读书笔记---《编写可读代码的艺术》 | 逸竹小站</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="读《编写可读代码的艺术》笔记及自己编码风格经验总结">
+<meta name="keywords" content="读书,编码艺术">
+<meta property="og:type" content="article">
+<meta property="og:title" content="读书笔记---《编写可读代码的艺术》">
+<meta property="og:url" content="http://yizhuxiaozhan.site/2018/12/16/read-note-readable-code/index.html">
+<meta property="og:site_name" content="逸竹小站">
+<meta property="og:description" content="读《编写可读代码的艺术》笔记及自己编码风格经验总结">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yizhuxiaozhan.site/2018/12/16/read-note-readable-code/book.jpg">
+<meta property="og:updated_time" content="2018-12-16T14:27:28.192Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="读书笔记---《编写可读代码的艺术》">
+<meta name="twitter:description" content="读《编写可读代码的艺术》笔记及自己编码风格经验总结">
+<meta name="twitter:image" content="http://yizhuxiaozhan.site/2018/12/16/read-note-readable-code/book.jpg">
+  
+    <link rel="alternative" href="/atom.xml" title="逸竹小站" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/logo.jpg" class="js-avatar">
+            
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">逸竹</a></h1>
+        </hgroup>
+        
+        <p class="header-subtitle">未来不迎，当时不杂，过往不恋！</p>
+        
+        
+            <form>
+                <input type="text" class="st-default-search-input search" id="local-search-input" placeholder="搜索一下" autocomplete="off">
+            </form>
+            <div id="local-search-result"></div>
+        
+        
+            <script type="text/javascript">
+                (function() {
+                    'use strict';
+                    function getMatchData(keyword, data) {
+                        var matchData = [];
+                        for(var i =0;i<data.length;i++){
+                            if(data[i].title.toLowerCase().indexOf(keyword)>=0) 
+                                matchData.push(data[i])
+                        }
+                        return matchData;
+                    }
+                    var $input = $('#local-search-input');
+                    var $resultContent = $('#local-search-result');
+                    $input.keyup(function(){
+                        $.ajax({
+                            url: '/search.json',
+                            dataType: "json",
+                            success: function( json ) {
+                                var str='<ul class=\"search-result-list\">';                
+                                var keyword = $input.val().trim().toLowerCase();
+                                $resultContent.innerHTML = "";
+                                if ($input.val().trim().length <= 0) {
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                }
+                                var results = getMatchData(keyword, json);
+                                if(results.length === 0){
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                } 
+                                for(var i =0; i<results.length; i++){
+                                    str += "<li><a href='"+ results[i].url +"' class='search-result-title'>"+ results[i].title +"</a></li>";
+                                }
+                                str += "</ul>";
+                                $resultContent.empty();
+                                $resultContent.append(str);
+                                $('#switch-area').hide();
+                            }
+                        });
+                    });
+                })();
+            </script>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a  href="/archives/">所有文章</a></li>
+                        
+                            <li><a  href="/tags/">分类&amp;标签</a></li>
+                        
+                            <li><a  href="/books/">我的读书</a></li>
+                        
+                            <li><a  href="/movies/">我的电影</a></li>
+                        
+                            <li><a  href="/categories/tree/">树</a></li>
+                        
+                            <li><a  href="/categories/interview/">面试</a></li>
+                        
+                            <li><a  href="/categories/lists/">清单</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl github"  target="_blank" href="https://github.com/ZhaoGitHub1/" title="github">github</a>
+                            
+                                <a class="fl douban"  target="_blank" href="https://www.douban.com/people/174692469/" title="douban">douban</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/ConcurrentHashMap/" style="font-size: 10px;">ConcurrentHashMap</a> <a href="/tags/SpringData/" style="font-size: 10px;">SpringData</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hashmap/" style="font-size: 10px;">hashmap</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/java基础/" style="font-size: 10px;">java基础</a> <a href="/tags/kafka/" style="font-size: 10px;">kafka</a> <a href="/tags/linux/" style="font-size: 13.33px;">linux</a> <a href="/tags/linux命令/" style="font-size: 10px;">linux命令</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/orm/" style="font-size: 10px;">orm</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/springboot/" style="font-size: 13.33px;">springboot</a> <a href="/tags/springboot源码分析/" style="font-size: 10px;">springboot源码分析</a> <a href="/tags/优化/" style="font-size: 10px;">优化</a> <a href="/tags/分布式锁/" style="font-size: 10px;">分布式锁</a> <a href="/tags/单例模式/" style="font-size: 10px;">单例模式</a> <a href="/tags/命令/" style="font-size: 10px;">命令</a> <a href="/tags/在线工具/" style="font-size: 10px;">在线工具</a> <a href="/tags/多线程/" style="font-size: 10px;">多线程</a> <a href="/tags/安全/" style="font-size: 10px;">安全</a> <a href="/tags/工具/" style="font-size: 16.67px;">工具</a> <a href="/tags/性能/" style="font-size: 10px;">性能</a> <a href="/tags/总结/" style="font-size: 20px;">总结</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/框架/" style="font-size: 10px;">框架</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/素描/" style="font-size: 10px;">素描</a> <a href="/tags/编码艺术/" style="font-size: 10px;">编码艺术</a> <a href="/tags/网站地址/" style="font-size: 10px;">网站地址</a> <a href="/tags/读书/" style="font-size: 13.33px;">读书</a> <a href="/tags/转载/" style="font-size: 13.33px;">转载</a>
+                    </div>
+                </section>
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="https://blog.csdn.net/qq_25885525">我的csdn</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="https://github.com/ZhaoGitHub1">我的github</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="https://gitee.com/zhao-183479916">我的gitee</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="https://spring.io/">Spring官网</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://www.mybatis.org/mybatis-3/zh/index.html">Mybatis官网</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://hibernate.org/">Hibernate官网</a>
+                    
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">一名普通的java 后台开发工程师~~  邮箱：183479916@qq.com</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">逸竹</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/logo.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">逸竹</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">未来不迎，当时不杂，过往不恋！</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">分类&amp;标签</a></li>
+                
+                    <li><a href="/books/">我的读书</a></li>
+                
+                    <li><a href="/movies/">我的电影</a></li>
+                
+                    <li><a href="/categories/tree/">树</a></li>
+                
+                    <li><a href="/categories/interview/">面试</a></li>
+                
+                    <li><a href="/categories/lists/">清单</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="github" target="_blank" href="https://github.com/ZhaoGitHub1/" title="github">github</a>
+                    
+                        <a class="douban" target="_blank" href="https://www.douban.com/people/174692469/" title="douban">douban</a>
+                    
+                </div>
+            </nav>
+        </header>
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-read-note-readable-code" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/12/16/read-note-readable-code/" class="article-date">
+      <time datetime="2018-12-16T13:11:53.000Z" itemprop="datePublished">2018-12-16</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      读书笔记---《编写可读代码的艺术》
+    </h1>
+  
+
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/读书笔记/">读书笔记</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/编码艺术/">编码艺术</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书/">读书</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><strong> 读书笔记---《编写可读代码的艺术》：</strong> <excerpt in="" index="" |="" 首页摘要=""></excerpt></p>
+<a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<p><img src="/2018/12/16/read-note-readable-code/book.jpg" alt=""></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我们曾经在非常成功的软件公司中和出色的工程师一起工作，然而我们所遇到的代码仍有很大的改进空间。实际上，我们曾见到一些很难看的代码，你可能也见过。但是当我们看到写得很漂亮的代码时，会很受启发。好代码会很明确告诉你它在做什么。使用它会很有趣，并且会鼓励你把自己的代码写得更好。本书旨在帮助你把代码写得更好。</p>
+<p>每一章都会深入编程的某个方面来讨论如何使代码更容易理解。本书分成四部分：表面层次上的改进命名、注释以及审美——可以用于代码库每一行的小提示。简化循环和逻辑在程序中定义循环、逻辑和变量，从而使得代码更容易理解。重新组织你的代码在更高层次上组织大的代码块以及在功能层次上解决问题的方法。</p>
+<h2 id="第1章-代码应当易于理解"><a href="#第1章-代码应当易于理解" class="headerlink" title="第1章 代码应当易于理解"></a>第1章 代码应当易于理解</h2><ul>
+<li><p>代码的写法应当使别人理解它所需的时间最小化。</p>
+</li>
+<li><p>减少代码行数是一个好目标，但把理解代码所需的时间最小化是一个更好的目标。</p>
+</li>
+<li>经常想一想其他人是不是会觉得你的代码容易理解</li>
+</ul>
+<h2 id="第一部分-表面层次的改进"><a href="#第一部分-表面层次的改进" class="headerlink" title="第一部分 表面层次的改进"></a>第一部分 表面层次的改进</h2><ul>
+<li>选择好的名字</li>
+<li>写好的注释</li>
+<li>把代码整洁地写成更好的格式</li>
+</ul>
+<h2 id="第2章-把信息装到名字里"><a href="#第2章-把信息装到名字里" class="headerlink" title="第2章 把信息装到名字里"></a>第2章 把信息装到名字里</h2><ul>
+<li>把信息装进名字中</li>
+<li>选择专业的词<ul>
+<li>避免使用tmp、retval、it、foo泛泛的词</li>
+<li>如果不把循环索引命名为（i、j、k），另一个选择可以是（club_i、members_i、user_i）或者，更简化一点（ci、mi、ui）</li>
+</ul>
+</li>
+<li>用具体的名字替代抽象的名字</li>
+<li>使用前缀和后缀来给名字附带更多信息</li>
+<li>决定名字的长度<ul>
+<li>在小的作用域里可以使用短的名字</li>
+</ul>
+</li>
+<li>利用名字的格式来表达含义</li>
+</ul>
+<h2 id="第3章-不会误解的名字"><a href="#第3章-不会误解的名字" class="headerlink" title="第3章 不会误解的名字"></a>第3章 不会误解的名字</h2><ul>
+<li><p><code>filter</code>是个二义性单词。我们不清楚它的含义到底是“挑出”还是“减掉”。最好避免使用“filter”这个名字，因为它太容易误解。 </p>
+</li>
+<li><p>推荐用min和max来表示（包含）极限 </p>
+</li>
+<li><p>建议 命名极限最清楚的方式是在要限制的东西前加上max_或者min_。 </p>
+</li>
+<li><p>推荐用first和last来表示包含的范围 </p>
+</li>
+<li><p>推荐用begin和end来表示包含/排除范围 </p>
+</li>
+<li><p>通常来讲，加上像is、has、can或should这样的词，可以把布尔值变得更明确。 </p>
+</li>
+<li><p>很多程序员都习惯了把以get开始的方法当做“轻量级访问器”这样的用法，它只是简单地返回一个内部成员变量。如果违背这个习惯很可能会误导用户。相反，这个方法应当重命名为像computeMean()这样的名字，后者听起来更像是有些代价的操作。</p>
+</li>
+</ul>
+<h2 id="第4章-审美"><a href="#第4章-审美" class="headerlink" title="第4章 审美"></a>第4章 审美</h2><p>大家都愿意读有美感的代码。通过把代码用一致的、有意义的方式“格式化”，可以把代码变得更容易读，并且可以读得更快。下面是讨论过的一些具体技巧：</p>
+<ul>
+<li>如果多个代码块做相似的事情，尝试让它们有同样的剪影，使用一致的布局，让读者很快就习惯这种风格</li>
+<li>把代码按“列”对齐可以让代码更容易浏览</li>
+<li>如果在一段代码中提到A、B和C，那么不要在另一段中说B、C和A。选择一个有意义的顺序，并始终用这样的顺序</li>
+<li>用空行来把大块代码分成逻辑上的“段落”。</li>
+</ul>
+<h2 id="第5章-该写什么样的注释"><a href="#第5章-该写什么样的注释" class="headerlink" title="第5章 该写什么样的注释"></a>第5章 该写什么样的注释</h2><p>注释的目的是帮助读者了解作者在写代码时已经知道的那些事情。本章介绍了如何发现所有的并不那么明显的信息块并且把它们写下来。什么地方不需要注释：</p>
+<ul>
+<li>能从代码本身中迅速地推断的事实</li>
+<li>用来粉饰烂代码（例如蹩脚的函数名）的“拐杖式注释”——应该把代码改好。你应该记录下来的想法包括：<ul>
+<li>对于为什么代码写成这样而不是那样的内在理由（“指导性批注”）</li>
+<li>代码中的缺陷，使用像TODO:或者XXX:这样的标记</li>
+<li>常量背后的故事，为什么是这个值。</li>
+<li>站在读者的立场上思考：预料到代码中哪些部分会让读者说：“啊？”并且给它们加上注释</li>
+<li>为普通读者意料之外的行为加上注释</li>
+<li>在文件/类的级别上使用“全局观”注释来解释所有的部分是如何一起工作的</li>
+<li>用注释来总结代码块，使读者不致迷失在细节中</li>
+</ul>
+</li>
+</ul>
+<h2 id="第6章-写出言简意赅的注释"><a href="#第6章-写出言简意赅的注释" class="headerlink" title="第6章 写出言简意赅的注释"></a>第6章 写出言简意赅的注释</h2><p>本章是关于如何把更多的信息装入更小的空间里。下面是一些具体的提示：</p>
+<ul>
+<li>当像“it”和“this”这样的代词可能指代多个事物时，避免使用它们</li>
+<li>尽量精确地描述函数的行为</li>
+<li>在注释中用精心挑选的输入/输出例子进行说明</li>
+<li>声明代码的高层次意图，而非明显的细节</li>
+<li>用嵌入的注释（如Function(/<em>arg =</em>/…)）来解释难以理解的函数参数</li>
+<li>用含义丰富的词来使注释简洁</li>
+</ul>
+<h2 id="第二部分-简化循环和逻辑"><a href="#第二部分-简化循环和逻辑" class="headerlink" title="第二部分 简化循环和逻辑"></a>第二部分 简化循环和逻辑</h2><h2 id="第7章-把控制流变得易读"><a href="#第7章-把控制流变得易读" class="headerlink" title="第7章 把控制流变得易读"></a>第7章 把控制流变得易读</h2><p>有几种方法可以让代码的控制流更易读</p>
+<ul>
+<li>在写一个比较时（while (bytes_expected ＞ bytes_received)），把改变的值写在左边并且把更稳定的值写在右边更好一些（while (bytes_received ＜; bytes_expected)）</li>
+<li>你也可以重新排列if/else语句中的语句块。通常来讲，先处理正确的/简单的/有趣的情况。有时这些准则会冲突，但是当不冲突时，这是要遵循的经验法则</li>
+<li>某些编程结构，像三目运算符（:?）、do/while循环，以及goto经常会导致代码的可读性变差。最好不要使用它们，因为总是有更整洁的代替方式</li>
+<li>嵌套的代码块需要更加集中精力去理解。每层新的嵌套都需要读者把更多的上下文“压入栈”。应该把它们改写成更加“线性”的代码来避免深嵌套。通常来讲提早返回可以减少嵌套并让代码整洁。“保护语句”（在函数顶部处理简单的情况时）尤其有用。</li>
+</ul>
+<h2 id="第8章-拆分超长表达式"><a href="#第8章-拆分超长表达式" class="headerlink" title="第8章 拆分超长表达式"></a>第8章 拆分超长表达式</h2><ul>
+<li>把超长表达式拆成更容易理解的小块</li>
+<li>引入解释变量</li>
+</ul>
+<h2 id="第9章-变量与可读性"><a href="#第9章-变量与可读性" class="headerlink" title="第9章 变量与可读性"></a>第9章 变量与可读性</h2><p>关于程序中的变量是如何快速累积而变得难以跟踪的。你可以通过减少变量的数量和让它们尽量“轻量级”来让代码更有可读性。具体有：</p>
+<ul>
+<li>减少变量，即那些妨碍的变量。我们给出了几个例子来演示如何通过立刻处理结果来消除“中间结果”变量</li>
+<li>减小每个变量的作用域，越小越好。把变量移到一个有最少代码可以看到它的地方。眼不见，心不烦</li>
+<li>只写一次的变量更好。那些只设置一次值的变量（或者const、final、常量）使得代码更容易理解。</li>
+</ul>
+<h2 id="第三部分-重新组织代码"><a href="#第三部分-重新组织代码" class="headerlink" title="第三部分 重新组织代码"></a>第三部分 重新组织代码</h2><p>我们会讲到三种组织代码的方法：</p>
+<ul>
+<li>抽取出那些与程序主要目的“不相关的子问题”</li>
+<li>重新组织代码使它一次只做一件事情</li>
+<li>先用自然语言描述代码，然后用这个描述来帮助你找到更整洁的解决方案</li>
+</ul>
+<h2 id="第10章-抽取不相关的子问题"><a href="#第10章-抽取不相关的子问题" class="headerlink" title="第10章 抽取不相关的子问题"></a>第10章 抽取不相关的子问题</h2><ul>
+<li><p>所谓工程学就是关于把大问题拆分成小问题再把这些问题的解决方案放回一起。把这条原则应用于代码会使代码更健壮并且更容易读。</p>
+</li>
+<li><p>积极地发现并抽取出不相关的子逻辑</p>
+<ul>
+<li>纯工具代码 <ul>
+<li>通常来讲，如果你在想：“我希望我们的库里有XYZ()函数”，那么就写一个！（如果它还不存在的话）经过一段时间，你会建立起一组不错的工具代码，后者可以应用于多个项目。 </li>
+</ul>
+</li>
+<li>其他多用途代码 <ul>
+<li>当format_pretty()中的代码自成一体后改进它变得更容易。当你在使用一个独立的小函数时，感觉添加功能、改进可读性、处理边界情况等都更容易。 </li>
+</ul>
+</li>
+<li>创建大量通用代码 </li>
+<li>项目专有的功能 </li>
+<li>简化已有接口 </li>
+<li>按需重塑接口 </li>
+<li>过犹不及 <ul>
+<li>引入这么多小函数实际上对可读性是不利的，因为读者要关注更多东西，并且按照执行的路径需要跳来跳去</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="第11章-一次只做一件事"><a href="#第11章-一次只做一件事" class="headerlink" title="第11章 一次只做一件事"></a>第11章 一次只做一件事</h2><ul>
+<li>应该把代码组织得一次只做一件事情。</li>
+</ul>
+<h2 id="第12章-把想法变成代码"><a href="#第12章-把想法变成代码" class="headerlink" title="第12章 把想法变成代码"></a>第12章 把想法变成代码</h2><ul>
+<li>用自然语言描述程序然后用这个描述来帮助你写出更自然的代码。这个技巧出人意料地简单，但很强大。看到你在描述中所用的词和短语还可以帮助你发现哪些子问题可以拆分出来。 但是这个“用自然语言说事情”的过程不仅可以用于写代码。 </li>
+</ul>
+<h2 id="第13章-少写代码"><a href="#第13章-少写代码" class="headerlink" title="第13章 少写代码"></a>第13章 少写代码</h2><ul>
+<li>不是所有的程序都需要运行得快，100%准确，并且能处理所有的输入。如果你真的仔细检查你的需求，有时你可以把它削减成一个简单的问题，只需要较少的代码。</li>
+<li><p>我们所描述的是宇宙的自然法则——随着任何坐标系统的增长，把它粘合在一起所需的复杂度增长得更快。 最好的解决办法就是“让你的代码库越小，越轻量级越好”，就算你的项目在增长。那么你就要：</p>
+<ul>
+<li>创建越多越好的“工具”代码来减少重复代码（见第10章）</li>
+<li>减少无用代码或没有用的功能</li>
+<li>让你的项目保持分开的子项目状态</li>
+<li>总的来说，要小心代码的“重量”。让它保持又轻又灵。 </li>
+</ul>
+</li>
+<li><p>熟悉你周边的库 </p>
+<ul>
+<li>很多时候，程序员就是不知道现有的库可以解决他们的问题。或者有时，它们忘了库可以做什么。知道你的库能做什么以便你可以使用它，这一点很重要。 </li>
+</ul>
+</li>
+</ul>
+<h2 id="我的总结"><a href="#我的总结" class="headerlink" title="我的总结"></a>我的总结</h2><p>在日常开发中，比较注重编码规范及命名等细节，个人认为命名和注释写得好是需要观察、积累和总结的，这也很重要，同时在阅读jdk、spring、mybatis等优秀框架源码也发现好的命名的重要性，下面总结了一些命名及编码方式，周知的驼峰命名、常量大写等就不列举了。只写一些书中没提到的。</p>
+<h3 id="命名相关"><a href="#命名相关" class="headerlink" title="命名相关"></a>命名相关</h3><ul>
+<li><p>动宾格式命名方法</p>
+<ul>
+<li>prepareContext、prepareEnvironment</li>
+</ul>
+</li>
+<li><p>前缀命名</p>
+<ul>
+<li>spring中doXXX是真正做事情的方法，如doLoadBeanDefinitions、doRegisterBeanDefinitions</li>
+<li>preXXX、postXXX：前置、后置处理方法</li>
+<li>loadXXX：loadBeanDefinitions</li>
+</ul>
+</li>
+<li><p>后缀命名</p>
+<ul>
+<li>XXXListener：一看就知道是监听器</li>
+<li>XXXFactory、XXXDelegate、XXXTemplate：使用了工厂模式、委派模式、模板模式等</li>
+</ul>
+</li>
+<li><p>善用词性</p>
+<ul>
+<li>listeners.starting()、listeners.started(context)等不用说就知道区别，表示不同阶段</li>
+</ul>
+</li>
+<li><p>名词单复数</p>
+<ul>
+<li>user、users：分别代表一个用户和多个用户</li>
+</ul>
+</li>
+</ul>
+<h3 id="代码风格"><a href="#代码风格" class="headerlink" title="代码风格"></a>代码风格</h3><ul>
+<li>按功能划分代码，一个类不超过千行</li>
+<li>常量统一写在头部</li>
+<li>多次使用的抽象成工具类</li>
+<li>语义化、函数式编程</li>
+</ul>
+</the>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a  href="/2018/12/16/read-note-readable-code/">读书笔记---《编写可读代码的艺术》</a></p>
+        <p><span>文章作者:</span><a  href="/" title="访问 逸竹 的个人博客">逸竹</a></p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/12/16/read-note-readable-code/" title="读书笔记---《编写可读代码的艺术》">http://yizhuxiaozhan.site/2018/12/16/read-note-readable-code/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yizhuxiaozhan.site/2018/12/16/read-note-readable-code/　　作者: 逸竹" title=""></span>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a  href="/2019/01/01/redis-file-lock/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          redis实现分布式文件夹锁
+        
+      </div>
+    </a>
+  
+  
+    <a  href="/2018/10/27/hashmap/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">HashMap源码阅读</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第1章-代码应当易于理解"><span class="toc-number">2.</span> <span class="toc-text">第1章 代码应当易于理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第一部分-表面层次的改进"><span class="toc-number">3.</span> <span class="toc-text">第一部分 表面层次的改进</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第2章-把信息装到名字里"><span class="toc-number">4.</span> <span class="toc-text">第2章 把信息装到名字里</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第3章-不会误解的名字"><span class="toc-number">5.</span> <span class="toc-text">第3章 不会误解的名字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第4章-审美"><span class="toc-number">6.</span> <span class="toc-text">第4章 审美</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第5章-该写什么样的注释"><span class="toc-number">7.</span> <span class="toc-text">第5章 该写什么样的注释</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第6章-写出言简意赅的注释"><span class="toc-number">8.</span> <span class="toc-text">第6章 写出言简意赅的注释</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二部分-简化循环和逻辑"><span class="toc-number">9.</span> <span class="toc-text">第二部分 简化循环和逻辑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第7章-把控制流变得易读"><span class="toc-number">10.</span> <span class="toc-text">第7章 把控制流变得易读</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第8章-拆分超长表达式"><span class="toc-number">11.</span> <span class="toc-text">第8章 拆分超长表达式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第9章-变量与可读性"><span class="toc-number">12.</span> <span class="toc-text">第9章 变量与可读性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第三部分-重新组织代码"><span class="toc-number">13.</span> <span class="toc-text">第三部分 重新组织代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第10章-抽取不相关的子问题"><span class="toc-number">14.</span> <span class="toc-text">第10章 抽取不相关的子问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第11章-一次只做一件事"><span class="toc-number">15.</span> <span class="toc-text">第11章 一次只做一件事</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第12章-把想法变成代码"><span class="toc-number">16.</span> <span class="toc-text">第12章 把想法变成代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第13章-少写代码"><span class="toc-number">17.</span> <span class="toc-text">第13章 少写代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#我的总结"><span class="toc-number">18.</span> <span class="toc-text">我的总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#命名相关"><span class="toc-number">18.1.</span> <span class="toc-text">命名相关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码风格"><span class="toc-number">18.2.</span> <span class="toc-text">代码风格</span></a></li></ol></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+    <link rel="stylesheet" type="text/css" href="/css/showshare.css"></head>
+    <div id="share" class="bdsharebuttonbox">
+        <button class="share-toggle-button"><i class="share-icon fa fa-share-alt"></i>
+        </button>
+        <ul class="share-items">
+            <li class="share-item"><a href="#" class="share-button fa fa-weibo" data-cmd="tsina" title="分享到新浪微博"></a></li>
+            <li class="share-item"><a href="#" class="share-button fa fa-weixin" data-cmd="weixin" title="分享到微信"></a></li>
+            <li class="share-item"><a href="#" class="share-button fa fa-qq" data-cmd="sqq" title="分享到QQ好友"></a></li>
+            <li class="share-item"><a href="#" class="share-button fa fa-facebook" data-cmd="fbook" title="分享到Facebook"></a></li>
+            <li class="share-item"><a href="#" class="share-button fa fa-twitter" data-cmd="twi" title="分享到Twitter"></a></li>
+            <li class="share-item"><a href="#" class="share-button fa fa-linkedin" data-cmd="linkedin" title="分享到linkedin"></a></li>
+        </ul>
+    </div>
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="800">
+        <defs>
+            <filter id="goo">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur" />
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 35 -15" result="goo" />
+                <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+            </filter>
+        </defs>
+    </svg>
+    <!-- 推荐开源CDN来选取需引用的外部JS //-->
+    <script type="text/javascript" src="http://cdn.gbtags.com/jquery/1.11.1/jquery.min.js"></script>
+    <script src="/js/TweenMax.min.js"></script>
+    <script src="/js/TweenMax.js"></script>
+<script>
+    window._bd_share_config = {
+    common : {
+                    bdText : '',
+                    //文本内容
+                    bdDesc : 'Luuman，90后，水瓶座普通男青年！爱折腾，爱运动，更爱游离于错综复杂的编码与逻辑中，无法自拔。相信编程是一门艺术，自诩为游弋在代码里的人生。',
+                    // 描述
+                    bdUrl : 'http://luuman.github.io/',
+                    // URL地址
+                    bdPic : 'https://hexo.io/build/screenshots/spfk-2b30506937.png'
+                    // 图片信息
+                },
+        share: [{
+            "bdSize": 24
+        }]
+    }
+    with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion=' + ~ (-new Date() / 36e5)];
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-33765729-1']);
+    _gaq.push(['_setDomainName', 'chuanke.com']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+
+    
+        <section id="comments">
+<link rel="stylesheet" href="/css/gitment.min.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: '读书笔记---《编写可读代码的艺术》', // 可选。默认为 location.href
+  owner: 'ZhaoGitHub1',
+  repo: 'ZhaoGitHub1.github.io',
+  oauth: {
+    client_id: '0959e9fdfc97cef82968',
+    client_secret: '126454836d441306e61dfbf9bb3ddc6cef1bf93d',
+  },
+})
+gitment.render('comments')
+</script>
+</section>
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a  href="/2019/01/01/redis-file-lock/" title="上一篇: redis实现分布式文件夹锁">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a  href="/2018/10/27/hashmap/" title="下一篇: HashMap源码阅读">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/06/01/tool-idea/">IDEA使用总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/12/tool-recommend/">工具推荐</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/06/spring-data-jpa-summary/">spring-data-jpa使用总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/17/kafka-learn-and-summary/">Kafka学习和总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/10/list-books/">推荐书单整理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/01/redis-file-lock/">redis实现分布式文件夹锁</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/16/read-note-readable-code/">读书笔记---《编写可读代码的艺术》</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/27/hashmap/">HashMap源码阅读</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/28/java-code-optimize/">java代码优化建议</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/27/git-commands/">git常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-optimize/">面试之---安全与性能优化相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-tools/">面试之---工具使用相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-java-basic/">面试之---java基础相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-others/">面试之---其他细小知识点汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-db/">面试之---数据库相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-algorithm/">面试之---算法相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-framework/">面试之---框架相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/15/linux-commands/">linux常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/13/tree-projects/">项目树</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/12/redis-summary/">Redis总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/11/about-Hexo/">Hexo博客搭建相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/10/pattern-singleton/">设计模式之---单例模式(Singleton Pattern)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/09/list-sites/">常用网站清单</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/my-pictures/">我的画集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/thread-realize/">创建线程的几种方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/springboot-app-deploy/">SpringBoot项目打包发布Linux环境完整流程</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/pattern-all/">设计模式之---汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/concurrentHashMap-analyze/">【转载】ConcurrentHashMap原理分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/nginx-config/">【转载】nginx配置文件nginx.conf超详细讲解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/tree-skills/">技能树</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/06/springApplication-analyze/">SpringBoot源码分析之---SpringBoot项目启动类SpringApplication浅析</a></li></ul>
+    
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+    <script>
+        $(".post-list").addClass("toc-article");
+        // $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
+
+
+
+
+    <script>
+        
+    </script>
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2019 逸竹
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo &nbsp;&nbsp;</a><a href="https://github.com/ZhaoGitHub1" target="_blank">Blog</a> by 逸竹
+            </div>
+        </div>
+        
+    </div>
+</footer>
+
+    </div>
+    
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 8;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'xxxxx', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?eb7d8cefd581790a3213e8feb93ae89f";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>

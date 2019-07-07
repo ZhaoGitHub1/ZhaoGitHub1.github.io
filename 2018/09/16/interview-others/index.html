@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="baidu-site-verification" content="L6Lm9d5Crl"/>
+  
+  
+  
+  
+  <title>面试之---其他细小知识点汇总 | 逸竹小站</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="包含Xml、Jsp、Servlet、Web、表达式及其他java相关的面试知识点">
+<meta name="keywords" content="总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面试之---其他细小知识点汇总">
+<meta property="og:url" content="http://yizhuxiaozhan.site/2018/09/16/interview-others/index.html">
+<meta property="og:site_name" content="逸竹小站">
+<meta property="og:description" content="包含Xml、Jsp、Servlet、Web、表达式及其他java相关的面试知识点">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yizhuxiaozhan.site/2018/09/16/interview-others/interview.png">
+<meta property="og:updated_time" content="2019-06-11T12:41:32.324Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="面试之---其他细小知识点汇总">
+<meta name="twitter:description" content="包含Xml、Jsp、Servlet、Web、表达式及其他java相关的面试知识点">
+<meta name="twitter:image" content="http://yizhuxiaozhan.site/2018/09/16/interview-others/interview.png">
+  
+    <link rel="alternative" href="/atom.xml" title="逸竹小站" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/logo.jpg" class="js-avatar">
+            
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">逸竹</a></h1>
+        </hgroup>
+        
+        <p class="header-subtitle">未来不迎，当时不杂，过往不恋！</p>
+        
+        
+            <form>
+                <input type="text" class="st-default-search-input search" id="local-search-input" placeholder="搜索一下" autocomplete="off">
+            </form>
+            <div id="local-search-result"></div>
+        
+        
+            <script type="text/javascript">
+                (function() {
+                    'use strict';
+                    function getMatchData(keyword, data) {
+                        var matchData = [];
+                        for(var i =0;i<data.length;i++){
+                            if(data[i].title.toLowerCase().indexOf(keyword)>=0) 
+                                matchData.push(data[i])
+                        }
+                        return matchData;
+                    }
+                    var $input = $('#local-search-input');
+                    var $resultContent = $('#local-search-result');
+                    $input.keyup(function(){
+                        $.ajax({
+                            url: '/search.json',
+                            dataType: "json",
+                            success: function( json ) {
+                                var str='<ul class=\"search-result-list\">';                
+                                var keyword = $input.val().trim().toLowerCase();
+                                $resultContent.innerHTML = "";
+                                if ($input.val().trim().length <= 0) {
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                }
+                                var results = getMatchData(keyword, json);
+                                if(results.length === 0){
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                } 
+                                for(var i =0; i<results.length; i++){
+                                    str += "<li><a href='"+ results[i].url +"' class='search-result-title'>"+ results[i].title +"</a></li>";
+                                }
+                                str += "</ul>";
+                                $resultContent.empty();
+                                $resultContent.append(str);
+                                $('#switch-area').hide();
+                            }
+                        });
+                    });
+                })();
+            </script>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a  href="/archives/">所有文章</a></li>
+                        
+                            <li><a  href="/tags/">分类&amp;标签</a></li>
+                        
+                            <li><a  href="/books/">我的读书</a></li>
+                        
+                            <li><a  href="/movies/">我的电影</a></li>
+                        
+                            <li><a  href="/categories/tree/">树</a></li>
+                        
+                            <li><a  href="/categories/interview/">面试</a></li>
+                        
+                            <li><a  href="/categories/lists/">清单</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl github"  target="_blank" href="https://github.com/ZhaoGitHub1/" title="github">github</a>
+                            
+                                <a class="fl douban"  target="_blank" href="https://www.douban.com/people/174692469/" title="douban">douban</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/ConcurrentHashMap/" style="font-size: 10px;">ConcurrentHashMap</a> <a href="/tags/SpringData/" style="font-size: 10px;">SpringData</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hashmap/" style="font-size: 10px;">hashmap</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/java基础/" style="font-size: 10px;">java基础</a> <a href="/tags/kafka/" style="font-size: 10px;">kafka</a> <a href="/tags/linux/" style="font-size: 13.33px;">linux</a> <a href="/tags/linux命令/" style="font-size: 10px;">linux命令</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/orm/" style="font-size: 10px;">orm</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/springboot/" style="font-size: 13.33px;">springboot</a> <a href="/tags/springboot源码分析/" style="font-size: 10px;">springboot源码分析</a> <a href="/tags/优化/" style="font-size: 10px;">优化</a> <a href="/tags/分布式锁/" style="font-size: 10px;">分布式锁</a> <a href="/tags/单例模式/" style="font-size: 10px;">单例模式</a> <a href="/tags/命令/" style="font-size: 10px;">命令</a> <a href="/tags/在线工具/" style="font-size: 10px;">在线工具</a> <a href="/tags/多线程/" style="font-size: 10px;">多线程</a> <a href="/tags/安全/" style="font-size: 10px;">安全</a> <a href="/tags/工具/" style="font-size: 16.67px;">工具</a> <a href="/tags/性能/" style="font-size: 10px;">性能</a> <a href="/tags/总结/" style="font-size: 20px;">总结</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/框架/" style="font-size: 10px;">框架</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/素描/" style="font-size: 10px;">素描</a> <a href="/tags/编码艺术/" style="font-size: 10px;">编码艺术</a> <a href="/tags/网站地址/" style="font-size: 10px;">网站地址</a> <a href="/tags/读书/" style="font-size: 13.33px;">读书</a> <a href="/tags/转载/" style="font-size: 13.33px;">转载</a>
+                    </div>
+                </section>
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="https://blog.csdn.net/qq_25885525">我的csdn</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="https://github.com/ZhaoGitHub1">我的github</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="https://gitee.com/zhao-183479916">我的gitee</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="https://spring.io/">Spring官网</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://www.mybatis.org/mybatis-3/zh/index.html">Mybatis官网</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://hibernate.org/">Hibernate官网</a>
+                    
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">一名普通的java 后台开发工程师~~  邮箱：183479916@qq.com</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">逸竹</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/logo.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">逸竹</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">未来不迎，当时不杂，过往不恋！</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">分类&amp;标签</a></li>
+                
+                    <li><a href="/books/">我的读书</a></li>
+                
+                    <li><a href="/movies/">我的电影</a></li>
+                
+                    <li><a href="/categories/tree/">树</a></li>
+                
+                    <li><a href="/categories/interview/">面试</a></li>
+                
+                    <li><a href="/categories/lists/">清单</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="github" target="_blank" href="https://github.com/ZhaoGitHub1/" title="github">github</a>
+                    
+                        <a class="douban" target="_blank" href="https://www.douban.com/people/174692469/" title="douban">douban</a>
+                    
+                </div>
+            </nav>
+        </header>
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-interview-others" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/09/16/interview-others/" class="article-date">
+      <time datetime="2018-09-16T13:06:51.000Z" itemprop="datePublished">2018-09-16</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      面试之---其他细小知识点汇总
+    </h1>
+  
+
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/interview/">interview</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/总结/">总结</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><strong> 面试之---其他细小知识点汇总：</strong> <excerpt in="" index="" |="" 首页摘要=""></excerpt></p>
+<a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<p><img src="/2018/09/16/interview-others/interview.png" alt=""></p>
+<blockquote>
+<p>持续维护java面试题系列博文，发现好的面试题会更新进来。总结的并不只是如何回答面试官，而是这道题涉及到的知识点，明白了相关知识点和面试官要问的点，回答起来就不是问题了。</p>
+</blockquote>
+<h2 id="XML"><a href="#XML" class="headerlink" title="XML"></a>XML</h2><h3 id="XML文档定义有几种形式？它们之间有何本质区别？解析XML文档有哪几种方式？"><a href="#XML文档定义有几种形式？它们之间有何本质区别？解析XML文档有哪几种方式？" class="headerlink" title="XML文档定义有几种形式？它们之间有何本质区别？解析XML文档有哪几种方式？"></a><code>XML</code>文档定义有几种形式？它们之间有何本质区别？解析<code>XML</code>文档有哪几种方式？</h3><p><code>XML</code>文档定义分为<code>DTD</code>和<code>Schema</code>两种形式，二者都是对<code>XML</code>语法的约束，其本质区别在于<code>Schema</code>本身也是一个<code>XML</code>文件，可以被<code>XML</code>解析器解析，而且可以为<code>XML</code>承载的数据定义类型，约束能力较之<code>DTD</code>更强大。对<code>XML</code>的解析主要有<code>DOM</code>（文档对象模型，<code>Document Object Model</code>）、<code>SAX</code>（<code>Simple API for XML</code>）和<code>StAX</code>（Java 6中引入的新的解析XML的方式，<code>Streaming API for XML</code>），其中<code>DOM</code>处理大型文件时其性能下降的非常厉害，这个问题是由<code>DOM</code>树结构占用的内存较多造成的，而且<code>DOM</code>解析方式必须在解析文件之前把整个文档装入内存，适合对<code>XML</code>的随机访问（典型的用空间换取时间的策略）；<code>SAX</code>是事件驱动型的<code>XML</code>解析方式，它顺序读取<code>XML</code>文件，不需要一次全部装载整个文件。当遇到像文件开头，文档结束，或者标签开头与标签结束时，它会触发一个事件，用户通过事件回调代码来处理<code>XML</code>文件，适合对<code>XML</code>的顺序访问；顾名思义，<code>StAX</code>把重点放在流上，实际上<code>StAX</code>与其他解析方式的本质区别就在于应用程序能够把<code>XML</code>作为一个事件流来处理。将<code>XML</code>作为一组事件来处理的想法并不新颖（<code>SAX</code>就是这样做的），但不同之处在于<code>StAX</code>允许应用程序代码把这些事件逐个拉出来，而不用提供在解析器方便时从解析器中接收事件的处理程序。</p>
+<h2 id="JSP"><a href="#JSP" class="headerlink" title="JSP"></a>JSP</h2><h3 id="为什么热加载技术没有广泛应用："><a href="#为什么热加载技术没有广泛应用：" class="headerlink" title="为什么热加载技术没有广泛应用："></a>为什么热加载技术没有广泛应用：</h3><p>类变了，里面的变量保存的信息变了，不可用了，差生大量垃圾，高并发场景不适用</p>
+<h3 id="JSP有哪些内置对象？作用分别是什么？"><a href="#JSP有哪些内置对象？作用分别是什么？" class="headerlink" title="JSP有哪些内置对象？作用分别是什么？"></a>JSP有哪些内置对象？作用分别是什么？</h3><p>JSP有9个内置对象：  </p>
+<ul>
+<li><code>request</code>：封装客户端的请求，其中包含来自GET或POST请求的参数；  </li>
+<li><code>response</code>：封装服务器对客户端的响应；</li>
+<li><code>pageContext</code>：通过该对象可以获取其他对象；</li>
+<li><code>session</code>：封装用户会话的对象；</li>
+<li><code>application</code>：封装服务器运行环境的对象；</li>
+<li><code>out</code>：输出服务器响应的输出流对象；</li>
+<li><code>config</code>：Web应用的配置对象；</li>
+<li><code>page</code>：JSP页面本身（相当于Java程序中的this）； </li>
+<li><code>exception</code>：封装页面抛出异常的对象。</li>
+</ul>
+<blockquote>
+<p><strong>补充：</strong>如果用<code>Servlet</code>来生成网页中的动态内容无疑是非常繁琐的工作，另一方面，所有的文本和HTML标签都是硬编码，即使做出微小的修改，都需要进行重新编译。<code>JSP</code>解决了<code>Servlet</code>的这些问题，它是<code>Servlet</code>很好的补充，可以专门用作为用户呈现视图（View），而<code>Servlet</code>作为控制器（Controller）专门负责处理用户请求并转发或重定向到某个页面。基于Java的Web开发很多都同时使用了<code>Servlet</code>和<code>JSP</code>。<code>JSP</code>页面其实是一个<code>Servlet</code>，能够运行<code>Servlet</code>的服务器（<code>Servlet</code>容器）通常也是<code>JSP</code>容器，可以提供<code>JSP</code>页面的运行环境，Tomcat就是一个<code>Servlet</code>/<code>JSP</code>容器。第一次请求一个<code>JSP</code>页面时，<code>Servlet</code>/<code>JSP</code>容器首先将<code>JSP</code>页面转换成一个<code>JSP</code>页面的实现类，这是一个实现了<code>JspPage</code>接口或其子接口<code>HttpJspPage</code>的Java类。<code>JspPage</code>接口是<code>Servlet</code>的子接口，因此每个<code>JSP</code>页面都是一个<code>Servlet</code>。转换成功后，容器会编译<code>Servlet</code>类，之后容器加载和实例化Java字节码，并执行它通常对<code>Servlet</code>所做的生命周期操作。对同一个<code>JSP</code>页面的后续请求，容器会查看这个<code>JSP</code>页面是否被修改过，如果修改过就会重新转换并重新编译并执行。如果没有则执行内存中已经存在的<code>Servlet</code>实例。我们可以看一段<code>JSP</code>代码对应的Java程序就知道一切了，而且9个内置对象的神秘面纱也会被揭开。</p>
+</blockquote>
+<h3 id="JSP和Servlet是什么关系？"><a href="#JSP和Servlet是什么关系？" class="headerlink" title="JSP和Servlet是什么关系？"></a>JSP和Servlet是什么关系？</h3><p>Servlet是一个特殊的Java程序，它运行于服务器的JVM中，能够依靠服务器的支持向浏览器提供显示内容。JSP本质上是Servlet的一种简易形式，JSP会被服务器处理成一个类似于Servlet的Java程序，可以简化页面内容的生成。Servlet和JSP最主要的不同点在于，Servlet的应用逻辑是在Java文件中，并且完全从表示层中的HTML分离开来。而JSP的情况是Java和HTML可以组合成一个扩展名为.jsp的文件。有人说，Servlet就是在Java中写HTML，而JSP就是在HTML中写Java代码，当然这个说法是很片面且不够准确的。JSP侧重于视图，Servlet更侧重于控制逻辑，在MVC架构模式中，JSP适合充当视图（view）而Servlet适合充当控制器（controller）。</p>
+<h3 id="讲解JSP中的四种作用域。"><a href="#讲解JSP中的四种作用域。" class="headerlink" title="讲解JSP中的四种作用域。"></a>讲解JSP中的四种作用域。</h3><p>JSP中的四种作用域包括<code>page</code>、<code>request</code>、<code>session</code>和<code>application</code>，具体来说：</p>
+<ul>
+<li><code>page</code>代表与一个页面相关的对象和属性。</li>
+<li><code>request</code>代表与Web客户机发出的一个请求相关的对象和属性。一个请求可能跨越多个页面，涉及多个Web组件；需要在页面显示的临时数据可以置于此作用域。</li>
+<li><code>session</code>代表与某个用户与服务器建立的一次会话相关的对象和属性。跟某个用户相关的数据应该放在用户自己的session中。</li>
+<li><code>application</code>代表与整个Web应用程序相关的对象和属性，它实质上是跨越整个Web应用程序，包括多个页面、请求和会话的一个全局作用域。</li>
+</ul>
+<h3 id="JSP中的静态包含和动态包含有什么区别？"><a href="#JSP中的静态包含和动态包含有什么区别？" class="headerlink" title="JSP中的静态包含和动态包含有什么区别？"></a>JSP中的静态包含和动态包含有什么区别？</h3><p>静态包含是通过JSP的<code>include</code>指令包含页面，动态包含是通过JSP标准动作<code>&lt;jsp:forward&gt;</code>包含页面。静态包含是编译时包含，如果包含的页面不存在则会产生编译错误，而且两个页面的”<code>contentType</code>“属性应保持一致，因为两个页面会合二为一，只产生一个class文件，因此被包含页面发生的变动再包含它的页面更新前不会得到更新。动态包含是运行时包含，可以向被包含的页面传递参数，包含页面和被包含页面是独立的，会编译出两个class文件，如果被包含的页面不存在，不会产生编译错误，也不影响页面其他部分的执行。代码如下所示：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;%-- 静态包含 --%&gt;</span><br><span class="line">&lt;%@ include file=<span class="string">"..."</span> %&gt;</span><br><span class="line"></span><br><span class="line">&lt;%-- 动态包含 --%&gt;</span><br><span class="line">&lt;jsp:include page=<span class="string">"..."</span>&gt;</span><br><span class="line">    &lt;jsp:param name=<span class="string">"..."</span> value=<span class="string">"..."</span> /&gt;</span><br><span class="line">&lt;/jsp:include&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="Servlet"><a href="#Servlet" class="headerlink" title="Servlet"></a>Servlet</h2><h3 id="Servlet接口中有哪些方法？"><a href="#Servlet接口中有哪些方法？" class="headerlink" title="Servlet接口中有哪些方法？"></a>Servlet接口中有哪些方法？</h3><p>Servlet接口定义了5个方法，其中前三个方法与Servlet生命周期相关： </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(ServletConfig config)</span> <span class="keyword">throws</span> ServletException</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">service</span><span class="params">(ServletRequest req, ServletResponse resp)</span> <span class="keyword">throws</span> ServletException, java.io.IOException</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">destory</span><span class="params">()</span></span></span><br><span class="line"><span class="function">java.lang.String <span class="title">getServletInfo</span><span class="params">()</span></span></span><br><span class="line"><span class="function">ServletConfig <span class="title">getServletConfig</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+<p>Web容器加载Servlet并将其实例化后，Servlet生命周期开始，容器运行其<code>init()</code>方法进行Servlet的初始化；请求到达时调用Servlet的<code>service()</code>方法，<code>service()</code>方法会根据需要调用与请求对应的<code>doGet</code>或<code>doPost</code>等方法；当服务器关闭或项目被卸载时服务器会将Servlet实例销毁，此时会调用Servlet的<code>destroy()</code>方法。</p>
+<h3 id="过滤器有哪些作用和用法？"><a href="#过滤器有哪些作用和用法？" class="headerlink" title="过滤器有哪些作用和用法？"></a>过滤器有哪些作用和用法？</h3><p>Java Web开发中的过滤器（filter）是从Servlet 2.3规范开始增加的功能，并在Servlet 2.4规范中得到增强。对Web应用来说，过滤器是一个驻留在服务器端的Web组件，它可以截取客户端和服务器之间的请求与响应信息，并对这些信息进行过滤。当Web容器接受到一个对资源的请求时，它将判断是否有过滤器与这个资源相关联。如果有，那么容器将把请求交给过滤器进行处理。在过滤器中，你可以改变请求的内容，或者重新设置请求的报头信息，然后再将请求发送给目标资源。当目标资源对请求作出响应时候，容器同样会将响应先转发给过滤器，在过滤器中你可以对响应的内容进行转换，然后再将响应发送到客户端。</p>
+<p>常见的过滤器用途主要包括：对用户请求进行统一认证、对用户的访问请求进行记录和审核、对用户发送的数据进行过滤或替换、转换图象格式、对响应内容进行压缩以减少传输量、对请求或响应进行加解密处理、触发资源访问事件、对XML的输出应用XSLT等。</p>
+<p>和过滤器相关的接口主要有：<code>Filter</code>、<code>FilterConfig</code>和<code>FilterChain</code>。</p>
+<h3 id="监听器有哪些作用和用法？"><a href="#监听器有哪些作用和用法？" class="headerlink" title="监听器有哪些作用和用法？"></a>监听器有哪些作用和用法？</h3><p>Java Web开发中的监听器（listener）就是<code>application</code>、<code>session</code>、<code>request</code>三个对象创建、销毁或者往其中添加修改删除属性时自动执行代码的功能组件，如下所示： </p>
+<ul>
+<li><code>ServletContextListener</code>：对Servlet上下文的创建和销毁进行监听。 </li>
+<li><code>ServletContextAttributeListener</code>：监听Servlet上下文属性的添加、删除和替换。 </li>
+<li><code>HttpSessionListener</code>：对Session的创建和销毁进行监听。</li>
+</ul>
+<blockquote>
+<p>补充：session的销毁有两种情况：1). session超时（可以在web.xml中通过<session-config>/<session-timeout>标签配置超时时间）；2). 通过调用session对象的invalidate()方法使session失效。</session-timeout></session-config></p>
+</blockquote>
+<ul>
+<li><code>HttpSessionAttributeListener</code>：对Session对象中属性的添加、删除和替换进行监听。 </li>
+<li><code>ServletRequestListener</code>：对请求对象的初始化和销毁进行监听。 </li>
+<li><code>ServletRequestAttributeListener</code>：对请求对象属性的添加、删除和替换进行监听。</li>
+</ul>
+<h3 id="服务器收到用户提交的表单数据，到底是调用Servlet的doGet-还是doPost-方法？"><a href="#服务器收到用户提交的表单数据，到底是调用Servlet的doGet-还是doPost-方法？" class="headerlink" title="服务器收到用户提交的表单数据，到底是调用Servlet的doGet()还是doPost()方法？"></a>服务器收到用户提交的表单数据，到底是调用Servlet的doGet()还是doPost()方法？</h3><p>HTML的<code>&lt;form&gt;</code>元素有一个<code>method</code>属性，用来指定提交表单的方式，其值可以是get或post。我们自定义的Servlet一般情况下会重写<code>doGet()</code>或<code>doPost()</code>两个方法之一或全部，如果是GET请求就调用<code>doGet()</code>方法，如果是POST请求就调用<code>doPost()</code>方法，那为什么为什么这样呢？我们自定义的Servlet通常继承自<code>HttpServlet</code>，<code>HttpServlet</code>继承自<code>GenericServlet</code>并重写了其中的<code>service()</code>方法，这个方法是Servlet接口中定义的。<code>HttpServlet</code>重写的<code>service()</code>方法会先获取用户请求的方法，然后根据请求方法调用<code>doGet()</code>、<code>doPost()</code>、doPut()、doDelete()等方法，如果在自定义Servlet中重写了这些方法，那么显然会调用重写过的（自定义的）方法，这显然是对模板方法模式的应用（如果不理解，请参考阎宏博士的《Java与模式》一书的第37章）。当然，自定义Servlet中也可以直接重写service()方法，那么不管是哪种方式的请求，都可以通过自己的代码进行处理，这对于不区分请求方法的场景比较合适。 </p>
+<h3 id="Servlet中如何获取用户提交的查询参数或表单数据？"><a href="#Servlet中如何获取用户提交的查询参数或表单数据？" class="headerlink" title="Servlet中如何获取用户提交的查询参数或表单数据？"></a>Servlet中如何获取用户提交的查询参数或表单数据？</h3><p>可以通过请求对象（<code>HttpServletRequest</code>）的<code>getParameter()</code>方法通过参数名获得参数值。如果有包含多个值的参数（例如复选框），可以通过请求对象的<code>getParameterValues()</code>方法获得。当然也可以通过请求对象的<code>getParameterMap()</code>获得一个参数名和参数值的映射（Map）。</p>
+<h3 id="Servlet中如何获取用户配置的初始化参数以及服务器上下文参数？"><a href="#Servlet中如何获取用户配置的初始化参数以及服务器上下文参数？" class="headerlink" title="Servlet中如何获取用户配置的初始化参数以及服务器上下文参数？"></a>Servlet中如何获取用户配置的初始化参数以及服务器上下文参数？</h3><p>可以通过重写<code>Servlet</code>接口的<code>init(ServletConfig)</code>方法并通过<code>ServletConfig</code>对象的<code>getInitParameter()</code>方法来获取<code>Servlet</code>的初始化参数。可以通过<code>ServletConfig</code>对象的<code>getServletContext()</code>方法获取<code>ServletContext</code>对象，并通过该对象的<code>getInitParameter()</code>方法来获取服务器上下文参数。当然，<code>ServletContext</code>对象也在处理用户请求的方法（如<code>doGet()</code>方法）中通过请求对象的<code>getServletContext()</code>方法来获得。</p>
+<h2 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h2><h3 id="web-xml文件中可以配置哪些内容？"><a href="#web-xml文件中可以配置哪些内容？" class="headerlink" title="web.xml文件中可以配置哪些内容？"></a>web.xml文件中可以配置哪些内容？</h3><p>web.xml用于配置Web应用的相关信息，如：监听器（listener）、过滤器（filter）、 Servlet、相关参数、会话超时时间、安全验证方式、错误页面等，下面是一些开发中常见的配置：</p>
+<ol>
+<li><p>配置Spring上下文加载监听器加载Spring配置文件并创建IoC容器：</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>classpath:applicationContext.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">context-param</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">listener</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">listener-class</span>&gt;</span></span><br><span class="line">        org.springframework.web.context.ContextLoaderListener</span><br><span class="line">    <span class="tag">&lt;/<span class="name">listener-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">listener</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置Spring的OpenSessionInView过滤器来解决延迟加载和Hibernate会话关闭的矛盾：</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>openSessionInView<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-class</span>&gt;</span></span><br><span class="line">        org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</span><br><span class="line">    <span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>openSessionInView<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置会话超时时间为10分钟：</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">session-config</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">session-timeout</span>&gt;</span>10<span class="tag">&lt;/<span class="name">session-timeout</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">session-config</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置404和Exception的错误页面：</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">error-page</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">error-code</span>&gt;</span>404<span class="tag">&lt;/<span class="name">error-code</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">location</span>&gt;</span>/error.jsp<span class="tag">&lt;/<span class="name">location</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">error-page</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">error-page</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">exception-type</span>&gt;</span>java.lang.Exception<span class="tag">&lt;/<span class="name">exception-type</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">location</span>&gt;</span>/error.jsp<span class="tag">&lt;/<span class="name">location</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">error-page</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置安全认证方式：</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">security-constraint</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">web-resource-collection</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">web-resource-name</span>&gt;</span>ProtectedArea<span class="tag">&lt;/<span class="name">web-resource-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/admin/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">http-method</span>&gt;</span>GET<span class="tag">&lt;/<span class="name">http-method</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">http-method</span>&gt;</span>POST<span class="tag">&lt;/<span class="name">http-method</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">web-resource-collection</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">auth-constraint</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">role-name</span>&gt;</span>admin<span class="tag">&lt;/<span class="name">role-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">auth-constraint</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">security-constraint</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">login-config</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">auth-method</span>&gt;</span>BASIC<span class="tag">&lt;/<span class="name">auth-method</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">login-config</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">security-role</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">role-name</span>&gt;</span>admin<span class="tag">&lt;/<span class="name">role-name</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">security-role</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>说明：</strong>对<code>Servlet</code>（小服务）、<code>Listener</code>（监听器）和<code>Filter</code>（过滤器）等Web组件的配置，Servlet 3规范提供了基于注解的配置方式，可以分别使用@<code>WebServlet</code>、@<code>WebListener</code>、@<code>WebFilter</code>注解进行配置。 </p>
+<hr>
+<p>补充：</p>
+<p>如果Web提供了有价值的商业信息或者是敏感数据，那么站点的安全性就是必须考虑的问题。安全认证是实现安全性的重要手段，认证就是要解决“Are you who you say you are?”的问题。认证的方式非常多，简单说来可以分为三类： </p>
+<ul>
+<li>What you know?  — 口令 </li>
+<li>What you have? — 数字证书（U盾、密保卡） </li>
+<li>Who you are? —  指纹识别、虹膜识别 </li>
+</ul>
+<p>在Tomcat中可以通过建立安全套接字层（Secure Socket Layer, SSL）以及通过基本验证或表单验证来实现对安全性的支持。</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="Others"><a href="#Others" class="headerlink" title="Others"></a>Others</h2><h3 id="谈一谈测试驱动开发（TDD）的好处以及你的理解。"><a href="#谈一谈测试驱动开发（TDD）的好处以及你的理解。" class="headerlink" title="谈一谈测试驱动开发（TDD）的好处以及你的理解。"></a>谈一谈测试驱动开发（TDD）的好处以及你的理解。</h3><p>TDD是指在编写真正的功能实现代码之前先写测试代码，然后根据需要重构实现代码。在JUnit的作者Kent Beck的大作《测试驱动开发：实战与模式解析》（Test-Driven Development: by Example）一书中有这么一段内容：“消除恐惧和不确定性是编写测试驱动代码的重要原因”。因为编写代码时的恐惧会让你小心试探，让你回避沟通，让你羞于得到反馈，让你变得焦躁不安，而TDD是消除恐惧、让Java开发者更加自信更加乐于沟通的重要手段。TDD会带来的好处可能不会马上呈现，但是你在某个时候一定会发现，这些好处包括： </p>
+<ul>
+<li>更清晰的代码 — 只写需要的代码 </li>
+<li>更好的设计 </li>
+<li>更出色的灵活性 — 鼓励程序员面向接口编程 </li>
+<li>更快速的反馈 — 不会到系统上线时才知道bug的存在</li>
+</ul>
+<blockquote>
+<p><strong>补充：</strong>敏捷软件开发的概念已经有很多年了，而且也部分的改变了软件开发这个行业，TDD也是敏捷开发所倡导的。</p>
+</blockquote>
+<p>TDD可以在多个层级上应用，包括单元测试（测试一个类中的代码）、集成测试（测试类之间的交互）、系统测试（测试运行的系统）和系统集成测试（测试运行的系统包括使用的第三方组件）。TDD的实施步骤是：红（失败测试）- 绿（通过测试） - 重构。关于实施TDD的详细步骤请参考另一篇文章<a href="http://blog.csdn.net/jackfrued/article/details/44433249" target="_blank" rel="noopener">《测试驱动开发之初窥门径》</a>。<br>在使用TDD开发时，经常会遇到需要被测对象需要依赖其他子系统的情况，但是你希望将测试代码跟依赖项隔离，以保证测试代码仅仅针对当前被测对象或方法展开，这时候你需要的是测试替身。测试替身可以分为四类： </p>
+<ul>
+<li>虚设替身：只传递但是不会使用到的对象，一般用于填充方法的参数列表 </li>
+<li>存根替身：总是返回相同的预设响应，其中可能包括一些虚设状态 </li>
+<li>伪装替身：可以取代真实版本的可用版本（比真实版本还是会差很多） </li>
+<li>模拟替身：可以表示一系列期望值的对象，并且可以提供预设响应 </li>
+</ul>
+<p>Java世界中实现模拟替身的第三方工具非常多，包括<code>EasyMock</code>、<code>Mockito</code>、<code>jMock</code>等。</p>
+<h3 id="get和post请求的区别？"><a href="#get和post请求的区别？" class="headerlink" title="get和post请求的区别？"></a>get和post请求的区别？</h3><ul>
+<li>get请求用来从服务器上获得资源，而post是用来向服务器提交数据；  </li>
+<li>get将表单中数据按照name=value的形式，添加到action 所指向的URL 后面，并且两者使用”?”连接，而各个变量之间使用”&amp;”连接；post是将表单中的数据放在HTTP协议的请求头或消息体中，传递到action所指向URL；  </li>
+<li>get传输的数据要受到URL长度限制（1024字节）；而post可以传输大量的数据，上传文件通常要使用post方式；  </li>
+<li>使用get时参数会显示在地址栏上，如果这些数据不是敏感数据，那么可以使用get；对于敏感数据还是应用使用post；  </li>
+<li>get使用MIME类型application/x-www-form-urlencoded的URL编码（也叫百分号编码）文本的格式传递参数，保证被传送的参数由遵循规范的文本组成，例如一个空格的编码是”%20”。</li>
+</ul>
+<h3 id="实现会话跟踪的技术有哪些？"><a href="#实现会话跟踪的技术有哪些？" class="headerlink" title="实现会话跟踪的技术有哪些？"></a>实现会话跟踪的技术有哪些？</h3><p>由于<code>HTTP</code>协议本身是无状态的，服务器为了区分不同的用户，就需要对用户会话进行跟踪，简单的说就是为用户进行登记，为用户分配唯一的ID，下一次用户在请求中包含此ID，服务器据此判断到底是哪一个用户。 </p>
+<ul>
+<li>URL 重写：在URL中添加用户会话的信息作为请求的参数，或者将唯一的会话ID添加到URL结尾以标识一个会话。 </li>
+<li>设置表单隐藏域：将和会话跟踪相关的字段添加到隐式表单域中，这些信息不会在浏览器中显示但是提交表单时会提交给服务器。 </li>
+</ul>
+<p>这两种方式很难处理跨越多个页面的信息传递，因为如果每次都要修改URL或在页面中添加隐式表单域来存储用户会话相关信息，事情将变得非常麻烦。 </p>
+<ul>
+<li><code>cookie</code>：cookie有两种，一种是基于窗口的，浏览器窗口关闭后，cookie就没有了；另一种是将信息存储在一个临时文件中，并设置存在的时间。当用户通过浏览器和服务器建立一次会话后，会话ID就会随响应信息返回存储在基于窗口的cookie中，那就意味着只要浏览器没有关闭，会话没有超时，下一次请求时这个会话ID又会提交给服务器让服务器识别用户身份。会话中可以为用户保存信息。会话对象是在服务器内存中的，而基于窗口的cookie是在客户端内存中的。如果浏览器禁用了cookie，那么就需要通过下面两种方式进行会话跟踪。当然，在使用cookie时要注意几点：首先不要在cookie中存放敏感信息；其次cookie存储的数据量有限（4k），不能将过多的内容存储cookie中；再者浏览器通常只允许一个站点最多存放20个cookie。当然，和用户会话相关的其他信息（除了会话ID）也可以存在cookie方便进行会话跟踪。 </li>
+<li><code>HttpSession</code>：在所有会话跟踪技术中，<code>HttpSession</code>对象是最强大也是功能最多的。当一个用户第一次访问某个网站时会自动创建<code>HttpSession</code>，每个用户可以访问他自己的<code>HttpSession</code>。可以通过<code>HttpServletRequest</code>对象的<code>getSession</code>方法获得<code>HttpSession</code>，通过<code>HttpSession</code>的<code>setAttribute</code>方法可以将一个值放在<code>HttpSession</code>中，通过调用<code>HttpSession</code>对象的<code>getAttribute</code>方法，同时传入属性名就可以获取保存在<code>HttpSession</code>中的对象。与上面三种方式不同的是，<code>HttpSession</code>放在服务器的内存中，因此不要将过大的对象放在里面，即使目前的<code>Servlet</code>容器可以在内存将满时将<code>HttpSession</code>中的对象移到其他存储设备中，但是这样势必影响性能。添加到<code>HttpSession</code>中的值可以是任意Java对象，这个对象最好实现了<code>Serializable</code>接口，这样<code>Servlet</code>容器在必要的时候可以将其序列化到文件中，否则在序列化时就会出现异常。</li>
+</ul>
+<blockquote>
+<p><strong>补充：</strong>HTML5中可以使用Web Storage技术通过JavaScript来保存数据，例如可以使用localStorage和sessionStorage来保存用户会话的信息，也能够实现会话跟踪。</p>
+</blockquote>
+<h3 id="说一下表达式语言（EL）的隐式对象及其作用。"><a href="#说一下表达式语言（EL）的隐式对象及其作用。" class="headerlink" title="说一下表达式语言（EL）的隐式对象及其作用。"></a>说一下表达式语言（EL）的隐式对象及其作用。</h3><p>EL的隐式对象包括：<code>pageContext</code>、<code>initParam</code>（访问上下文参数）、<code>param</code>（访问请求参数）、<code>paramValues</code>、<code>header</code>（访问请求头）、<code>headerValues</code>、<code>cookie</code>（访问cookie）、<code>applicationScope</code>（访问application作用域）、<code>sessionScope</code>（访问session作用域）、<code>requestScope</code>（访问request作用域）、<code>pageScope</code>（访问page作用域）。</p>
+<p>用法如下所示：</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$&#123;pageContext.request.method&#125;</span><br><span class="line">$&#123;pageContext[<span class="string">"request"</span>][<span class="string">"method"</span>]&#125;</span><br><span class="line">$&#123;pageContext.request[<span class="string">"method"</span>]&#125;</span><br><span class="line">$&#123;pageContext[<span class="string">"request"</span>].method&#125;</span><br><span class="line">$&#123;initParam.defaultEncoding&#125;</span><br><span class="line">$&#123;header[<span class="string">"accept-language"</span>]&#125;</span><br><span class="line">$&#123;headerValues[<span class="string">"accept-language"</span>][<span class="number">0</span>]&#125;</span><br><span class="line">$&#123;cookie.jsessionid.value&#125;</span><br><span class="line">$&#123;sessionScope.loginUser.username&#125;<span class="number">123456789</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>补充：</strong>表达式语言的.和[]运算作用是一致的，唯一的差别在于如果访问的属性名不符合Java标识符命名规则，例如上面的accept-language就不是一个有效的Java标识符，那么这时候就只能用[]运算符而不能使用.运算符获取它的值</p>
+</blockquote>
+<h3 id="如何设置请求的编码以及响应内容的类型？"><a href="#如何设置请求的编码以及响应内容的类型？" class="headerlink" title="如何设置请求的编码以及响应内容的类型？"></a>如何设置请求的编码以及响应内容的类型？</h3><p>通过请求对象（<code>ServletRequest</code>）的<code>setCharacterEncoding(String)</code>方法可以设置请求的编码，其实要彻底解决乱码问题就应该让页面、服务器、请求和响应、Java程序都使用统一的编码，最好的选择当然是<code>UTF-8</code>；通过响应对象（<code>ServletResponse</code>）的<code>setContentType(String)</code>方法可以设置响应内容的类型，当然也可以通过<code>HttpServletResponsed</code>对象的<code>setHeader(String, String)</code>方法来设置。</p>
+<blockquote>
+<p><strong>说明：</strong>现在如果还有公司在面试的时候问JSP的声明标记、表达式标记、小脚本标记这些内容的话，这样的公司也不用去了，其实JSP内置对象、JSP指令这些东西基本上都可以忘却了。</p>
+</blockquote>
+<h3 id="解释一下网络应用的模式及其特点。"><a href="#解释一下网络应用的模式及其特点。" class="headerlink" title="解释一下网络应用的模式及其特点。"></a>解释一下网络应用的模式及其特点。</h3><p>典型的网络应用模式大致有三类：B/S、C/S、P2P。其中B代表浏览器（Browser）、C代表客户端（Client）、S代表服务器（Server），P2P是对等模式，不区分客户端和服务器。B/S应用模式中可以视为特殊的C/S应用模式，只是将C/S应用模式中的特殊的客户端换成了浏览器，因为几乎所有的系统上都有浏览器，那么只要打开浏览器就可以使用应用，没有安装、配置、升级客户端所带来的各种开销。P2P应用模式中，成千上万台彼此连接的计算机都处于对等的地位，整个网络一般来说不依赖专用的集中服务器。网络中的每一台计算机既能充当网络服务的请求者，又对其它计算机的请求作出响应，提供资源和服务。通常这些资源和服务包括：信息的共享和交换、计算资源（如CPU的共享）、存储共享（如缓存和磁盘空间的使用）等，这种应用模式最大的阻力安全性、版本等问题，目前有很多应用都混合使用了多种应用模型，最常见的网络视频应用，它几乎把三种模式都用上了。</p>
+<blockquote>
+<p><strong>补充：</strong>此题要跟”电子商务模式”区分开，因为有很多人被问到这个问题的时候马上想到的是B2B（如阿里巴巴）、B2C（如当当、亚马逊、京东）、C2C（如淘宝、拍拍）、C2B（如威客）、O2O（如美团、饿了么）。</p>
+</blockquote>
+<h3 id="如果让你设计一个XXX，你怎么做？"><a href="#如果让你设计一个XXX，你怎么做？" class="headerlink" title="如果让你设计一个XXX，你怎么做？"></a>如果让你设计一个XXX，你怎么做？</h3><h3 id="遇到过什么比较难的问题，怎么解决的？"><a href="#遇到过什么比较难的问题，怎么解决的？" class="headerlink" title="遇到过什么比较难的问题，怎么解决的？"></a>遇到过什么比较难的问题，怎么解决的？</h3><h3 id="在哪个技术点研究的比较深入？"><a href="#在哪个技术点研究的比较深入？" class="headerlink" title="在哪个技术点研究的比较深入？"></a>在哪个技术点研究的比较深入？</h3><h3 id="目前系统支撑的用户量是多少，假如用户量提升10倍，系统会出现什么样的问题，如何重新设计系统？"><a href="#目前系统支撑的用户量是多少，假如用户量提升10倍，系统会出现什么样的问题，如何重新设计系统？" class="headerlink" title="目前系统支撑的用户量是多少，假如用户量提升10倍，系统会出现什么样的问题，如何重新设计系统？"></a>目前系统支撑的用户量是多少，假如用户量提升10倍，系统会出现什么样的问题，如何重新设计系统？</h3><blockquote>
+<p>参考链接：</p>
+<p><a href="https://blog.csdn.net/jackfrued/article/details/44921941" target="_blank" rel="noopener">https://blog.csdn.net/jackfrued/article/details/44921941</a></p>
+</blockquote>
+</the>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a  href="/2018/09/16/interview-others/">面试之---其他细小知识点汇总</a></p>
+        <p><span>文章作者:</span><a  href="/" title="访问 逸竹 的个人博客">逸竹</a></p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/09/16/interview-others/" title="面试之---其他细小知识点汇总">http://yizhuxiaozhan.site/2018/09/16/interview-others/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yizhuxiaozhan.site/2018/09/16/interview-others/　　作者: 逸竹" title=""></span>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a  href="/2018/09/16/interview-java-basic/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          面试之---java基础相关
+        
+      </div>
+    </a>
+  
+  
+    <a  href="/2018/09/16/interview-db/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">面试之---数据库相关</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#XML"><span class="toc-number">1.</span> <span class="toc-text">XML</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#XML文档定义有几种形式？它们之间有何本质区别？解析XML文档有哪几种方式？"><span class="toc-number">1.1.</span> <span class="toc-text">XML文档定义有几种形式？它们之间有何本质区别？解析XML文档有哪几种方式？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JSP"><span class="toc-number">2.</span> <span class="toc-text">JSP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么热加载技术没有广泛应用："><span class="toc-number">2.1.</span> <span class="toc-text">为什么热加载技术没有广泛应用：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JSP有哪些内置对象？作用分别是什么？"><span class="toc-number">2.2.</span> <span class="toc-text">JSP有哪些内置对象？作用分别是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JSP和Servlet是什么关系？"><span class="toc-number">2.3.</span> <span class="toc-text">JSP和Servlet是什么关系？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#讲解JSP中的四种作用域。"><span class="toc-number">2.4.</span> <span class="toc-text">讲解JSP中的四种作用域。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JSP中的静态包含和动态包含有什么区别？"><span class="toc-number">2.5.</span> <span class="toc-text">JSP中的静态包含和动态包含有什么区别？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Servlet"><span class="toc-number">3.</span> <span class="toc-text">Servlet</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Servlet接口中有哪些方法？"><span class="toc-number">3.1.</span> <span class="toc-text">Servlet接口中有哪些方法？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#过滤器有哪些作用和用法？"><span class="toc-number">3.2.</span> <span class="toc-text">过滤器有哪些作用和用法？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#监听器有哪些作用和用法？"><span class="toc-number">3.3.</span> <span class="toc-text">监听器有哪些作用和用法？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#服务器收到用户提交的表单数据，到底是调用Servlet的doGet-还是doPost-方法？"><span class="toc-number">3.4.</span> <span class="toc-text">服务器收到用户提交的表单数据，到底是调用Servlet的doGet()还是doPost()方法？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Servlet中如何获取用户提交的查询参数或表单数据？"><span class="toc-number">3.5.</span> <span class="toc-text">Servlet中如何获取用户提交的查询参数或表单数据？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Servlet中如何获取用户配置的初始化参数以及服务器上下文参数？"><span class="toc-number">3.6.</span> <span class="toc-text">Servlet中如何获取用户配置的初始化参数以及服务器上下文参数？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-number">4.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#web-xml文件中可以配置哪些内容？"><span class="toc-number">4.1.</span> <span class="toc-text">web.xml文件中可以配置哪些内容？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Others"><span class="toc-number">5.</span> <span class="toc-text">Others</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#谈一谈测试驱动开发（TDD）的好处以及你的理解。"><span class="toc-number">5.1.</span> <span class="toc-text">谈一谈测试驱动开发（TDD）的好处以及你的理解。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#get和post请求的区别？"><span class="toc-number">5.2.</span> <span class="toc-text">get和post请求的区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实现会话跟踪的技术有哪些？"><span class="toc-number">5.3.</span> <span class="toc-text">实现会话跟踪的技术有哪些？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#说一下表达式语言（EL）的隐式对象及其作用。"><span class="toc-number">5.4.</span> <span class="toc-text">说一下表达式语言（EL）的隐式对象及其作用。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何设置请求的编码以及响应内容的类型？"><span class="toc-number">5.5.</span> <span class="toc-text">如何设置请求的编码以及响应内容的类型？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释一下网络应用的模式及其特点。"><span class="toc-number">5.6.</span> <span class="toc-text">解释一下网络应用的模式及其特点。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如果让你设计一个XXX，你怎么做？"><span class="toc-number">5.7.</span> <span class="toc-text">如果让你设计一个XXX，你怎么做？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#遇到过什么比较难的问题，怎么解决的？"><span class="toc-number">5.8.</span> <span class="toc-text">遇到过什么比较难的问题，怎么解决的？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在哪个技术点研究的比较深入？"><span class="toc-number">5.9.</span> <span class="toc-text">在哪个技术点研究的比较深入？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#目前系统支撑的用户量是多少，假如用户量提升10倍，系统会出现什么样的问题，如何重新设计系统？"><span class="toc-number">5.10.</span> <span class="toc-text">目前系统支撑的用户量是多少，假如用户量提升10倍，系统会出现什么样的问题，如何重新设计系统？</span></a></li></ol></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+    <link rel="stylesheet" type="text/css" href="/css/showshare.css"></head>
+    <div id="share" class="bdsharebuttonbox">
+        <button class="share-toggle-button"><i class="share-icon fa fa-share-alt"></i>
+        </button>
+        <ul class="share-items">
+            <li class="share-item"><a href="#" class="share-button fa fa-weibo" data-cmd="tsina" title="分享到新浪微博"></a></li>
+            <li class="share-item"><a href="#" class="share-button fa fa-weixin" data-cmd="weixin" title="分享到微信"></a></li>
+            <li class="share-item"><a href="#" class="share-button fa fa-qq" data-cmd="sqq" title="分享到QQ好友"></a></li>
+            <li class="share-item"><a href="#" class="share-button fa fa-facebook" data-cmd="fbook" title="分享到Facebook"></a></li>
+            <li class="share-item"><a href="#" class="share-button fa fa-twitter" data-cmd="twi" title="分享到Twitter"></a></li>
+            <li class="share-item"><a href="#" class="share-button fa fa-linkedin" data-cmd="linkedin" title="分享到linkedin"></a></li>
+        </ul>
+    </div>
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="800">
+        <defs>
+            <filter id="goo">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur" />
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 35 -15" result="goo" />
+                <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+            </filter>
+        </defs>
+    </svg>
+    <!-- 推荐开源CDN来选取需引用的外部JS //-->
+    <script type="text/javascript" src="http://cdn.gbtags.com/jquery/1.11.1/jquery.min.js"></script>
+    <script src="/js/TweenMax.min.js"></script>
+    <script src="/js/TweenMax.js"></script>
+<script>
+    window._bd_share_config = {
+    common : {
+                    bdText : '',
+                    //文本内容
+                    bdDesc : 'Luuman，90后，水瓶座普通男青年！爱折腾，爱运动，更爱游离于错综复杂的编码与逻辑中，无法自拔。相信编程是一门艺术，自诩为游弋在代码里的人生。',
+                    // 描述
+                    bdUrl : 'http://luuman.github.io/',
+                    // URL地址
+                    bdPic : 'https://hexo.io/build/screenshots/spfk-2b30506937.png'
+                    // 图片信息
+                },
+        share: [{
+            "bdSize": 24
+        }]
+    }
+    with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion=' + ~ (-new Date() / 36e5)];
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-33765729-1']);
+    _gaq.push(['_setDomainName', 'chuanke.com']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+
+    
+        <section id="comments">
+<link rel="stylesheet" href="/css/gitment.min.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: '面试之---其他细小知识点汇总', // 可选。默认为 location.href
+  owner: 'ZhaoGitHub1',
+  repo: 'ZhaoGitHub1.github.io',
+  oauth: {
+    client_id: '0959e9fdfc97cef82968',
+    client_secret: '126454836d441306e61dfbf9bb3ddc6cef1bf93d',
+  },
+})
+gitment.render('comments')
+</script>
+</section>
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a  href="/2018/09/16/interview-java-basic/" title="上一篇: 面试之---java基础相关">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a  href="/2018/09/16/interview-db/" title="下一篇: 面试之---数据库相关">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/06/01/tool-idea/">IDEA使用总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/12/tool-recommend/">工具推荐</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/06/spring-data-jpa-summary/">spring-data-jpa使用总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/17/kafka-learn-and-summary/">Kafka学习和总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/10/list-books/">推荐书单整理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/01/redis-file-lock/">redis实现分布式文件夹锁</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/16/read-note-readable-code/">读书笔记---《编写可读代码的艺术》</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/27/hashmap/">HashMap源码阅读</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/28/java-code-optimize/">java代码优化建议</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/27/git-commands/">git常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-optimize/">面试之---安全与性能优化相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-tools/">面试之---工具使用相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-java-basic/">面试之---java基础相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-others/">面试之---其他细小知识点汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-db/">面试之---数据库相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-algorithm/">面试之---算法相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-framework/">面试之---框架相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/15/linux-commands/">linux常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/13/tree-projects/">项目树</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/12/redis-summary/">Redis总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/11/about-Hexo/">Hexo博客搭建相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/10/pattern-singleton/">设计模式之---单例模式(Singleton Pattern)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/09/list-sites/">常用网站清单</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/my-pictures/">我的画集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/thread-realize/">创建线程的几种方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/springboot-app-deploy/">SpringBoot项目打包发布Linux环境完整流程</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/pattern-all/">设计模式之---汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/concurrentHashMap-analyze/">【转载】ConcurrentHashMap原理分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/nginx-config/">【转载】nginx配置文件nginx.conf超详细讲解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/tree-skills/">技能树</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/06/springApplication-analyze/">SpringBoot源码分析之---SpringBoot项目启动类SpringApplication浅析</a></li></ul>
+    
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+    <script>
+        $(".post-list").addClass("toc-article");
+        // $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
+
+
+
+
+    <script>
+        
+    </script>
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2019 逸竹
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo &nbsp;&nbsp;</a><a href="https://github.com/ZhaoGitHub1" target="_blank">Blog</a> by 逸竹
+            </div>
+        </div>
+        
+    </div>
+</footer>
+
+    </div>
+    
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 8;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'xxxxx', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?eb7d8cefd581790a3213e8feb93ae89f";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>

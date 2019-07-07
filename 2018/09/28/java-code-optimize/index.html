@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="baidu-site-verification" content="L6Lm9d5Crl"/>
+  
+  
+  
+  
+  <title>java代码优化建议 | 逸竹小站</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="总结日常Java开发常见优化策略，持续更新。">
+<meta name="keywords" content="优化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java代码优化建议">
+<meta property="og:url" content="http://yizhuxiaozhan.site/2018/09/28/java-code-optimize/index.html">
+<meta property="og:site_name" content="逸竹小站">
+<meta property="og:description" content="总结日常Java开发常见优化策略，持续更新。">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yizhuxiaozhan.site/2018/09/28/java-code-optimize/p7.jpg">
+<meta property="og:updated_time" content="2019-05-11T15:41:10.313Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java代码优化建议">
+<meta name="twitter:description" content="总结日常Java开发常见优化策略，持续更新。">
+<meta name="twitter:image" content="http://yizhuxiaozhan.site/2018/09/28/java-code-optimize/p7.jpg">
+  
+    <link rel="alternative" href="/atom.xml" title="逸竹小站" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/logo.jpg" class="js-avatar">
+            
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">逸竹</a></h1>
+        </hgroup>
+        
+        <p class="header-subtitle">未来不迎，当时不杂，过往不恋！</p>
+        
+        
+            <form>
+                <input type="text" class="st-default-search-input search" id="local-search-input" placeholder="搜索一下" autocomplete="off">
+            </form>
+            <div id="local-search-result"></div>
+        
+        
+            <script type="text/javascript">
+                (function() {
+                    'use strict';
+                    function getMatchData(keyword, data) {
+                        var matchData = [];
+                        for(var i =0;i<data.length;i++){
+                            if(data[i].title.toLowerCase().indexOf(keyword)>=0) 
+                                matchData.push(data[i])
+                        }
+                        return matchData;
+                    }
+                    var $input = $('#local-search-input');
+                    var $resultContent = $('#local-search-result');
+                    $input.keyup(function(){
+                        $.ajax({
+                            url: '/search.json',
+                            dataType: "json",
+                            success: function( json ) {
+                                var str='<ul class=\"search-result-list\">';                
+                                var keyword = $input.val().trim().toLowerCase();
+                                $resultContent.innerHTML = "";
+                                if ($input.val().trim().length <= 0) {
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                }
+                                var results = getMatchData(keyword, json);
+                                if(results.length === 0){
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                } 
+                                for(var i =0; i<results.length; i++){
+                                    str += "<li><a href='"+ results[i].url +"' class='search-result-title'>"+ results[i].title +"</a></li>";
+                                }
+                                str += "</ul>";
+                                $resultContent.empty();
+                                $resultContent.append(str);
+                                $('#switch-area').hide();
+                            }
+                        });
+                    });
+                })();
+            </script>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a  href="/archives/">所有文章</a></li>
+                        
+                            <li><a  href="/tags/">分类&amp;标签</a></li>
+                        
+                            <li><a  href="/books/">我的读书</a></li>
+                        
+                            <li><a  href="/movies/">我的电影</a></li>
+                        
+                            <li><a  href="/categories/tree/">树</a></li>
+                        
+                            <li><a  href="/categories/interview/">面试</a></li>
+                        
+                            <li><a  href="/categories/lists/">清单</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl github"  target="_blank" href="https://github.com/ZhaoGitHub1/" title="github">github</a>
+                            
+                                <a class="fl douban"  target="_blank" href="https://www.douban.com/people/174692469/" title="douban">douban</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/ConcurrentHashMap/" style="font-size: 10px;">ConcurrentHashMap</a> <a href="/tags/SpringData/" style="font-size: 10px;">SpringData</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hashmap/" style="font-size: 10px;">hashmap</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/java基础/" style="font-size: 10px;">java基础</a> <a href="/tags/kafka/" style="font-size: 10px;">kafka</a> <a href="/tags/linux/" style="font-size: 13.33px;">linux</a> <a href="/tags/linux命令/" style="font-size: 10px;">linux命令</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/orm/" style="font-size: 10px;">orm</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/springboot/" style="font-size: 13.33px;">springboot</a> <a href="/tags/springboot源码分析/" style="font-size: 10px;">springboot源码分析</a> <a href="/tags/优化/" style="font-size: 10px;">优化</a> <a href="/tags/分布式锁/" style="font-size: 10px;">分布式锁</a> <a href="/tags/单例模式/" style="font-size: 10px;">单例模式</a> <a href="/tags/命令/" style="font-size: 10px;">命令</a> <a href="/tags/在线工具/" style="font-size: 10px;">在线工具</a> <a href="/tags/多线程/" style="font-size: 10px;">多线程</a> <a href="/tags/安全/" style="font-size: 10px;">安全</a> <a href="/tags/工具/" style="font-size: 16.67px;">工具</a> <a href="/tags/性能/" style="font-size: 10px;">性能</a> <a href="/tags/总结/" style="font-size: 20px;">总结</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/框架/" style="font-size: 10px;">框架</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/素描/" style="font-size: 10px;">素描</a> <a href="/tags/编码艺术/" style="font-size: 10px;">编码艺术</a> <a href="/tags/网站地址/" style="font-size: 10px;">网站地址</a> <a href="/tags/读书/" style="font-size: 13.33px;">读书</a> <a href="/tags/转载/" style="font-size: 13.33px;">转载</a>
+                    </div>
+                </section>
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="https://blog.csdn.net/qq_25885525">我的csdn</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="https://github.com/ZhaoGitHub1">我的github</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="https://gitee.com/zhao-183479916">我的gitee</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="https://spring.io/">Spring官网</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://www.mybatis.org/mybatis-3/zh/index.html">Mybatis官网</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://hibernate.org/">Hibernate官网</a>
+                    
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">一名普通的java 后台开发工程师~~  邮箱：183479916@qq.com</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">逸竹</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/logo.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">逸竹</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">未来不迎，当时不杂，过往不恋！</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">分类&amp;标签</a></li>
+                
+                    <li><a href="/books/">我的读书</a></li>
+                
+                    <li><a href="/movies/">我的电影</a></li>
+                
+                    <li><a href="/categories/tree/">树</a></li>
+                
+                    <li><a href="/categories/interview/">面试</a></li>
+                
+                    <li><a href="/categories/lists/">清单</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="github" target="_blank" href="https://github.com/ZhaoGitHub1/" title="github">github</a>
+                    
+                        <a class="douban" target="_blank" href="https://www.douban.com/people/174692469/" title="douban">douban</a>
+                    
+                </div>
+            </nav>
+        </header>
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-java-code-optimize" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/09/28/java-code-optimize/" class="article-date">
+      <time datetime="2018-09-28T15:39:21.000Z" itemprop="datePublished">2018-09-28</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      java代码优化建议
+    </h1>
+  
+
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/总结/">总结</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/优化/">优化</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><strong> java代码优化建议：</strong> <excerpt in="" index="" |="" 首页摘要=""></excerpt></p>
+<a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<p><img src="/2018/09/28/java-code-optimize/p7.jpg" alt=""></p>
+<blockquote>
+<p>总结日常Java开发常见优化策略，持续更新。</p>
+</blockquote>
+<h3 id="尽可能使用局部变量"><a href="#尽可能使用局部变量" class="headerlink" title="尽可能使用局部变量"></a>尽可能使用局部变量</h3><p>调用方法时传递的参数以及在调用中创建的临时变量都保存在栈中，速度较快，其他变量，如静态变量、实例变量等，都在堆中创建，速度较慢。另外，栈中创建的变量，随着方法的运行结束，这些内容就没了，不需要额外的垃圾回收。</p>
+<h3 id="及时关闭流"><a href="#及时关闭流" class="headerlink" title="及时关闭流"></a>及时关闭流</h3><p>Java编程过程中，进行数据库连接、I/O流操作时务必小心，在使用完毕后，及时关闭以释放资源。因为对这些大对象的操作会造成系统大的开销，稍有不慎，将会导致严重的后果。而释放资源最好的地方就是<code>finally</code>代码块。</p>
+<h3 id="尽量减少对变量的重复计算"><a href="#尽量减少对变量的重复计算" class="headerlink" title="尽量减少对变量的重复计算"></a>尽量减少对变量的重复计算</h3><p>明确一个概念，对方法的调用，即使方法中只有一句语句，也是有消耗的，包括创建栈帧、调用方法时保护现场、调用方法完毕时恢复现场等。所以例如下面的操作：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for (int i = 0; i &lt; list.size(); i++)&#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>建议替换为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for (int i = 0, length = list.size(); i &lt; length; i++)&#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样，在list.size()很大的时候，就减少了很多的消耗</p>
+<h3 id="尽量采用懒加载的策略，即在需要的时候才创建"><a href="#尽量采用懒加载的策略，即在需要的时候才创建" class="headerlink" title="尽量采用懒加载的策略，即在需要的时候才创建"></a>尽量采用懒加载的策略，即在需要的时候才创建</h3><p>例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String str = &quot;aaa&quot;;</span><br><span class="line">if (i == 1)&#123;</span><br><span class="line">　　list.add(str);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>建议替换为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if (i == 1)&#123;</span><br><span class="line">　　String str = &quot;aaa&quot;;</span><br><span class="line">　　list.add(str);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="慎用异常"><a href="#慎用异常" class="headerlink" title="慎用异常"></a>慎用异常</h3><p>异常对性能不利。抛出异常首先要创建一个新的对象，Throwable接口的构造函数调用名为<code>fillInStackTrace()</code>的本地同步方法，<code>fillInStackTrace()</code>方法检查堆栈，收集调用跟踪信息。只要有异常被抛出，Java虚拟机就必须调整调用堆栈，因为在处理过程中创建了一个新的对象。异常只能用于错误处理，不应该用来控制程序流程。</p>
+<h3 id="如果能估计到待添加的内容长度，为底层以数组方式实现的集合、工具类指定初始长度"><a href="#如果能估计到待添加的内容长度，为底层以数组方式实现的集合、工具类指定初始长度" class="headerlink" title="如果能估计到待添加的内容长度，为底层以数组方式实现的集合、工具类指定初始长度"></a>如果能估计到待添加的内容长度，为底层以数组方式实现的集合、工具类指定初始长度</h3><p>比如ArrayList、LinkedLlist、StringBuilder、StringBuffer、HashMap、HashSet等等，以StringBuilder为例：</p>
+<ul>
+<li>StringBuilder()　　　　     // 默认分配16个字符的空间</li>
+<li>StringBuilder(int size)　　// 默认分配size个字符的空间</li>
+<li>StringBuilder(String str)　// 默认分配16个字符+str.length()个字符空间</li>
+</ul>
+<p>可以通过类（这里指的不仅仅是上面的StringBuilder）的构造函数来设定它的初始化容量，这样可以明显地提升性能。比如StringBuilder吧，length表示当前的StringBuilder能保持的字符数量。因为当StringBuilder达到最大容量的时候，它会将自身容量增加到当前的2倍再加2，无论何时只要StringBuilder达到它的最大容量，它就不得不创建一个新的字符数组然后将旧的字符数组内容拷贝到新字符数组中—-这是十分耗费性能的一个操作。试想，如果能预估到字符数组中大概要存放5000个字符而不指定长度，最接近5000的2次幂是4096，每次扩容加的2不管，那么：</p>
+<ul>
+<li>在4096 的基础上，再申请8194个大小的字符数组，加起来相当于一次申请了12290个大小的字符数组，如果一开始能指定5000个大小的字符数组，就节省了一倍以上的空间</li>
+<li>把原来的4096个字符拷贝到新的的字符数组中去</li>
+</ul>
+<p>这样，既浪费内存空间又降低代码运行效率。所以，给底层以数组实现的集合、工具类设置一个合理的初始化容量是错不了的，这会带来立竿见影的效果。但是，注意，<strong>像HashMap这种是以数组+链表实现的集合，别把初始大小和你估计的大小设置得一样，因为一个table上只连接一个对象的可能性几乎为0</strong>。初始大小建议设置为2的N次幂，如果能估计到有2000个元素，设置成new HashMap(128)、new HashMap(256)都可以。</p>
+<h3 id="当复制大量数据时，使用System-arraycopy-命令"><a href="#当复制大量数据时，使用System-arraycopy-命令" class="headerlink" title="当复制大量数据时，使用System.arraycopy()命令"></a>当复制大量数据时，使用System.arraycopy()命令</h3><h3 id="乘法和除法使用移位操作"><a href="#乘法和除法使用移位操作" class="headerlink" title="乘法和除法使用移位操作"></a>乘法和除法使用移位操作</h3><p>例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for (val = 0; val &lt; 100000; val += 5)&#123;</span><br><span class="line">　　a = val * 8;</span><br><span class="line">　　b = val / 2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>用移位操作可以极大地提高性能，因为在计算机底层，对位的操作是最方便、最快的，因此建议修改为： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for (val = 0; val &lt; 100000; val += 5)&#123;</span><br><span class="line">　　a = val &lt;&lt; 3;</span><br><span class="line">　　b = val &gt;&gt; 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>移位操作虽然快，但是可能会使代码不太好理解，因此最好加上相应的注释。</p>
+<h3 id="循环内不要不断创建对象引用"><a href="#循环内不要不断创建对象引用" class="headerlink" title="循环内不要不断创建对象引用"></a>循环内不要不断创建对象引用</h3><p>例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for (int i = 1; i &lt;= count; i++)&#123;</span><br><span class="line">    Object obj = new Object();    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这种做法会导致内存中有count份Object对象引用存在，count很大的话，就耗费内存了，建议为改为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Object obj = null;</span><br><span class="line">for (int i = 0; i &lt;= count; i++)&#123;</span><br><span class="line">    obj = new Object();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样的话，内存中只有一份Object对象引用，每次new Object()的时候，Object对象引用指向不同的Object罢了，但是内存中只有一份，这样就大大节省了内存空间了。</p>
+<h3 id="基于效率和类型检查的考虑，应该尽可能使用array，无法确定数组大小时才使用ArrayList"><a href="#基于效率和类型检查的考虑，应该尽可能使用array，无法确定数组大小时才使用ArrayList" class="headerlink" title="基于效率和类型检查的考虑，应该尽可能使用array，无法确定数组大小时才使用ArrayList"></a>基于效率和类型检查的考虑，应该尽可能使用array，无法确定数组大小时才使用ArrayList</h3><h3 id="尽量使用HashMap、ArrayList、StringBuilder，除非线程安全需要，否则不推荐使用Hashtable、Vector、StringBuffer，后三者由于使用同步机制而导致了性能开销"><a href="#尽量使用HashMap、ArrayList、StringBuilder，除非线程安全需要，否则不推荐使用Hashtable、Vector、StringBuffer，后三者由于使用同步机制而导致了性能开销" class="headerlink" title="尽量使用HashMap、ArrayList、StringBuilder，除非线程安全需要，否则不推荐使用Hashtable、Vector、StringBuffer，后三者由于使用同步机制而导致了性能开销"></a>尽量使用HashMap、ArrayList、StringBuilder，除非线程安全需要，否则不推荐使用Hashtable、Vector、StringBuffer，后三者由于使用同步机制而导致了性能开销</h3><h3 id="尽量避免随意使用静态变量"><a href="#尽量避免随意使用静态变量" class="headerlink" title="尽量避免随意使用静态变量"></a>尽量避免随意使用静态变量</h3><p>要知道，当某个对象被定义为static的变量所引用，那么gc通常是不会回收这个对象所占有的堆内存的，如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public class A&#123;</span><br><span class="line">    private static B b = new B();  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此时静态变量b的生命周期与A类相同，如果A类不被卸载，那么引用B指向的B对象会常驻内存，直到程序终止</p>
+<h3 id="及时清除不再需要的会话"><a href="#及时清除不再需要的会话" class="headerlink" title="及时清除不再需要的会话"></a>及时清除不再需要的会话</h3><p>为了清除不再活动的会话，许多应用服务器都有默认的会话超时时间，一般为30分钟。当应用服务器需要保存更多的会话时，如果内存不足，那么操作系统会把部分数据转移到磁盘，应用服务器也可能根据MRU（最近最频繁使用）算法把部分不活跃的会话转储到磁盘，甚至可能抛出内存不足的异常。如果会话要被转储到磁盘，那么必须要先被序列化，在大规模集群中，对对象进行序列化的代价是很昂贵的。因此，当会话不再需要时，应当及时调用HttpSession的invalidate()方法清除会话。</p>
+<blockquote>
+<p>参考文章：</p>
+<p><a href="https://www.cnblogs.com/xrq730/p/4865416.html" target="_blank" rel="noopener">https://www.cnblogs.com/xrq730/p/4865416.html</a></p>
+</blockquote>
+</the>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a  href="/2018/09/28/java-code-optimize/">java代码优化建议</a></p>
+        <p><span>文章作者:</span><a  href="/" title="访问 逸竹 的个人博客">逸竹</a></p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/09/28/java-code-optimize/" title="java代码优化建议">http://yizhuxiaozhan.site/2018/09/28/java-code-optimize/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yizhuxiaozhan.site/2018/09/28/java-code-optimize/　　作者: 逸竹" title=""></span>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a  href="/2018/10/27/hashmap/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          HashMap源码阅读
+        
+      </div>
+    </a>
+  
+  
+    <a  href="/2018/09/27/git-commands/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">git常用命令</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#尽可能使用局部变量"><span class="toc-number">1.</span> <span class="toc-text">尽可能使用局部变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#及时关闭流"><span class="toc-number">2.</span> <span class="toc-text">及时关闭流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#尽量减少对变量的重复计算"><span class="toc-number">3.</span> <span class="toc-text">尽量减少对变量的重复计算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#尽量采用懒加载的策略，即在需要的时候才创建"><span class="toc-number">4.</span> <span class="toc-text">尽量采用懒加载的策略，即在需要的时候才创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#慎用异常"><span class="toc-number">5.</span> <span class="toc-text">慎用异常</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如果能估计到待添加的内容长度，为底层以数组方式实现的集合、工具类指定初始长度"><span class="toc-number">6.</span> <span class="toc-text">如果能估计到待添加的内容长度，为底层以数组方式实现的集合、工具类指定初始长度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#当复制大量数据时，使用System-arraycopy-命令"><span class="toc-number">7.</span> <span class="toc-text">当复制大量数据时，使用System.arraycopy()命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#乘法和除法使用移位操作"><span class="toc-number">8.</span> <span class="toc-text">乘法和除法使用移位操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#循环内不要不断创建对象引用"><span class="toc-number">9.</span> <span class="toc-text">循环内不要不断创建对象引用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基于效率和类型检查的考虑，应该尽可能使用array，无法确定数组大小时才使用ArrayList"><span class="toc-number">10.</span> <span class="toc-text">基于效率和类型检查的考虑，应该尽可能使用array，无法确定数组大小时才使用ArrayList</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#尽量使用HashMap、ArrayList、StringBuilder，除非线程安全需要，否则不推荐使用Hashtable、Vector、StringBuffer，后三者由于使用同步机制而导致了性能开销"><span class="toc-number">11.</span> <span class="toc-text">尽量使用HashMap、ArrayList、StringBuilder，除非线程安全需要，否则不推荐使用Hashtable、Vector、StringBuffer，后三者由于使用同步机制而导致了性能开销</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#尽量避免随意使用静态变量"><span class="toc-number">12.</span> <span class="toc-text">尽量避免随意使用静态变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#及时清除不再需要的会话"><span class="toc-number">13.</span> <span class="toc-text">及时清除不再需要的会话</span></a></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+    <link rel="stylesheet" type="text/css" href="/css/showshare.css"></head>
+    <div id="share" class="bdsharebuttonbox">
+        <button class="share-toggle-button"><i class="share-icon fa fa-share-alt"></i>
+        </button>
+        <ul class="share-items">
+            <li class="share-item"><a href="#" class="share-button fa fa-weibo" data-cmd="tsina" title="分享到新浪微博"></a></li>
+            <li class="share-item"><a href="#" class="share-button fa fa-weixin" data-cmd="weixin" title="分享到微信"></a></li>
+            <li class="share-item"><a href="#" class="share-button fa fa-qq" data-cmd="sqq" title="分享到QQ好友"></a></li>
+            <li class="share-item"><a href="#" class="share-button fa fa-facebook" data-cmd="fbook" title="分享到Facebook"></a></li>
+            <li class="share-item"><a href="#" class="share-button fa fa-twitter" data-cmd="twi" title="分享到Twitter"></a></li>
+            <li class="share-item"><a href="#" class="share-button fa fa-linkedin" data-cmd="linkedin" title="分享到linkedin"></a></li>
+        </ul>
+    </div>
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="800">
+        <defs>
+            <filter id="goo">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur" />
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 35 -15" result="goo" />
+                <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+            </filter>
+        </defs>
+    </svg>
+    <!-- 推荐开源CDN来选取需引用的外部JS //-->
+    <script type="text/javascript" src="http://cdn.gbtags.com/jquery/1.11.1/jquery.min.js"></script>
+    <script src="/js/TweenMax.min.js"></script>
+    <script src="/js/TweenMax.js"></script>
+<script>
+    window._bd_share_config = {
+    common : {
+                    bdText : '',
+                    //文本内容
+                    bdDesc : 'Luuman，90后，水瓶座普通男青年！爱折腾，爱运动，更爱游离于错综复杂的编码与逻辑中，无法自拔。相信编程是一门艺术，自诩为游弋在代码里的人生。',
+                    // 描述
+                    bdUrl : 'http://luuman.github.io/',
+                    // URL地址
+                    bdPic : 'https://hexo.io/build/screenshots/spfk-2b30506937.png'
+                    // 图片信息
+                },
+        share: [{
+            "bdSize": 24
+        }]
+    }
+    with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion=' + ~ (-new Date() / 36e5)];
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-33765729-1']);
+    _gaq.push(['_setDomainName', 'chuanke.com']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+
+    
+        <section id="comments">
+<link rel="stylesheet" href="/css/gitment.min.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: 'java代码优化建议', // 可选。默认为 location.href
+  owner: 'ZhaoGitHub1',
+  repo: 'ZhaoGitHub1.github.io',
+  oauth: {
+    client_id: '0959e9fdfc97cef82968',
+    client_secret: '126454836d441306e61dfbf9bb3ddc6cef1bf93d',
+  },
+})
+gitment.render('comments')
+</script>
+</section>
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a  href="/2018/10/27/hashmap/" title="上一篇: HashMap源码阅读">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a  href="/2018/09/27/git-commands/" title="下一篇: git常用命令">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/06/01/tool-idea/">IDEA使用总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/12/tool-recommend/">工具推荐</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/06/spring-data-jpa-summary/">spring-data-jpa使用总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/17/kafka-learn-and-summary/">Kafka学习和总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/10/list-books/">推荐书单整理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/01/redis-file-lock/">redis实现分布式文件夹锁</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/16/read-note-readable-code/">读书笔记---《编写可读代码的艺术》</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/27/hashmap/">HashMap源码阅读</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/28/java-code-optimize/">java代码优化建议</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/27/git-commands/">git常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-optimize/">面试之---安全与性能优化相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-tools/">面试之---工具使用相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-java-basic/">面试之---java基础相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-others/">面试之---其他细小知识点汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-db/">面试之---数据库相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-algorithm/">面试之---算法相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-framework/">面试之---框架相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/15/linux-commands/">linux常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/13/tree-projects/">项目树</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/12/redis-summary/">Redis总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/11/about-Hexo/">Hexo博客搭建相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/10/pattern-singleton/">设计模式之---单例模式(Singleton Pattern)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/09/list-sites/">常用网站清单</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/my-pictures/">我的画集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/thread-realize/">创建线程的几种方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/springboot-app-deploy/">SpringBoot项目打包发布Linux环境完整流程</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/pattern-all/">设计模式之---汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/concurrentHashMap-analyze/">【转载】ConcurrentHashMap原理分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/nginx-config/">【转载】nginx配置文件nginx.conf超详细讲解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/tree-skills/">技能树</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/06/springApplication-analyze/">SpringBoot源码分析之---SpringBoot项目启动类SpringApplication浅析</a></li></ul>
+    
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+    <script>
+        $(".post-list").addClass("toc-article");
+        // $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
+
+
+
+
+    <script>
+        
+    </script>
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2019 逸竹
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo &nbsp;&nbsp;</a><a href="https://github.com/ZhaoGitHub1" target="_blank">Blog</a> by 逸竹
+            </div>
+        </div>
+        
+    </div>
+</footer>
+
+    </div>
+    
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 8;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'xxxxx', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?eb7d8cefd581790a3213e8feb93ae89f";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>

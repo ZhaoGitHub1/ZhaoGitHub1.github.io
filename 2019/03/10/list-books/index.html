@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="baidu-site-verification" content="L6Lm9d5Crl"/>
+  
+  
+  
+  
+  <title>推荐书单整理 | 逸竹小站</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="记录网络搜集的推荐书籍">
+<meta name="keywords" content="读书">
+<meta property="og:type" content="article">
+<meta property="og:title" content="推荐书单整理">
+<meta property="og:url" content="http://yizhuxiaozhan.site/2019/03/10/list-books/index.html">
+<meta property="og:site_name" content="逸竹小站">
+<meta property="og:description" content="记录网络搜集的推荐书籍">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yizhuxiaozhan.site/2019/03/10/list-books/books.jpg">
+<meta property="og:updated_time" content="2019-03-10T07:54:49.950Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="推荐书单整理">
+<meta name="twitter:description" content="记录网络搜集的推荐书籍">
+<meta name="twitter:image" content="http://yizhuxiaozhan.site/2019/03/10/list-books/books.jpg">
+  
+    <link rel="alternative" href="/atom.xml" title="逸竹小站" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/logo.jpg" class="js-avatar">
+            
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">逸竹</a></h1>
+        </hgroup>
+        
+        <p class="header-subtitle">未来不迎，当时不杂，过往不恋！</p>
+        
+        
+            <form>
+                <input type="text" class="st-default-search-input search" id="local-search-input" placeholder="搜索一下" autocomplete="off">
+            </form>
+            <div id="local-search-result"></div>
+        
+        
+            <script type="text/javascript">
+                (function() {
+                    'use strict';
+                    function getMatchData(keyword, data) {
+                        var matchData = [];
+                        for(var i =0;i<data.length;i++){
+                            if(data[i].title.toLowerCase().indexOf(keyword)>=0) 
+                                matchData.push(data[i])
+                        }
+                        return matchData;
+                    }
+                    var $input = $('#local-search-input');
+                    var $resultContent = $('#local-search-result');
+                    $input.keyup(function(){
+                        $.ajax({
+                            url: '/search.json',
+                            dataType: "json",
+                            success: function( json ) {
+                                var str='<ul class=\"search-result-list\">';                
+                                var keyword = $input.val().trim().toLowerCase();
+                                $resultContent.innerHTML = "";
+                                if ($input.val().trim().length <= 0) {
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                }
+                                var results = getMatchData(keyword, json);
+                                if(results.length === 0){
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                } 
+                                for(var i =0; i<results.length; i++){
+                                    str += "<li><a href='"+ results[i].url +"' class='search-result-title'>"+ results[i].title +"</a></li>";
+                                }
+                                str += "</ul>";
+                                $resultContent.empty();
+                                $resultContent.append(str);
+                                $('#switch-area').hide();
+                            }
+                        });
+                    });
+                })();
+            </script>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a  href="/archives/">所有文章</a></li>
+                        
+                            <li><a  href="/tags/">分类&amp;标签</a></li>
+                        
+                            <li><a  href="/books/">我的读书</a></li>
+                        
+                            <li><a  href="/movies/">我的电影</a></li>
+                        
+                            <li><a  href="/categories/tree/">树</a></li>
+                        
+                            <li><a  href="/categories/interview/">面试</a></li>
+                        
+                            <li><a  href="/categories/lists/">清单</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl github"  target="_blank" href="https://github.com/ZhaoGitHub1/" title="github">github</a>
+                            
+                                <a class="fl douban"  target="_blank" href="https://www.douban.com/people/174692469/" title="douban">douban</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/ConcurrentHashMap/" style="font-size: 10px;">ConcurrentHashMap</a> <a href="/tags/SpringData/" style="font-size: 10px;">SpringData</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hashmap/" style="font-size: 10px;">hashmap</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/java基础/" style="font-size: 10px;">java基础</a> <a href="/tags/kafka/" style="font-size: 10px;">kafka</a> <a href="/tags/linux/" style="font-size: 13.33px;">linux</a> <a href="/tags/linux命令/" style="font-size: 10px;">linux命令</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/orm/" style="font-size: 10px;">orm</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/springboot/" style="font-size: 13.33px;">springboot</a> <a href="/tags/springboot源码分析/" style="font-size: 10px;">springboot源码分析</a> <a href="/tags/优化/" style="font-size: 10px;">优化</a> <a href="/tags/分布式锁/" style="font-size: 10px;">分布式锁</a> <a href="/tags/单例模式/" style="font-size: 10px;">单例模式</a> <a href="/tags/命令/" style="font-size: 10px;">命令</a> <a href="/tags/在线工具/" style="font-size: 10px;">在线工具</a> <a href="/tags/多线程/" style="font-size: 10px;">多线程</a> <a href="/tags/安全/" style="font-size: 10px;">安全</a> <a href="/tags/工具/" style="font-size: 16.67px;">工具</a> <a href="/tags/性能/" style="font-size: 10px;">性能</a> <a href="/tags/总结/" style="font-size: 20px;">总结</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/框架/" style="font-size: 10px;">框架</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/素描/" style="font-size: 10px;">素描</a> <a href="/tags/编码艺术/" style="font-size: 10px;">编码艺术</a> <a href="/tags/网站地址/" style="font-size: 10px;">网站地址</a> <a href="/tags/读书/" style="font-size: 13.33px;">读书</a> <a href="/tags/转载/" style="font-size: 13.33px;">转载</a>
+                    </div>
+                </section>
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="https://blog.csdn.net/qq_25885525">我的csdn</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="https://github.com/ZhaoGitHub1">我的github</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="https://gitee.com/zhao-183479916">我的gitee</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="https://spring.io/">Spring官网</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://www.mybatis.org/mybatis-3/zh/index.html">Mybatis官网</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://hibernate.org/">Hibernate官网</a>
+                    
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">一名普通的java 后台开发工程师~~  邮箱：183479916@qq.com</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">逸竹</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/logo.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">逸竹</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">未来不迎，当时不杂，过往不恋！</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">分类&amp;标签</a></li>
+                
+                    <li><a href="/books/">我的读书</a></li>
+                
+                    <li><a href="/movies/">我的电影</a></li>
+                
+                    <li><a href="/categories/tree/">树</a></li>
+                
+                    <li><a href="/categories/interview/">面试</a></li>
+                
+                    <li><a href="/categories/lists/">清单</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="github" target="_blank" href="https://github.com/ZhaoGitHub1/" title="github">github</a>
+                    
+                        <a class="douban" target="_blank" href="https://www.douban.com/people/174692469/" title="douban">douban</a>
+                    
+                </div>
+            </nav>
+        </header>
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-list-books" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2019/03/10/list-books/" class="article-date">
+      <time datetime="2019-03-10T06:45:29.000Z" itemprop="datePublished">2019-03-10</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      推荐书单整理
+    </h1>
+  
+
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/lists/">lists</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书/">读书</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><strong> 推荐书单整理：</strong> <excerpt in="" index="" |="" 首页摘要=""></excerpt></p>
+<a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<p><img src="/2019/03/10/list-books/books.jpg" alt="books"></p>
+<p>在21世纪这个碎片化阅读的时代，阅读每时每刻都在进行，系统的书籍阅读越来越不受重视，但是系统完整的阅读一本专业书籍对于构建一个完整的知识体系而言更有帮助，而且能出版并有一定销量的书籍都是有一定参考价值的，这是碎片阅读不能比拟的，所以就有了整理一份书单的想法，收录各路大牛推荐的技术及世界名著，发现好的书籍我会不断更新，欢迎监督及推荐书籍。</p>
+<blockquote>
+<p>备注：排名不分先后</p>
+<p>参考：<a href="https://github.com/jobbole/awesome-programming-books" target="_blank" rel="noopener">https://github.com/jobbole/awesome-programming-books</a></p>
+</blockquote>
+<h2 id="技术书"><a href="#技术书" class="headerlink" title="技术书"></a>技术书</h2><h3 id="计算机系统与网络"><a href="#计算机系统与网络" class="headerlink" title="计算机系统与网络"></a>计算机系统与网络</h3><ul>
+<li>《<a href="https://www.amazon.cn/gp/product/B00AAQXKXS/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00AAQXKXS&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">图灵的秘密:他的生平、思想及论文解读</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B0011F9OQE/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B0011F9OQE&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">计算机系统概论</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B0011F5RYM/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B0011F5RYM&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">深入理解Linux内核</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B003QN7J7U/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B003QN7J7U&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">深入Linux内核架构</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00116OTVS/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00116OTVS&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">TCP/IP详解 卷1：协议</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00JUM2ML4/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00JUM2ML4&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">Linux系统编程（第2版）</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B004X3Z3D4/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B004X3Z3D4&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">Linux内核设计与实现（第3版）</a>》</li>
+<li>《<a href="https://amazon.cn/gp/product/B01N03IQK4/ref=as_li_qf_asin_il_tl?ie=UTF8&amp;tag=vastwork-23&amp;creative=3200&amp;linkCode=as2&amp;creativeASIN=B01N03IQK4&amp;linkId=b87deba0291c05df8d8ea0d64fefb0f0" target="_blank" rel="noopener">深入理解计算机系统（原书第3版）</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B0011AP7RY/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B0011AP7RY&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">计算机程序的构造和解释（原书第2版）</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B009RSXIB4/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B009RSXIB4&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">编码：隐匿在计算机软硬件背后的语言</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B0140I5WPK/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B0140I5WPK&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">性能之颠：洞悉系统、企业与云计算</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B011S72JB6/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B011S72JB6&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">UNIX网络编程 卷1：套接字联网API（第3版）</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B012R5A29O/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B012R5A29O&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">UNIX网络编程 卷2：进程间通信</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B001GS7918/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B001GS7918&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">Windows核心编程(第5版)</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00PB5QQ84/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00PB5QQ84&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">WireShark网络分析就这么简单</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B01AS1OS8A/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B01AS1OS8A&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">WireShark网络分析的艺术</a>》</li>
+</ul>
+<p>编程通用</p>
+<ul>
+<li>《<a href="https://www.amazon.cn/dp/B00CD1EWMG/ref=sr_1_1?ie=UTF8&amp;qid=1514903810&amp;sr=8-1" target="_blank" rel="noopener">设计原本</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B006P7V73G/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B006P7V73G&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">编程原本</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B0061XKRXA/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B0061XKRXA&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">代码大全</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B008Z1IEQ8/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B008Z1IEQ8&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">UNIX编程艺术</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B0031M9GHC/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B0031M9GHC&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">代码整洁之道</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00SFZH0DC/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00SFZH0DC&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">编程珠玑（第2版）</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B0150BMQDM/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B0150BMQDM&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">编程珠玑（续）</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00IOAM6VE/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00IOAM6VE&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">软件调试的艺术</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00KMJ2Q1U/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00KMJ2Q1U&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">修改代码的艺术</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B007HYMPBY/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B007HYMPBY&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">编程语言实现模式</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B008B4DTG4/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B008B4DTG4&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">编写可读代码的艺术</a>》</li>
+<li>《解析极限编程：拥抱变化》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B008UCHA58/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B008UCHA58&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">精通正则表达式（第3版）</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B001NGO85I/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B001NGO85I&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">编译原理（第2版）</a>》龙书</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B011LPUB42/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B011LPUB42&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">重构：改善既有代码的设计</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00ALPRM3M/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00ALPRM3M&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">七周七语言：理解多种编程范型</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00CBBLUFK/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00CBBLUFK&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">调试九法：软硬件错误的排查之道</a>》</li>
+<li>《程序设计语言：实践之路（第3版）》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00PG0MM3C/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00PG0MM3C&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">计算的本质：深入剖析程序和计算机</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B001130JN8/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B001130JN8&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">设计模式 : 可复用面向对象软件的基础</a>》</li>
+<li>《<a href="https://amazon.cn/gp/product/B0011FBU34/ref=as_li_qf_asin_il_tl?ie=UTF8&amp;tag=vastwork-23&amp;creative=3200&amp;linkCode=as2&amp;creativeASIN=B0011FBU34&amp;linkId=cd5d20e99ff289529d6dbe2cd223f2b6" target="_blank" rel="noopener">Head First 设计模式（中文版）</a> 》</li>
+<li>《设计模式之禅（第2版）》</li>
+</ul>
+<h3 id="算法与数据结构"><a href="#算法与数据结构" class="headerlink" title="算法与数据结构"></a>算法与数据结构</h3><ul>
+<li>《<a href="https://www.amazon.cn/gp/product/B009OCFQ0O/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B009OCFQ0O&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">算法（第4版）</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00AK7BYJY/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00AK7BYJY&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">算法导论（原书第2版）</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B019NB0VCI/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B019NB0VCI&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">Python算法教程</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00S4HCQUI/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00S4HCQUI&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">算法设计与分析基础（第3版）</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B016DWSF8M/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B016DWSF8M&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">学习 JavaScript 数据结构与算法</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B01LDG2DSG/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B01LDG2DSG&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">数据结构与算法分析 : C++描述（第4版）</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B002WC7NGS/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B002WC7NGS&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">数据结构与算法分析 : C语言描述（第2版）</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B01CNP0CG6/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B01CNP0CG6&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">数据结构与算法分析 : Java语言描述（第2版）</a>》</li>
+</ul>
+<h3 id="职业修炼与规划"><a href="#职业修炼与规划" class="headerlink" title="职业修炼与规划"></a>职业修炼与规划</h3><ul>
+<li>《<a href="https://www.amazon.cn/gp/product/B00KQDTZ4S/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00KQDTZ4S&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">大教堂与集市</a>》</li>
+<li>《卓有成效的程序员》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B01LZJ8L9J/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B01LZJ8L9J&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">程序员的职业素养</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B004GV08CY/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B004GV08CY&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">程序员修炼之道：从小工到专家</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00H6X6LD4/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00H6X6LD4&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">软件开发者路线图：从学徒到高手</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00CBBKDGM/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00CBBKDGM&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">我编程，我快乐: 程序员职业规划之道</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B007VARUIM/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B007VARUIM&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">程序员的思维修炼：开发认知潜能的九堂课</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00OA9L3NU/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00OA9L3NU&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">高效程序员的45个习惯：敏捷开发修炼之道(修订版)</a>》</li>
+</ul>
+<h3 id="大师访谈"><a href="#大师访谈" class="headerlink" title="大师访谈"></a>大师访谈</h3><ul>
+<li>《<a href="https://www.amazon.cn/gp/product/B00451BP72/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00451BP72&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">编程大师智慧</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00ALPRKMA/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00ALPRKMA&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">编程大师访谈录</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00QA7GA2Y/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00QA7GA2Y&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">编程人生 : 15位软件先驱访谈录</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B007ED88CI/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B007ED88CI&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">奇思妙想 : 15位计算机天才及其重大发现</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B008G80O9K/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B008G80O9K&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">图灵和ACM图灵奖</a>》</li>
+</ul>
+<h3 id="架构-性能"><a href="#架构-性能" class="headerlink" title="架构/性能"></a>架构/性能</h3><ul>
+<li>《<a href="https://www.amazon.cn/%E5%9B%BE%E4%B9%A6/dp/B01DXW29IM/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1496288348&amp;sr=1-1" target="_blank" rel="noopener">架构即未来</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B01ER75V6O/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B01ER75V6O&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">微服务设计</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00NGW4EAG/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00NGW4EAG&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">大数据日知录</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B003LBSRDM/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B003LBSRDM&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">企业应用架构模式</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00JMKWHFU/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00JMKWHFU&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">Web性能权威指南</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B01M0EHQ43/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B01M0EHQ43&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">SRE：Google运维解密</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B0153178XM/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B0153178XM&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">发布！软件的设计与部署</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B01HZFHQQI/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B01HZFHQQI&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">高扩展性网站的 50 条原则</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00F3Z26G8/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00F3Z26G8&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">大型网站技术架构:核心原理与案例分析</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00EP6TGAU/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00EP6TGAU&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">恰如其分的软件架构：风险驱动的设计方法</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00CMMUXC4/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00CMMUXC4&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">软件系统架构：使用视点和视角与利益相关者合作（第2版）</a>》</li>
+</ul>
+<h3 id="Linux-Unix"><a href="#Linux-Unix" class="headerlink" title="Linux / Unix"></a>Linux / Unix</h3><ul>
+<li>《<a href="https://amazon.cn/gp/product/B00HLA8TYG/ref=as_li_qf_asin_il_tl?ie=UTF8&amp;tag=vastwork-23&amp;creative=3200&amp;linkCode=as2&amp;creativeASIN=B00HLA8TYG&amp;linkId=2d246600ae289155a09ec47545d584f6" target="_blank" rel="noopener">Linux/Unix 系统编程手册</a>》（感谢<a href="https://github.com/geekgao" target="_blank" rel="noopener">@geekgao</a> 的推荐）</li>
+<li>《<a href="https://amazon.cn/gp/product/B00KMR129E/ref=as_li_qf_asin_il_tl?ie=UTF8&amp;tag=vastwork-23&amp;creative=3200&amp;linkCode=as2&amp;creativeASIN=B00KMR129E&amp;linkId=9655c290f9d97c4d7e80093839cc5944" target="_blank" rel="noopener">Unix 环境高级编程(第3版)</a>》</li>
+<li>《Unix/Linux 编程实践教程》</li>
+<li>《<a href="https://amazon.cn/gp/product/B003TJNO98/ref=as_li_qf_asin_il_tl?ie=UTF8&amp;tag=vastwork-23&amp;creative=3200&amp;linkCode=as2&amp;creativeASIN=B003TJNO98&amp;linkId=dda37757175b431dedc5e20212021f21" target="_blank" rel="noopener">鸟哥的 Linux 私房菜（基础学习篇）</a>》和《<a href="https://amazon.cn/gp/product/B008AEI8A2/ref=as_li_qf_asin_il_tl?ie=UTF8&amp;tag=vastwork-23&amp;creative=3200&amp;linkCode=as2&amp;creativeASIN=B008AEI8A2&amp;linkId=35f878fbebb2f66ae8c4fc3e76914ff6" target="_blank" rel="noopener">鸟哥的 Linux 私房菜（服务器架设篇）</a>》</li>
+<li>《<a href="https://amazon.cn/gp/product/B0719GT5W1/ref=as_li_qf_asin_il_tl?ie=UTF8&amp;tag=vastwork-23&amp;creative=3200&amp;linkCode=as2&amp;creativeASIN=B0719GT5W1&amp;linkId=aeef8bc8651bd9e5f363527b86d1229a" target="_blank" rel="noopener">Linux 命令行与 shell 脚本编程大全（第3版）</a>》</li>
+<li>《<a href="https://amazon.cn/gp/product/B00MB51SAI/ref=as_li_qf_asin_il_tl?ie=UTF8&amp;tag=vastwork-23&amp;creative=3200&amp;linkCode=as2&amp;creativeASIN=B00MB51SAI&amp;linkId=b22fe2eaac93168eae25d9bab11fe30c" target="_blank" rel="noopener">只是为了好玩 : Linux 之父林纳斯自传</a>》</li>
+</ul>
+<h3 id="Web前端"><a href="#Web前端" class="headerlink" title="Web前端"></a>Web前端</h3><ul>
+<li>《<a href="https://www.amazon.cn/gp/product/B013SGB2AO/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B013SGB2AO&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">高性能 JavaScript</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B0089TDFNS/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B0089TDFNS&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">锋利的 jQuery（第2版）</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B016DWSEWO/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B016DWSEWO&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">JavaScript 忍者秘籍</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00BQ7RMW0/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00BQ7RMW0&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">编写可维护的 JavaScript</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00W34DZ8K/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00W34DZ8K&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">你不知道的 JavaScript（上）</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B01LMYXGAI/ref=pd_sim_14_1?ie=UTF8&amp;psc=1&amp;refRID=4JRMK10EFJQHDAG8MCZF" target="_blank" rel="noopener">你不知道的 JavaScript（中）</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B007VISQ1Y/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B007VISQ1Y&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">JavaScript 权威指南（第6版）</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B0097CON2S/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B0097CON2S&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">JavaScript 语言精粹（修订版）</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B004VJM5KE/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B004VJM5KE&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">JavaScript DOM编程艺术 （第2版）</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B007OQQVMY/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B007OQQVMY&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">JavaScript 高级程序设计（第3版）</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00JVLEYY2/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00JVLEYY2&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">JavaScript 异步编程：设计快速响应的网络应用</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00XJ2AU3S/ref=pd_bxgy_14_img_3?ie=UTF8&amp;psc=1&amp;refRID=4JRMK10EFJQHDAG8MCZF" target="_blank" rel="noopener">JavaScript设计模式与开发实践</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B07574N7Y2/ref=pd_sim_14_7?ie=UTF8&amp;psc=1&amp;refRID=W48SJ7HFN2TXAQ1VAA8K" target="_blank" rel="noopener">JavaScript框架设计（第2版）</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00GMXI1QY/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00GMXI1QY&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">Effective JavaScript：编写高质量JavaScript代码的68个有效方法</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00H706BIG/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00H706BIG&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">HTML5 权威指南</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B015316VJY/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B015316VJY&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">HTML5 秘籍（第2版）</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00K58535O/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00K58535O&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">HTML5 与 CSS3 基础教程（第八版）</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B01ET3FO86/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B01ET3FO86&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">CSS 揭秘</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00M2DKZ1W/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00M2DKZ1W&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">CSS 设计指南（第3版）</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B0011F5SIC/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B0011F5SIC&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">CSS 权威指南（第3版）</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B01LXL42O5/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B01LXL42O5&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">深入浅出 HTML 与 CSS</a>》</li>
+<li>《<a href="https://www.amazon.cn/ES6%E6%A0%87%E5%87%86%E5%85%A5%E9%97%A8-%E9%98%AE%E4%B8%80%E5%B3%B0/dp/B0755547ZZ/ref=sr_1_3?s=books&amp;ie=UTF8&amp;qid=1510299626&amp;sr=1-3&amp;keywords=Ecmascript" target="_blank" rel="noopener">ES6 标准入门（第三版）</a>》</li>
+<li>《<a href="https://www.amazon.cn/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ES6-Nicholas-C-Zakas/dp/B071GW3JDP/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1510299626&amp;sr=1-1&amp;keywords=Ecmascript" target="_blank" rel="noopener">深入理解 ES6</a>》</li>
+</ul>
+<h3 id="Java开发"><a href="#Java开发" class="headerlink" title="Java开发"></a>Java开发</h3><ul>
+<li>《<a href="https://www.amazon.cn/gp/product/B01ER75QC8/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B01ER75QC8&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">Java8 实战</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B0077K9XHW/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B0077K9XHW&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">Java并发编程实战</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B01DLB7Z66/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B01DLB7Z66&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">Java性能权威指南</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00E0D2OX4/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00E0D2OX4&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">Java程序员修炼之道</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B017MEN094/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B017MEN094&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">实战Java高并发程序设计</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B0011F7WU4/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B0011F7WU4&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">Java编程思想 （第4版）</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B01HI0BUF8/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B01HI0BUF8&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">深入理解Java虚拟机（第2版）</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B001PTGR52/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B001PTGR52&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">Effective java 中文版（第2版）</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B01M22BGUQ/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B01M22BGUQ&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">Java核心技术·卷1：基础知识（原书第9版）</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00IK7SM6O/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00IK7SM6O&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">Java核心技术·卷2：高级特性（原书第9版）</a>》</li>
+<li>《Java并发编程的艺术》</li>
+<li>《Spring源码深度解析》</li>
+</ul>
+<h3 id="NET-NET-Core"><a href="#NET-NET-Core" class="headerlink" title=".NET/.NET Core"></a>.NET/.NET Core</h3><ul>
+<li>《<a href="https://www.amazon.cn/C-6-0%E6%9C%AC%E8%B4%A8%E8%AE%BA-%E9%A9%AC%E5%85%8B%C2%B7%E7%B1%B3%E5%87%AF%E5%88%A9%E6%96%AF/dp/B01N7U95UK/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1510299751&amp;sr=1-1&amp;keywords=C%23+%E6%9C%AC%E8%B4%A8%E8%AE%BA" target="_blank" rel="noopener">C# 6.0 本质论</a>》</li>
+<li>《<a href="https://www.amazon.cn/%E6%9E%9C%E5%A3%B3%E4%B8%AD%E7%9A%84C-C-5-0%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97-%E9%98%BF%E5%9D%9D%E5%93%88%E7%91%9E/dp/B00G51PUDA/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1510299796&amp;sr=1-1&amp;keywords=%E6%9E%9C%E5%A3%B3%E4%B8%AD%E7%9A%84C%23" target="_blank" rel="noopener">果壳中的C#：C#5.0权威指南</a>》</li>
+<li>《你必须知道的.NET（第2版）》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00J94AG2A/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00J94AG2A&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">深入理解C#（第3版）</a>》</li>
+<li>《Effective C#: 50 Specific Ways to Improve Your C#, Third Edition》</li>
+<li>《More Effective C# (Includes Content Update Program): 50 Specific Ways to Improve Your C#, 2nd edition》</li>
+<li>《<a href="https://www.amazon.cn/Async-in-C-5-0-Unleash-the-Power-of-Async-Davies-Alex/dp/1449337163/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1510299899&amp;sr=1-1&amp;keywords=Async+in+C%23+5.0" target="_blank" rel="noopener">Async in C# 5.0: Unleash the Power of Async</a>》</li>
+<li>《<a href="https://www.amazon.cn/C-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%BB%8F%E5%85%B8%E5%AE%9E%E4%BE%8B-%E5%85%8B%E5%88%A9%E9%87%8C/dp/B00QVLZEQ2/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1510299937&amp;sr=1-1&amp;keywords=C%23%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%BB%8F%E5%85%B8%E5%AE%9E%E4%BE%8B" target="_blank" rel="noopener">C#并发编程经典实例</a>》</li>
+<li>《<a href="https://www.amazon.cn/C-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98-%E6%98%93%E6%A0%BC%E6%81%A9%C2%B7%E9%98%BF%E6%A0%BC%E4%BD%9B%E6%B8%A9/dp/B06XHXV5FQ/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1510299974&amp;sr=1-1&amp;keywords=C%23%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98" target="_blank" rel="noopener">C#多线程编程实战(原书第2版)</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00P8VZ8T4/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00P8VZ8T4&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">CLR via C#（第4版）</a>》</li>
+<li>《.NET本质论 第1卷:公共语言运行库》</li>
+<li>《.NET探秘 : MSIL权威指南》</li>
+<li>《Pro .NET Performance》</li>
+<li>《Shared Source CLI Essentials》</li>
+<li>《.NET 高级调试》</li>
+<li>《Microsoft.NET 和 Windows 应用程序调试》</li>
+<li>《微软.NET 程序的加密与解密》</li>
+<li>《<a href="https://www.amazon.cn/NET-Development-Using-the-Compiler-API-Bock-Jason/dp/1484221109/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1510300116&amp;sr=1-1&amp;keywords=.NET+Development+Using+the+Compiler+API" target="_blank" rel="noopener">.NET Development Using the Compiler API</a>》</li>
+<li>《.NET设计规范 : 约定、惯用法与模式》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B074JS9HWX/ref=pd_sim_14_9?ie=UTF8&amp;psc=1&amp;refRID=67XZ7GZVFZ3J57NQTJ8X" target="_blank" rel="noopener">编写高性能的.NET代码</a>》</li>
+<li>《<a href="https://www.amazon.cn/Building-Microservices-with-NET-Core-Develop-skills-in-Reactive-Microservices-database-scaling-Azure-Microservices-and-more-Aroraa-Gaurav-Kumar/dp/B01MQ52RM3/ref=sr_1_10?s=books&amp;ie=UTF8&amp;qid=1510300439&amp;sr=1-10&amp;keywords=.net+core" target="_blank" rel="noopener">Building Microservices with .NET Core</a>》</li>
+<li>《<a href="https://www.amazon.cn/Microservices-in-NET-Core-with-Examples-in-NancyFX-Horsdal-Christian/dp/1617293377/ref=sr_1_15?s=books&amp;ie=UTF8&amp;qid=1510300439&amp;sr=1-15&amp;keywords=.net+core" target="_blank" rel="noopener">Microservices in .NET Core, with Examples in NancyFX</a>》</li>
+</ul>
+<h3 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h3><ul>
+<li>《<a href="https://www.amazon.cn/gp/product/B00UI93JD8/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00UI93JD8&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">集体智慧编程</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00P6OJ0TC/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00P6OJ0TC&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">笨办法学Python</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00KAFX65Q/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00KAFX65Q&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">Python基础教程</a>》</li>
+<li>《Python源码剖析》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B007NB2B4M/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B007NB2B4M&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">Head First Python</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00HECW20S/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00HECW20S&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">与孩子一起学编程</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B004TUJ7A6/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B004TUJ7A6&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">Python学习手册（第4版）</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00WKR1OKG/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00WKR1OKG&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">Python Cookbook（第3版）</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B01MCUN37Y/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B01MCUN37Y&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">Python参考手册（第4版）</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B01FQAS0KK/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B01FQAS0KK&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">Python核心编程（第3版）</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B01HCVUJFA/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B01HCVUJFA&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">Python科学计算（第2版）</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00GHGZLWS/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00GHGZLWS&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">利用 Python 进行数据分析</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B01ION3W54/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B01ION3W54&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">Think Python：像计算机科学家一样思考Python（第2版）</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00MHDPIJ6/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00MHDPIJ6&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">Python编程实战:运用设计模式、并发和程序库创建高质量程序</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B019ZRGBVU/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B019ZRGBVU&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">Python绝技：运用Python成为顶级黑客</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B0153177A6/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B0153177A6&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">Flask Web开发:基于Python的Web应用开发实战</a>》</li>
+</ul>
+<h3 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h3><ul>
+<li>《<a href="https://www.amazon.cn/gp/product/B01FSXCBOQ/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B01FSXCBOQ&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">Android编程权威指南（第2版）</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00SFZGX08/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00SFZGX08&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">移动应用UI设计模式（第2版）</a>》</li>
+<li>《<a href="https://www.amazon.cn/Android%E5%BC%80%E5%8F%91%E8%89%BA%E6%9C%AF%E6%8E%A2%E7%B4%A2-%E4%BB%BB%E7%8E%89%E5%88%9A/dp/B014HV1X3K/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1478155289&amp;sr=1-1&amp;keywords=android%E5%BC%80%E5%8F%91%E8%89%BA%E6%9C%AF%E6%8E%A2%E7%B4%A2" target="_blank" rel="noopener">Android开发艺术探索</a>》</li>
+</ul>
+<h3 id="iOS"><a href="#iOS" class="headerlink" title="iOS"></a>iOS</h3><ul>
+<li>《<a href="https://www.amazon.cn/gp/product/B00NKZCM3U/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00NKZCM3U&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">iOS编程实战</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B013UG2ULW/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B013UG2ULW&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">iOS编程（第4版）</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00DE60G3S/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00DE60G3S&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">Objective-C高级编程</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00IDSGY06/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00IDSGY06&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">Effective Objective-C 2.0：编写高质量iOS与OS X代码的52个有效方法</a>》</li>
+</ul>
+<h3 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h3><ul>
+<li>《<a href="https://www.amazon.cn/gp/product/B004R1QIJU/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B004R1QIJU&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">Head First PHP &amp; MySQL（中文版）</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B005D6IRRY/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B005D6IRRY&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">深入PHP：面向对象、模式与实践（第3版）</a>》</li>
+</ul>
+<h3 id="C语言"><a href="#C语言" class="headerlink" title="C语言"></a>C语言</h3><ul>
+<li>《<a href="https://www.amazon.cn/gp/product/B00IZW4DK8/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00IZW4DK8&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">C标准库</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00163LU68/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00163LU68&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">C和指针</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B0012NIW9K/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B0012NIW9K&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">C专家编程</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B0012UMPBY/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B0012UMPBY&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">C陷阱与缺陷</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B01D10NSCM/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B01D10NSCM&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">C语言接口与实现</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B0011425T8/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B0011425T8&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">C程序设计语言（第2版）</a>》</li>
+<li>《C语言参考手册（第5版）》</li>
+</ul>
+<h3 id="C"><a href="#C" class="headerlink" title="C++"></a>C++</h3><ul>
+<li>《<a href="https://www.amazon.cn/gp/product/B00YLZIRHI/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00YLZIRHI&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">C++标准库</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B005CFUQR0/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B005CFUQR0&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">C++编程思想</a>》</li>
+<li>《C++语言的设计与演化》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B003VPX6YS/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B003VPX6YS&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">C++程序设计原理与实践</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00ESUIL0O/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00ESUIL0O&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">C++ Primer （中文第5版）</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00S6U4C6E/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00S6U4C6E&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">C++ Primer习题集(第5版)</a> 》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B01I9BNASA/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B01I9BNASA&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">C++程序设计语言(第1-3部分)(原书第4版)</a> 》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B004G72P24/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B004G72P24&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">Effective C++:改善程序与设计的55个具体做法(第3版)(中文版) </a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B004IP8BD6/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B004IP8BD6&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">More Effective C++:35个改善编程与设计的有效方法(中文版) </a>》  </li>
+</ul>
+<h3 id="机器学习和数据挖掘"><a href="#机器学习和数据挖掘" class="headerlink" title="机器学习和数据挖掘"></a>机器学习和数据挖掘</h3><ul>
+<li>《<a href="https://www.amazon.cn/gp/product/B00JUE9DXW/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00JUE9DXW&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">数据之巅</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00NTM5GK0/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00NTM5GK0&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">矩阵分析</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B002WC7NH2/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B002WC7NH2&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">机器学习</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B007TSFMTA/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B007TSFMTA&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">统计学习方法</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B01AG3ZV9K/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B01AG3ZV9K&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">机器学习导论</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B008AK5YJO/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B008AK5YJO&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">推荐系统实践</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00D747PTK/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00D747PTK&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">机器学习实战</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00AY830HS/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00AY830HS&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">Web数据挖掘</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B006PHIVNA/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B006PHIVNA&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">深入浅出统计学</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00116C3DY/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00116C3DY&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">模式分类（第2版）</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00264GG56/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00264GG56&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">概率论与数理统计</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00PRH2BXA/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00PRH2BXA&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">统计学习基础(第2版)(英文)</a> 》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B007NR0T4A/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B007NR0T4A&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">数据挖掘：概念与技术（第3版）</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00K5I91WK/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00K5I91WK&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">数据挖掘：实用机器学习工具与技术（原书第3版）</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B011I34CGA/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B011I34CGA&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">大数据：互联网大规模数据挖掘与分布式处理（第2版）</a>》</li>
+</ul>
+<h3 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h3><ul>
+<li>《<a href="https://amazon.cn/gp/product/B007KYSEZC/ref=as_li_qf_asin_il_tl?ie=UTF8&amp;tag=vastwork-23&amp;creative=3200&amp;linkCode=as2&amp;creativeASIN=B007KYSEZC&amp;linkId=32d1830aaeeda5b1ccaf242af94e73ad" target="_blank" rel="noopener">数据库系统概念</a>》</li>
+<li>《<a href="https://amazon.cn/gp/product/B003NX8D0A/ref=as_li_qf_asin_il_tl?ie=UTF8&amp;tag=vastwork-23&amp;creative=3200&amp;linkCode=as2&amp;creativeASIN=B003NX8D0A&amp;linkId=3d1723a92384a5febb43c2400b31f1fe" target="_blank" rel="noopener">数据库系统实现</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00H6X6M1A/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00H6X6M1A&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">SQL应用重构</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/0596009763/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=0596009763&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">SQL Cookbook</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00C1W58DE/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00C1W58DE&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">高性能MySQL （第3版）</a>》</li>
+<li>《深入浅出SQL（中文版）》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00ETOV48K/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00ETOV48K&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">MySQL技术内幕 : InnoDB存储引擎（第2版）</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00KR87J8G/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00KR87J8G&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">深入浅出MySQL : 数据库开发、优化与管理维护</a>》</li>
+<li>《<a href="https://www.amazon.cn/%E6%94%B6%E8%8E%B7-%E4%B8%8D%E6%AD%A2SQL%E4%BC%98%E5%8C%96-%E6%8A%93%E4%BD%8FSQL%E7%9A%84%E6%9C%AC%E8%B4%A8-%E6%A2%81%E6%95%AC%E5%BD%AC/dp/B071S6ZYH8/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1510300270&amp;sr=1-1&amp;keywords=%E4%B8%8D%E6%AD%A2+sql" target="_blank" rel="noopener">收获,不止SQL优化:抓住SQL的本质</a>》</li>
+<li>《<a href="https://www.amazon.cn/SQL-Server%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E4%B8%8E%E7%AE%A1%E7%90%86%E7%9A%84%E8%89%BA%E6%9C%AF-%E9%BB%84%E9%92%8A%E5%90%89/dp/B00NW2FVAM/ref=tmm_pap_swatch_0?_encoding=UTF8&amp;qid=1510300294&amp;sr=1-8" target="_blank" rel="noopener">SQL Server 性能优化与管理的艺术</a>》</li>
+<li>《<a href="https://www.amazon.cn/SQL-Server%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98%E5%AE%9E%E6%88%98-%E9%99%88%E7%95%85%E4%BA%AE/dp/B0171JJEN6/ref=sr_1_11?s=books&amp;ie=UTF8&amp;qid=1510300294&amp;sr=1-11&amp;keywords=sql+server" target="_blank" rel="noopener">SQL Server性能调优实战</a>》</li>
+<li>《<a href="https://www.amazon.cn/T-SQL%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98%E7%A7%98%E7%AC%88-%E5%9F%BA%E4%BA%8ESQL-Server-2012%E7%AA%97%E5%8F%A3%E5%87%BD%E6%95%B0-%E6%9C%AC-%E7%94%98/dp/B00M1CH5A8/ref=sr_1_14?s=books&amp;ie=UTF8&amp;qid=1510300294&amp;sr=1-14&amp;keywords=sql+server" target="_blank" rel="noopener">T-SQL性能调优秘笈:基于SQL Server 2012窗口函数</a>》</li>
+</ul>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><ul>
+<li>《<a href="https://www.amazon.cn/gp/product/B003JBIV0S/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B003JBIV0S&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">探索式软件测试</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00PVOND2W/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00PVOND2W&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">有效的单元测试</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00FH36R6G/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00FH36R6G&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">Google软件测试之道</a>》</li>
+</ul>
+<h3 id="项目与团队"><a href="#项目与团队" class="headerlink" title="项目与团队"></a>项目与团队</h3><ul>
+<li>《<a href="https://www.amazon.cn/gp/product/B00VR8ZO28/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00VR8ZO28&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">人月神话</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B001DBRWL0/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B001DBRWL0&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">快速软件开发</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00MO7R1SG/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00MO7R1SG&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">人件（原书第3版）</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00CBBKRQ8/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00CBBKRQ8&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">门后的秘密：卓越管理的故事</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00BLZMG8W/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00BLZMG8W&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">极客与团队：软件工程师的团队生存秘笈</a>》</li>
+<li>《<a href="https://amazon.cn/gp/product/B00EE5HBAO/ref=as_li_qf_asin_il_tl?ie=UTF8&amp;tag=vastwork-23&amp;creative=3200&amp;linkCode=as2&amp;creativeASIN=B00EE5HBAO&amp;linkId=d904f054b7a79a701065f544a449512b" target="_blank" rel="noopener">硝烟中的 Scrum 和 XP</a>》</li>
+</ul>
+<h3 id="求职面试"><a href="#求职面试" class="headerlink" title="求职面试"></a>求职面试</h3><ul>
+<li>《<a href="https://www.amazon.cn/gp/product/B00G8VOQOG/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00G8VOQOG&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">程序员面试金典（第5版）</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00W5269HO/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00W5269HO&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">编程之美 : 微软技术面试心得</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00ALPRM7S/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00ALPRM7S&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">金领简历：敲开苹果、微软、谷歌的大门</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00L5LKMVU/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00L5LKMVU&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">剑指Offer：名企面试官精讲典型编程题（纪念版）</a>》</li>
+</ul>
+<h3 id="编程之外"><a href="#编程之外" class="headerlink" title="编程之外"></a>编程之外</h3><ul>
+<li>《<a href="https://www.amazon.cn/gp/product/B005DSK4W8/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B005DSK4W8&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">暗时间</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00P6OJ09C/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00P6OJ09C&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">数学之美</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00ANY9KZE/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00ANY9KZE&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">赢得朋友</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B008MIFWJG/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B008MIFWJG&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">精益创业</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00QPZARMA/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00QPZARMA&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">批判性思维</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00M2DKZNA/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00M2DKZNA&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">世界是数字的</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00A4H3JJS/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00A4H3JJS&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">程序员的数学</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00N4LZ6RO/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00N4LZ6RO&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">程序员健康指南</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B005O4PUFC/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B005O4PUFC&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">禅与摩托车维修艺术</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B0081M8TZ2/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B0081M8TZ2&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">关键对话：如何高效能沟通</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00EY8JUBO/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00EY8JUBO&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">写作法宝：非虚构写作指南</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00G1ZT2C0/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00G1ZT2C0&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">黑客与画家 : 来自计算机时代的高见</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00WDTQU8M/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00WDTQU8M&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">软件随想录（卷1）</a>》《<a href="https://www.amazon.cn/gp/product/B00WFT32FY/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00WFT32FY&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">软件随想录（卷2）</a>》</li>
+<li>《<a href="https://www.amazon.cn/gp/product/B00ICWNKT6/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=536&amp;creative=3200&amp;creativeASIN=B00ICWNKT6&amp;linkCode=as2&amp;tag=vastwork-23" target="_blank" rel="noopener">如何把事情做到最好：改变全球9800万人的人生指导书</a>》</li>
+</ul>
+<h2 id="非技术书籍"><a href="#非技术书籍" class="headerlink" title="非技术书籍"></a>非技术书籍</h2><h3 id="工具书"><a href="#工具书" class="headerlink" title="工具书"></a>工具书</h3><ul>
+<li>《关键对话：如何高效沟通》</li>
+</ul>
+<h3 id="外国名著"><a href="#外国名著" class="headerlink" title="外国名著"></a>外国名著</h3><ul>
+<li>《冰与火之歌》</li>
+<li>世纪三部曲<ul>
+<li>《巨人的陨落》</li>
+<li>《永恒的边缘》</li>
+<li>《世界的凛冬》</li>
+</ul>
+</li>
+<li>《追风筝的人》</li>
+<li>《人性的弱点》</li>
+<li>《灿烂千阳》</li>
+<li>《月亮和六便士》</li>
+<li>《霍乱时期的爱情》</li>
+<li>《查令十字街84号》</li>
+<li>《麦田里的守望者》</li>
+</ul>
+<h3 id="小说"><a href="#小说" class="headerlink" title="小说"></a>小说</h3><ul>
+<li>《尘埃落定》</li>
+<li>《活着》</li>
+<li>《暗算》</li>
+</ul>
+<h3 id="推理"><a href="#推理" class="headerlink" title="推理"></a>推理</h3><ul>
+<li>《无人生还》</li>
+<li>《白夜行》</li>
+<li>《解忧杂货店》</li>
+</ul>
+<h3 id="科幻"><a href="#科幻" class="headerlink" title="科幻"></a>科幻</h3><ul>
+<li>《三体》</li>
+<li>《海伯利安》</li>
+</ul>
+<h3 id="历史"><a href="#历史" class="headerlink" title="历史"></a>历史</h3><ul>
+<li>《万历十五年》</li>
+<li>《人类简史》</li>
+<li>《今日简史》</li>
+<li>《未来简史》</li>
+<li>《明朝那些事儿》</li>
+</ul>
+<h3 id="传记"><a href="#传记" class="headerlink" title="传记"></a>传记</h3><ul>
+<li>《我们仨》</li>
+</ul>
+<h3 id="文学"><a href="#文学" class="headerlink" title="文学"></a>文学</h3><ul>
+<li>《围城》</li>
+</ul>
+<h3 id="经管"><a href="#经管" class="headerlink" title="经管"></a>经管</h3><ul>
+<li><p>《原则》</p>
+</li>
+<li><p>《富爸爸穷爸爸》</p>
+</li>
+</ul>
+<h3 id="心理"><a href="#心理" class="headerlink" title="心理"></a>心理</h3><ul>
+<li>《乌合之众：大众心理研究》</li>
+<li>《自控力》</li>
+</ul>
+</the>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a  href="/2019/03/10/list-books/">推荐书单整理</a></p>
+        <p><span>文章作者:</span><a  href="/" title="访问 逸竹 的个人博客">逸竹</a></p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2019/03/10/list-books/" title="推荐书单整理">http://yizhuxiaozhan.site/2019/03/10/list-books/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yizhuxiaozhan.site/2019/03/10/list-books/　　作者: 逸竹" title=""></span>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a  href="/2019/03/17/kafka-learn-and-summary/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Kafka学习和总结
+        
+      </div>
+    </a>
+  
+  
+    <a  href="/2019/01/01/redis-file-lock/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">redis实现分布式文件夹锁</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#技术书"><span class="toc-number">1.</span> <span class="toc-text">技术书</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#计算机系统与网络"><span class="toc-number">1.1.</span> <span class="toc-text">计算机系统与网络</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法与数据结构"><span class="toc-number">1.2.</span> <span class="toc-text">算法与数据结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#职业修炼与规划"><span class="toc-number">1.3.</span> <span class="toc-text">职业修炼与规划</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#大师访谈"><span class="toc-number">1.4.</span> <span class="toc-text">大师访谈</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#架构-性能"><span class="toc-number">1.5.</span> <span class="toc-text">架构/性能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux-Unix"><span class="toc-number">1.6.</span> <span class="toc-text">Linux / Unix</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Web前端"><span class="toc-number">1.7.</span> <span class="toc-text">Web前端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java开发"><span class="toc-number">1.8.</span> <span class="toc-text">Java开发</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NET-NET-Core"><span class="toc-number">1.9.</span> <span class="toc-text">.NET/.NET Core</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Python"><span class="toc-number">1.10.</span> <span class="toc-text">Python</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Android"><span class="toc-number">1.11.</span> <span class="toc-text">Android</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iOS"><span class="toc-number">1.12.</span> <span class="toc-text">iOS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PHP"><span class="toc-number">1.13.</span> <span class="toc-text">PHP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C语言"><span class="toc-number">1.14.</span> <span class="toc-text">C语言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C"><span class="toc-number">1.15.</span> <span class="toc-text">C++</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#机器学习和数据挖掘"><span class="toc-number">1.16.</span> <span class="toc-text">机器学习和数据挖掘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据库"><span class="toc-number">1.17.</span> <span class="toc-text">数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#测试"><span class="toc-number">1.18.</span> <span class="toc-text">测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#项目与团队"><span class="toc-number">1.19.</span> <span class="toc-text">项目与团队</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#求职面试"><span class="toc-number">1.20.</span> <span class="toc-text">求职面试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编程之外"><span class="toc-number">1.21.</span> <span class="toc-text">编程之外</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#非技术书籍"><span class="toc-number">2.</span> <span class="toc-text">非技术书籍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#工具书"><span class="toc-number">2.1.</span> <span class="toc-text">工具书</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#外国名著"><span class="toc-number">2.2.</span> <span class="toc-text">外国名著</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#小说"><span class="toc-number">2.3.</span> <span class="toc-text">小说</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#推理"><span class="toc-number">2.4.</span> <span class="toc-text">推理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#科幻"><span class="toc-number">2.5.</span> <span class="toc-text">科幻</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#历史"><span class="toc-number">2.6.</span> <span class="toc-text">历史</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#传记"><span class="toc-number">2.7.</span> <span class="toc-text">传记</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文学"><span class="toc-number">2.8.</span> <span class="toc-text">文学</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#经管"><span class="toc-number">2.9.</span> <span class="toc-text">经管</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#心理"><span class="toc-number">2.10.</span> <span class="toc-text">心理</span></a></li></ol></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+    <link rel="stylesheet" type="text/css" href="/css/showshare.css"></head>
+    <div id="share" class="bdsharebuttonbox">
+        <button class="share-toggle-button"><i class="share-icon fa fa-share-alt"></i>
+        </button>
+        <ul class="share-items">
+            <li class="share-item"><a href="#" class="share-button fa fa-weibo" data-cmd="tsina" title="分享到新浪微博"></a></li>
+            <li class="share-item"><a href="#" class="share-button fa fa-weixin" data-cmd="weixin" title="分享到微信"></a></li>
+            <li class="share-item"><a href="#" class="share-button fa fa-qq" data-cmd="sqq" title="分享到QQ好友"></a></li>
+            <li class="share-item"><a href="#" class="share-button fa fa-facebook" data-cmd="fbook" title="分享到Facebook"></a></li>
+            <li class="share-item"><a href="#" class="share-button fa fa-twitter" data-cmd="twi" title="分享到Twitter"></a></li>
+            <li class="share-item"><a href="#" class="share-button fa fa-linkedin" data-cmd="linkedin" title="分享到linkedin"></a></li>
+        </ul>
+    </div>
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="800">
+        <defs>
+            <filter id="goo">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur" />
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 35 -15" result="goo" />
+                <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+            </filter>
+        </defs>
+    </svg>
+    <!-- 推荐开源CDN来选取需引用的外部JS //-->
+    <script type="text/javascript" src="http://cdn.gbtags.com/jquery/1.11.1/jquery.min.js"></script>
+    <script src="/js/TweenMax.min.js"></script>
+    <script src="/js/TweenMax.js"></script>
+<script>
+    window._bd_share_config = {
+    common : {
+                    bdText : '',
+                    //文本内容
+                    bdDesc : 'Luuman，90后，水瓶座普通男青年！爱折腾，爱运动，更爱游离于错综复杂的编码与逻辑中，无法自拔。相信编程是一门艺术，自诩为游弋在代码里的人生。',
+                    // 描述
+                    bdUrl : 'http://luuman.github.io/',
+                    // URL地址
+                    bdPic : 'https://hexo.io/build/screenshots/spfk-2b30506937.png'
+                    // 图片信息
+                },
+        share: [{
+            "bdSize": 24
+        }]
+    }
+    with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion=' + ~ (-new Date() / 36e5)];
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-33765729-1']);
+    _gaq.push(['_setDomainName', 'chuanke.com']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+
+    
+        <section id="comments">
+<link rel="stylesheet" href="/css/gitment.min.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: '推荐书单整理', // 可选。默认为 location.href
+  owner: 'ZhaoGitHub1',
+  repo: 'ZhaoGitHub1.github.io',
+  oauth: {
+    client_id: '0959e9fdfc97cef82968',
+    client_secret: '126454836d441306e61dfbf9bb3ddc6cef1bf93d',
+  },
+})
+gitment.render('comments')
+</script>
+</section>
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a  href="/2019/03/17/kafka-learn-and-summary/" title="上一篇: Kafka学习和总结">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a  href="/2019/01/01/redis-file-lock/" title="下一篇: redis实现分布式文件夹锁">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/06/01/tool-idea/">IDEA使用总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/12/tool-recommend/">工具推荐</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/06/spring-data-jpa-summary/">spring-data-jpa使用总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/17/kafka-learn-and-summary/">Kafka学习和总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/10/list-books/">推荐书单整理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/01/redis-file-lock/">redis实现分布式文件夹锁</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/16/read-note-readable-code/">读书笔记---《编写可读代码的艺术》</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/27/hashmap/">HashMap源码阅读</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/28/java-code-optimize/">java代码优化建议</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/27/git-commands/">git常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-optimize/">面试之---安全与性能优化相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-tools/">面试之---工具使用相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-java-basic/">面试之---java基础相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-others/">面试之---其他细小知识点汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-db/">面试之---数据库相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-algorithm/">面试之---算法相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-framework/">面试之---框架相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/15/linux-commands/">linux常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/13/tree-projects/">项目树</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/12/redis-summary/">Redis总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/11/about-Hexo/">Hexo博客搭建相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/10/pattern-singleton/">设计模式之---单例模式(Singleton Pattern)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/09/list-sites/">常用网站清单</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/my-pictures/">我的画集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/thread-realize/">创建线程的几种方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/springboot-app-deploy/">SpringBoot项目打包发布Linux环境完整流程</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/pattern-all/">设计模式之---汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/concurrentHashMap-analyze/">【转载】ConcurrentHashMap原理分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/nginx-config/">【转载】nginx配置文件nginx.conf超详细讲解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/tree-skills/">技能树</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/06/springApplication-analyze/">SpringBoot源码分析之---SpringBoot项目启动类SpringApplication浅析</a></li></ul>
+    
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+    <script>
+        $(".post-list").addClass("toc-article");
+        // $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
+
+
+
+
+    <script>
+        
+    </script>
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2019 逸竹
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo &nbsp;&nbsp;</a><a href="https://github.com/ZhaoGitHub1" target="_blank">Blog</a> by 逸竹
+            </div>
+        </div>
+        
+    </div>
+</footer>
+
+    </div>
+    
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 8;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'xxxxx', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?eb7d8cefd581790a3213e8feb93ae89f";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>

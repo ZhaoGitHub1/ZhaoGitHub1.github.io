@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="baidu-site-verification" content="L6Lm9d5Crl"/>
+  
+  
+  
+  
+  <title>redis实现分布式文件夹锁 | 逸竹小站</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="使用redis实现文件夹级别的分布式锁">
+<meta name="keywords" content="分布式锁">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redis实现分布式文件夹锁">
+<meta property="og:url" content="http://yizhuxiaozhan.site/2019/01/01/redis-file-lock/index.html">
+<meta property="og:site_name" content="逸竹小站">
+<meta property="og:description" content="使用redis实现文件夹级别的分布式锁">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yizhuxiaozhan.site/2019/01/01/redis-file-lock/p12.jpg">
+<meta property="og:image" content="http://yizhuxiaozhan.site/2019/01/01/redis-file-lock/图1.jpg">
+<meta property="og:updated_time" content="2019-02-08T12:26:15.551Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="redis实现分布式文件夹锁">
+<meta name="twitter:description" content="使用redis实现文件夹级别的分布式锁">
+<meta name="twitter:image" content="http://yizhuxiaozhan.site/2019/01/01/redis-file-lock/p12.jpg">
+  
+    <link rel="alternative" href="/atom.xml" title="逸竹小站" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/logo.jpg" class="js-avatar">
+            
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">逸竹</a></h1>
+        </hgroup>
+        
+        <p class="header-subtitle">未来不迎，当时不杂，过往不恋！</p>
+        
+        
+            <form>
+                <input type="text" class="st-default-search-input search" id="local-search-input" placeholder="搜索一下" autocomplete="off">
+            </form>
+            <div id="local-search-result"></div>
+        
+        
+            <script type="text/javascript">
+                (function() {
+                    'use strict';
+                    function getMatchData(keyword, data) {
+                        var matchData = [];
+                        for(var i =0;i<data.length;i++){
+                            if(data[i].title.toLowerCase().indexOf(keyword)>=0) 
+                                matchData.push(data[i])
+                        }
+                        return matchData;
+                    }
+                    var $input = $('#local-search-input');
+                    var $resultContent = $('#local-search-result');
+                    $input.keyup(function(){
+                        $.ajax({
+                            url: '/search.json',
+                            dataType: "json",
+                            success: function( json ) {
+                                var str='<ul class=\"search-result-list\">';                
+                                var keyword = $input.val().trim().toLowerCase();
+                                $resultContent.innerHTML = "";
+                                if ($input.val().trim().length <= 0) {
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                }
+                                var results = getMatchData(keyword, json);
+                                if(results.length === 0){
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                } 
+                                for(var i =0; i<results.length; i++){
+                                    str += "<li><a href='"+ results[i].url +"' class='search-result-title'>"+ results[i].title +"</a></li>";
+                                }
+                                str += "</ul>";
+                                $resultContent.empty();
+                                $resultContent.append(str);
+                                $('#switch-area').hide();
+                            }
+                        });
+                    });
+                })();
+            </script>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a  href="/archives/">所有文章</a></li>
+                        
+                            <li><a  href="/tags/">分类&amp;标签</a></li>
+                        
+                            <li><a  href="/books/">我的读书</a></li>
+                        
+                            <li><a  href="/movies/">我的电影</a></li>
+                        
+                            <li><a  href="/categories/tree/">树</a></li>
+                        
+                            <li><a  href="/categories/interview/">面试</a></li>
+                        
+                            <li><a  href="/categories/lists/">清单</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl github"  target="_blank" href="https://github.com/ZhaoGitHub1/" title="github">github</a>
+                            
+                                <a class="fl douban"  target="_blank" href="https://www.douban.com/people/174692469/" title="douban">douban</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/ConcurrentHashMap/" style="font-size: 10px;">ConcurrentHashMap</a> <a href="/tags/SpringData/" style="font-size: 10px;">SpringData</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hashmap/" style="font-size: 10px;">hashmap</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/java基础/" style="font-size: 10px;">java基础</a> <a href="/tags/kafka/" style="font-size: 10px;">kafka</a> <a href="/tags/linux/" style="font-size: 13.33px;">linux</a> <a href="/tags/linux命令/" style="font-size: 10px;">linux命令</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/orm/" style="font-size: 10px;">orm</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/springboot/" style="font-size: 13.33px;">springboot</a> <a href="/tags/springboot源码分析/" style="font-size: 10px;">springboot源码分析</a> <a href="/tags/优化/" style="font-size: 10px;">优化</a> <a href="/tags/分布式锁/" style="font-size: 10px;">分布式锁</a> <a href="/tags/单例模式/" style="font-size: 10px;">单例模式</a> <a href="/tags/命令/" style="font-size: 10px;">命令</a> <a href="/tags/在线工具/" style="font-size: 10px;">在线工具</a> <a href="/tags/多线程/" style="font-size: 10px;">多线程</a> <a href="/tags/安全/" style="font-size: 10px;">安全</a> <a href="/tags/工具/" style="font-size: 16.67px;">工具</a> <a href="/tags/性能/" style="font-size: 10px;">性能</a> <a href="/tags/总结/" style="font-size: 20px;">总结</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/框架/" style="font-size: 10px;">框架</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/素描/" style="font-size: 10px;">素描</a> <a href="/tags/编码艺术/" style="font-size: 10px;">编码艺术</a> <a href="/tags/网站地址/" style="font-size: 10px;">网站地址</a> <a href="/tags/读书/" style="font-size: 13.33px;">读书</a> <a href="/tags/转载/" style="font-size: 13.33px;">转载</a>
+                    </div>
+                </section>
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="https://blog.csdn.net/qq_25885525">我的csdn</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="https://github.com/ZhaoGitHub1">我的github</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="https://gitee.com/zhao-183479916">我的gitee</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="https://spring.io/">Spring官网</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://www.mybatis.org/mybatis-3/zh/index.html">Mybatis官网</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://hibernate.org/">Hibernate官网</a>
+                    
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">一名普通的java 后台开发工程师~~  邮箱：183479916@qq.com</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">逸竹</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/logo.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">逸竹</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">未来不迎，当时不杂，过往不恋！</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">分类&amp;标签</a></li>
+                
+                    <li><a href="/books/">我的读书</a></li>
+                
+                    <li><a href="/movies/">我的电影</a></li>
+                
+                    <li><a href="/categories/tree/">树</a></li>
+                
+                    <li><a href="/categories/interview/">面试</a></li>
+                
+                    <li><a href="/categories/lists/">清单</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="github" target="_blank" href="https://github.com/ZhaoGitHub1/" title="github">github</a>
+                    
+                        <a class="douban" target="_blank" href="https://www.douban.com/people/174692469/" title="douban">douban</a>
+                    
+                </div>
+            </nav>
+        </header>
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-redis-file-lock" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2019/01/01/redis-file-lock/" class="article-date">
+      <time datetime="2019-01-01T05:27:53.000Z" itemprop="datePublished">2019-01-01</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      redis实现分布式文件夹锁
+    </h1>
+  
+
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/redis/">redis</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/分布式锁/">分布式锁</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><strong> redis实现分布式文件夹锁：</strong> <excerpt in="" index="" |="" 首页摘要=""></excerpt></p>
+<a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<p><img src="/2019/01/01/redis-file-lock/p12.jpg" alt=""></p>
+<h2 id="缘起"><a href="#缘起" class="headerlink" title="缘起"></a>缘起</h2><p>最近做一个项目，类似某度云盘，另外附加定制功能，本人负责云盘相关功能实现，这个项目跟云盘不同的是，以项目为分配权限的单位，同一个项目及子目录所有有权限的用户可以同时操作所有文件，这样就很容易出现并发操作，而且表结构设计的时候，定下来文件和文件夹都有个path字段，存储的是所在父级文件夹路径，这样检索方便，重命名和移动比较麻烦。</p>
+<p>如下，例如甲同学正在移动项目下C文件夹，而此时乙同学也在操作项目下D下的d.txt文件，这样就会出现问题，所以需要分布式锁控制，甲在操作C文件夹的时候，C文件夹所有子文件和包含C文件夹的父文件夹都被锁住，如图将会被锁定的文件夹和子文件有：A、C、c.txt、D、E、d.txt，其中a.txt和B未被锁定，这个是移动的情况，如下表格列出其他情况.</p>
+<p><img src="/2019/01/01/redis-file-lock/图1.jpg" alt=""></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">操作对象</th>
+<th>操作</th>
+<th style="text-align:left">新建</th>
+<th>上传</th>
+<th>移动文件夹</th>
+<th>移动文件</th>
+<th>复制文件夹</th>
+<th>复制文件</th>
+<th>重命名文件夹</th>
+<th>重命名文件</th>
+<th>删除文件夹</th>
+<th>删除文件</th>
+<th>回收站清除</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">/A</td>
+<td>新建</td>
+<td style="text-align:left">√</td>
+<td>√</td>
+<td>×</td>
+<td>√</td>
+<td>×</td>
+<td>√</td>
+<td>×</td>
+<td>√</td>
+<td>×</td>
+<td>√</td>
+<td>/</td>
+</tr>
+<tr>
+<td style="text-align:left">/A</td>
+<td>上传</td>
+<td style="text-align:left">√</td>
+<td>√</td>
+<td>×</td>
+<td>√</td>
+<td>×</td>
+<td>√</td>
+<td>×</td>
+<td>√</td>
+<td>×</td>
+<td>√</td>
+<td>/</td>
+</tr>
+<tr>
+<td style="text-align:left">/A-&gt;/B</td>
+<td>移动文件夹</td>
+<td style="text-align:left">A×B×</td>
+<td>A×B×</td>
+<td>A×B×</td>
+<td>A×B×</td>
+<td>A√B√</td>
+<td>A√B√</td>
+<td>A×B×</td>
+<td>A×B√</td>
+<td>A×B×</td>
+<td>A×B√</td>
+<td>/</td>
+</tr>
+<tr>
+<td style="text-align:left">a.txt-&gt;/B</td>
+<td>移动文件</td>
+<td style="text-align:left">B√</td>
+<td>B√</td>
+<td>B×</td>
+<td>B√</td>
+<td>B×</td>
+<td>a√B×</td>
+<td>a×B×</td>
+<td>a×B√</td>
+<td>B×</td>
+<td>a×B√</td>
+<td>/</td>
+</tr>
+<tr>
+<td style="text-align:left">/A-&gt;/B</td>
+<td>复制文件夹</td>
+<td style="text-align:left">B√</td>
+<td>B√</td>
+<td>B×</td>
+<td>B√</td>
+<td>B√</td>
+<td>B√</td>
+<td>B×</td>
+<td>B√</td>
+<td>B×</td>
+<td>B√</td>
+<td>/</td>
+</tr>
+<tr>
+<td style="text-align:left">a.txt-&gt;/B</td>
+<td>复制文件</td>
+<td style="text-align:left">B√</td>
+<td>B√</td>
+<td>B×</td>
+<td>B√</td>
+<td>B√</td>
+<td>B√</td>
+<td>B×</td>
+<td>B√</td>
+<td>B×</td>
+<td>B√</td>
+<td>/</td>
+</tr>
+<tr>
+<td style="text-align:left">/A</td>
+<td>重命名文件夹</td>
+<td style="text-align:left">A×</td>
+<td>A×</td>
+<td>A×</td>
+<td>A×</td>
+<td>A√</td>
+<td>A√</td>
+<td>A×</td>
+<td>A×</td>
+<td>A×</td>
+<td>A×</td>
+<td>/</td>
+</tr>
+<tr>
+<td style="text-align:left">a.txt</td>
+<td>重命名文件</td>
+<td style="text-align:left">/</td>
+<td>/</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>√</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>/</td>
+</tr>
+<tr>
+<td style="text-align:left">/A</td>
+<td>删除文件夹</td>
+<td style="text-align:left">×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>/</td>
+</tr>
+<tr>
+<td style="text-align:left">a.txt</td>
+<td>删除文件</td>
+<td style="text-align:left">×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>×</td>
+<td>/</td>
+</tr>
+<tr>
+<td style="text-align:left">/A，a.txt</td>
+<td>回收站清除</td>
+<td style="text-align:left">/</td>
+<td>/</td>
+<td>/</td>
+<td>/</td>
+<td>/</td>
+<td>/</td>
+<td>/</td>
+<td>/</td>
+<td>/</td>
+<td>/</td>
+<td>A×a×</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>符号解释：√：可以操作，×：不可以操作，/：互相不影响</p>
+<p>整体解释：例如第一行，意思是：对于A这个文件夹，当第一个人进行新建操作的时候，其他人同时进行新建、上传、移动文件、复制文件、重命名文件、删除文件是允许的，移动文件夹、复制文件夹、重命名文件夹、删除文件夹是不允许的，回收站清除和新建操作是互不影响的。</p>
+</blockquote>
+<h2 id="思考和调研"><a href="#思考和调研" class="headerlink" title="思考和调研"></a>思考和调研</h2><p>分布式锁常见的三种实现方式：数据库、zookeeper/etcd（临时有序节点）、redis（setnx/lua脚本），各有千秋。</p>
+<h3 id="数据库实现分布式锁"><a href="#数据库实现分布式锁" class="headerlink" title="数据库实现分布式锁"></a>数据库实现分布式锁</h3><h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><p>原理简单易实现，创建一张lock表，存储锁定的资源、上锁对象、获取锁的资源、获取锁时间等，获取锁时查询该资源是否存在记录，存在且未过失效时间则获取锁失败，不存在则插入一条数据并且获取锁成功；释放锁则更简单，删除锁数据即可。</p>
+<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><ul>
+<li>释放锁删除数据时，会出现死锁情况</li>
+</ul>
+<h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ul>
+<li>实现简单</li>
+</ul>
+<h3 id="zookeeper-etcd实现分布式锁"><a href="#zookeeper-etcd实现分布式锁" class="headerlink" title="zookeeper/etcd实现分布式锁"></a>zookeeper/etcd实现分布式锁</h3><p>详见<a href="">zookeeper总结</a></p>
+<h3 id="redis实现分布式锁"><a href="#redis实现分布式锁" class="headerlink" title="redis实现分布式锁"></a>redis实现分布式锁</h3><p>详见<a href="https://www.yizhuxiaozhan.site/2018/09/12/redis-summary/#分布式锁的实现" target="_blank" rel="noopener">Redis总结</a></p>
+<h2 id="分布式文件夹锁实现过程"><a href="#分布式文件夹锁实现过程" class="headerlink" title="分布式文件夹锁实现过程"></a>分布式文件夹锁实现过程</h2><p>基于开文处所列情况，要覆盖所有复杂情况很难，但是实现基本的文件夹锁是必须的，故选择了redis+lua脚本，具体代码如下</p>
+<h3 id="java获取锁工具类"><a href="#java获取锁工具类" class="headerlink" title="java获取锁工具类"></a>java获取锁工具类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * redis工具类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RedisLockUtils</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> Long SUCCESS = <span class="number">1L</span>;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> String LOCKED_HASH = <span class="string">"cs:lockedHashKey"</span>;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> String GET_LOCK_LUA_RESOURCE = <span class="string">"/lua/getFileLock.lua"</span>;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> String RELEASE_LOCK_LUA_RESOURCE = <span class="string">"/lua/releaseFileLock.lua"</span>;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> Logger LOG = LoggerFactory.getLogger(RedisLockUtils.class);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取文件夹锁</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> redisTemplate</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> lockProjectId</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> lockKey</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> requestValue</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> expireTime 单位：秒</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">getFileLock</span><span class="params">(RedisTemplate redisTemplate, Long lockProjectId, String lockKey, String requestValue, Integer expireTime)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        LOG.info(<span class="string">"start run lua script，&#123;&#123;&#125;&#125; start request lock"</span>,lockKey);</span><br><span class="line">        <span class="keyword">long</span> start = System.currentTimeMillis();</span><br><span class="line">        DefaultRedisScript&lt;String&gt; luaScript =<span class="keyword">new</span> DefaultRedisScript&lt;&gt;();</span><br><span class="line">        luaScript.setLocation(<span class="keyword">new</span> ClassPathResource(GET_LOCK_LUA_RESOURCE));</span><br><span class="line">        luaScript.setResultType(String.class);</span><br><span class="line"></span><br><span class="line">        Object result = redisTemplate.execute(</span><br><span class="line">                luaScript,</span><br><span class="line">                Arrays.asList(lockKey, LOCKED_HASH + lockProjectId),</span><br><span class="line">                requestValue,</span><br><span class="line">                String.valueOf(expireTime),</span><br><span class="line">                String.valueOf(System.currentTimeMillis())</span><br><span class="line">        );</span><br><span class="line">        <span class="keyword">boolean</span> getLockStatus = SUCCESS.equals(result);</span><br><span class="line"></span><br><span class="line">        LOG.info(<span class="string">"&#123;&#123;&#125;&#125; cost time &#123;&#125; ms，request lock result：&#123;&#125;"</span>,lockKey,(System.currentTimeMillis()-start), getLockStatus);</span><br><span class="line">        <span class="keyword">return</span> getLockStatus;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 释放文件夹锁</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> redisTemplate</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> lockProjectId</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> lockKey</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> requestValue</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">releaseFileLock</span><span class="params">(RedisTemplate redisTemplate, Long lockProjectId, String lockKey, String requestValue)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        DefaultRedisScript&lt;String&gt; luaScript =<span class="keyword">new</span> DefaultRedisScript&lt;&gt;();</span><br><span class="line">        luaScript.setLocation(<span class="keyword">new</span> ClassPathResource(RELEASE_LOCK_LUA_RESOURCE));</span><br><span class="line">        luaScript.setResultType(String.class);</span><br><span class="line"></span><br><span class="line">        Object result = redisTemplate.execute(</span><br><span class="line">                luaScript,</span><br><span class="line">                Arrays.asList(lockKey, LOCKED_HASH + lockProjectId),</span><br><span class="line">                requestValue</span><br><span class="line">        );</span><br><span class="line">        <span class="keyword">boolean</span> releaseLockStatus = SUCCESS.equals(result);</span><br><span class="line"></span><br><span class="line">        LOG.info(<span class="string">"&#123;&#123;&#125;&#125;release lock result：&#123;&#125;"</span>, lockKey, releaseLockStatus);</span><br><span class="line">        <span class="keyword">return</span> releaseLockStatus;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="lua脚本"><a href="#lua脚本" class="headerlink" title="lua脚本"></a>lua脚本</h3><h4 id="获取文件夹锁"><a href="#获取文件夹锁" class="headerlink" title="获取文件夹锁"></a>获取文件夹锁</h4><h5 id="入参说明"><a href="#入参说明" class="headerlink" title="入参说明"></a>入参说明</h5><p><code>requestKey</code>为请求锁的路径，<code>requestValue</code>为请求锁的value，应为请求锁时生成的<code>UUID</code>，确保解锁人只能为上锁人，<code>lockedKeys</code>为存放所有锁的<code>哈希表</code>的key，这里用常量加项目id的方式，确保一个项目的所有锁存在一个<code>哈希表</code>里面，<code>expireTime</code>为锁的过期时间，<code>nowTime</code>为当前时间，由于lua脚本里面获取当前时间消耗性能且获取的是redis服务器上的当前时间，可能不准确。</p>
+<h5 id="思路说明"><a href="#思路说明" class="headerlink" title="思路说明"></a>思路说明</h5><p>首先，通过<code>GET key</code>判断是否有人正在操作这个文件夹，若有人在操作则直接返回0（获取锁失败），否则获取存放该项目锁的哈希表里面的所有key，遍历所有key，通过lua脚本的<code>string.find</code>函数对比该key和请求的key是否存在包含或被包含关系，若存在包含关系且未失效，则返回0（获取锁失败），否则则可获取锁，设置key和过期时间及存入哈希表（哈希表内存放请求锁的key和请求时间），最后返回1（获取锁成功）。</p>
+<p>例如请求上图中项目下的C文件夹的锁，请求路径为：<code>项目/A/C</code>，当另一个人想操作D文件夹，请求路径为：<code>项目/A/C/D</code>，此时查询到存储这个项目所有锁定key的<code>哈希表</code>，里面包含<code>项目/A/C</code>这个key，这两个key通过lua函数<code>string.find</code>发现<code>项目/A/C/D</code>包含<code>项目/A/C</code>，且未到过期时间，则获取锁失败，否则获取锁成功。</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> requestKey=KEYS[<span class="number">1</span>]</span><br><span class="line"><span class="keyword">local</span> lockedKeys=KEYS[<span class="number">2</span>]</span><br><span class="line"><span class="keyword">local</span> requestValue=ARGV[<span class="number">1</span>]</span><br><span class="line"><span class="keyword">local</span> expireTime=ARGV[<span class="number">2</span>]</span><br><span class="line"><span class="keyword">local</span> nowTime=ARGV[<span class="number">3</span>]</span><br><span class="line"><span class="keyword">if</span> redis.call(<span class="string">'get'</span>,requestKey)</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">local</span> lockedHash = redis.call(<span class="string">'hkeys'</span>,lockedKeys)</span><br><span class="line"><span class="keyword">for</span> i=<span class="number">1</span>, #lockedHash <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">string</span>.<span class="built_in">find</span>(requestKey,lockedHash[i]) <span class="keyword">or</span> <span class="built_in">string</span>.<span class="built_in">find</span>(lockedHash[i],requestKey)</span><br><span class="line">    <span class="keyword">then</span></span><br><span class="line">        <span class="keyword">local</span> lockTime = redis.call(<span class="string">'hget'</span>,lockedKeys,lockedHash[i])</span><br><span class="line">        <span class="keyword">if</span> (nowTime-lockTime) &gt;= expireTime * <span class="number">1000</span></span><br><span class="line">        <span class="keyword">then</span></span><br><span class="line">            redis.call(<span class="string">'hdel'</span>,lockedKeys,lockedHash[i])</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">redis.call(<span class="string">'set'</span>,requestKey,requestValue)</span><br><span class="line">redis.call(<span class="string">'expire'</span>,requestKey,expireTime)</span><br><span class="line">redis.call(<span class="string">'hset'</span>,lockedKeys,requestKey,nowTime)</span><br><span class="line"><span class="keyword">return</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<h4 id="释放文件夹锁"><a href="#释放文件夹锁" class="headerlink" title="释放文件夹锁"></a>释放文件夹锁</h4><h5 id="入参说明-1"><a href="#入参说明-1" class="headerlink" title="入参说明"></a>入参说明</h5><p><code>requestKey</code>为请求锁的路径，<code>requestValue</code>为请求锁的value，应为请求锁时生成的<code>UUID</code>，确保解锁人只能为上锁人，<code>lockedKeys</code>为存放所有锁的<code>哈希表</code>的key，这里用常量加项目id的方式，确保一个项目的所有锁存在一个<code>哈希表</code>里面。</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> requestKey=KEYS[<span class="number">1</span>]</span><br><span class="line"><span class="keyword">local</span> lockedKeys=KEYS[<span class="number">2</span>]</span><br><span class="line"><span class="keyword">local</span> requestValue=ARGV[<span class="number">1</span>]</span><br><span class="line"><span class="keyword">if</span> redis.call(<span class="string">'get'</span>, requestKey) == requestValue</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">    redis.call(<span class="string">'hdel'</span>, lockedKeys,requestKey)</span><br><span class="line">    <span class="keyword">return</span> redis.call(<span class="string">'del'</span>,requestKey)</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h3 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h3><ol>
+<li>灵活，锁定的范围可以随<code>requestKey</code>变化而变化</li>
+<li>性能不错，经测试除了第一次lua脚本未缓存耗时较长，第二次之后则在10ms左右可得到请求结果</li>
+</ol>
+<h3 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h3><ol>
+<li>可靠性依赖redis</li>
+<li>不是可重入锁</li>
+<li>维护成本较高，需熟知redis的5种数据结构及lua脚本</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过单元自测和测试环境测试基本可以确保多数情况下的多用户并发操作文件只有一人能进行有效操作，保证了数据的安全性。经过这次实践，对分布式锁有了更深入的了解。</p>
+</the>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a  href="/2019/01/01/redis-file-lock/">redis实现分布式文件夹锁</a></p>
+        <p><span>文章作者:</span><a  href="/" title="访问 逸竹 的个人博客">逸竹</a></p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2019/01/01/redis-file-lock/" title="redis实现分布式文件夹锁">http://yizhuxiaozhan.site/2019/01/01/redis-file-lock/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yizhuxiaozhan.site/2019/01/01/redis-file-lock/　　作者: 逸竹" title=""></span>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a  href="/2019/03/10/list-books/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          推荐书单整理
+        
+      </div>
+    </a>
+  
+  
+    <a  href="/2018/12/16/read-note-readable-code/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">读书笔记---《编写可读代码的艺术》</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#缘起"><span class="toc-number">1.</span> <span class="toc-text">缘起</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#思考和调研"><span class="toc-number">2.</span> <span class="toc-text">思考和调研</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数据库实现分布式锁"><span class="toc-number">2.1.</span> <span class="toc-text">数据库实现分布式锁</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#实现"><span class="toc-number">2.1.1.</span> <span class="toc-text">实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#缺点"><span class="toc-number">2.1.2.</span> <span class="toc-text">缺点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#优点"><span class="toc-number">2.1.3.</span> <span class="toc-text">优点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#zookeeper-etcd实现分布式锁"><span class="toc-number">2.2.</span> <span class="toc-text">zookeeper/etcd实现分布式锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#redis实现分布式锁"><span class="toc-number">2.3.</span> <span class="toc-text">redis实现分布式锁</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分布式文件夹锁实现过程"><span class="toc-number">3.</span> <span class="toc-text">分布式文件夹锁实现过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#java获取锁工具类"><span class="toc-number">3.1.</span> <span class="toc-text">java获取锁工具类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lua脚本"><span class="toc-number">3.2.</span> <span class="toc-text">lua脚本</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#获取文件夹锁"><span class="toc-number">3.2.1.</span> <span class="toc-text">获取文件夹锁</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#入参说明"><span class="toc-number">3.2.1.1.</span> <span class="toc-text">入参说明</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#思路说明"><span class="toc-number">3.2.1.2.</span> <span class="toc-text">思路说明</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#释放文件夹锁"><span class="toc-number">3.2.2.</span> <span class="toc-text">释放文件夹锁</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#入参说明-1"><span class="toc-number">3.2.2.1.</span> <span class="toc-text">入参说明</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#优点-1"><span class="toc-number">3.3.</span> <span class="toc-text">优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缺点-1"><span class="toc-number">3.4.</span> <span class="toc-text">缺点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">4.</span> <span class="toc-text">总结</span></a></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+    <link rel="stylesheet" type="text/css" href="/css/showshare.css"></head>
+    <div id="share" class="bdsharebuttonbox">
+        <button class="share-toggle-button"><i class="share-icon fa fa-share-alt"></i>
+        </button>
+        <ul class="share-items">
+            <li class="share-item"><a href="#" class="share-button fa fa-weibo" data-cmd="tsina" title="分享到新浪微博"></a></li>
+            <li class="share-item"><a href="#" class="share-button fa fa-weixin" data-cmd="weixin" title="分享到微信"></a></li>
+            <li class="share-item"><a href="#" class="share-button fa fa-qq" data-cmd="sqq" title="分享到QQ好友"></a></li>
+            <li class="share-item"><a href="#" class="share-button fa fa-facebook" data-cmd="fbook" title="分享到Facebook"></a></li>
+            <li class="share-item"><a href="#" class="share-button fa fa-twitter" data-cmd="twi" title="分享到Twitter"></a></li>
+            <li class="share-item"><a href="#" class="share-button fa fa-linkedin" data-cmd="linkedin" title="分享到linkedin"></a></li>
+        </ul>
+    </div>
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="800">
+        <defs>
+            <filter id="goo">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur" />
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 35 -15" result="goo" />
+                <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+            </filter>
+        </defs>
+    </svg>
+    <!-- 推荐开源CDN来选取需引用的外部JS //-->
+    <script type="text/javascript" src="http://cdn.gbtags.com/jquery/1.11.1/jquery.min.js"></script>
+    <script src="/js/TweenMax.min.js"></script>
+    <script src="/js/TweenMax.js"></script>
+<script>
+    window._bd_share_config = {
+    common : {
+                    bdText : '',
+                    //文本内容
+                    bdDesc : 'Luuman，90后，水瓶座普通男青年！爱折腾，爱运动，更爱游离于错综复杂的编码与逻辑中，无法自拔。相信编程是一门艺术，自诩为游弋在代码里的人生。',
+                    // 描述
+                    bdUrl : 'http://luuman.github.io/',
+                    // URL地址
+                    bdPic : 'https://hexo.io/build/screenshots/spfk-2b30506937.png'
+                    // 图片信息
+                },
+        share: [{
+            "bdSize": 24
+        }]
+    }
+    with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion=' + ~ (-new Date() / 36e5)];
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-33765729-1']);
+    _gaq.push(['_setDomainName', 'chuanke.com']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+
+    
+        <section id="comments">
+<link rel="stylesheet" href="/css/gitment.min.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: 'redis实现分布式文件夹锁', // 可选。默认为 location.href
+  owner: 'ZhaoGitHub1',
+  repo: 'ZhaoGitHub1.github.io',
+  oauth: {
+    client_id: '0959e9fdfc97cef82968',
+    client_secret: '126454836d441306e61dfbf9bb3ddc6cef1bf93d',
+  },
+})
+gitment.render('comments')
+</script>
+</section>
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a  href="/2019/03/10/list-books/" title="上一篇: 推荐书单整理">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a  href="/2018/12/16/read-note-readable-code/" title="下一篇: 读书笔记---《编写可读代码的艺术》">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/06/01/tool-idea/">IDEA使用总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/12/tool-recommend/">工具推荐</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/06/spring-data-jpa-summary/">spring-data-jpa使用总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/17/kafka-learn-and-summary/">Kafka学习和总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/10/list-books/">推荐书单整理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/01/redis-file-lock/">redis实现分布式文件夹锁</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/16/read-note-readable-code/">读书笔记---《编写可读代码的艺术》</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/27/hashmap/">HashMap源码阅读</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/28/java-code-optimize/">java代码优化建议</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/27/git-commands/">git常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-optimize/">面试之---安全与性能优化相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-tools/">面试之---工具使用相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-java-basic/">面试之---java基础相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-others/">面试之---其他细小知识点汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-db/">面试之---数据库相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-algorithm/">面试之---算法相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-framework/">面试之---框架相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/15/linux-commands/">linux常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/13/tree-projects/">项目树</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/12/redis-summary/">Redis总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/11/about-Hexo/">Hexo博客搭建相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/10/pattern-singleton/">设计模式之---单例模式(Singleton Pattern)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/09/list-sites/">常用网站清单</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/my-pictures/">我的画集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/thread-realize/">创建线程的几种方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/springboot-app-deploy/">SpringBoot项目打包发布Linux环境完整流程</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/pattern-all/">设计模式之---汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/concurrentHashMap-analyze/">【转载】ConcurrentHashMap原理分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/nginx-config/">【转载】nginx配置文件nginx.conf超详细讲解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/tree-skills/">技能树</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/06/springApplication-analyze/">SpringBoot源码分析之---SpringBoot项目启动类SpringApplication浅析</a></li></ul>
+    
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+    <script>
+        $(".post-list").addClass("toc-article");
+        // $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
+
+
+
+
+    <script>
+        
+    </script>
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2019 逸竹
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo &nbsp;&nbsp;</a><a href="https://github.com/ZhaoGitHub1" target="_blank">Blog</a> by 逸竹
+            </div>
+        </div>
+        
+    </div>
+</footer>
+
+    </div>
+    
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 8;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'xxxxx', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?eb7d8cefd581790a3213e8feb93ae89f";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>

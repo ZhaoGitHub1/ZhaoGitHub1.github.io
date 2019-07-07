@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="baidu-site-verification" content="L6Lm9d5Crl"/>
+  
+  
+  
+  
+  <title>Redis总结 | 逸竹小站</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="redis学习总结">
+<meta name="keywords" content="redis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis总结">
+<meta property="og:url" content="http://yizhuxiaozhan.site/2018/09/12/redis-summary/index.html">
+<meta property="og:site_name" content="逸竹小站">
+<meta property="og:description" content="redis学习总结">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yizhuxiaozhan.site/2018/09/12/redis-summary/words13.jpg">
+<meta property="og:image" content="http://yizhuxiaozhan.site/2018/09/12/redis-summary/tx.png">
+<meta property="og:image" content="http://yizhuxiaozhan.site/2018/09/12/redis-summary/redis-make-test.png">
+<meta property="og:image" content="http://yizhuxiaozhan.site/2018/09/12/redis-summary/redis-make-install.png">
+<meta property="og:image" content="http://yizhuxiaozhan.site/2018/09/12/redis-summary/redis-server.png">
+<meta property="og:image" content="http://yizhuxiaozhan.site/2018/09/12/redis-summary/daemonize.png">
+<meta property="og:updated_time" content="2018-09-29T14:37:56.620Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Redis总结">
+<meta name="twitter:description" content="redis学习总结">
+<meta name="twitter:image" content="http://yizhuxiaozhan.site/2018/09/12/redis-summary/words13.jpg">
+  
+    <link rel="alternative" href="/atom.xml" title="逸竹小站" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.ico">
+  
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/logo.jpg" class="js-avatar">
+            
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">逸竹</a></h1>
+        </hgroup>
+        
+        <p class="header-subtitle">未来不迎，当时不杂，过往不恋！</p>
+        
+        
+            <form>
+                <input type="text" class="st-default-search-input search" id="local-search-input" placeholder="搜索一下" autocomplete="off">
+            </form>
+            <div id="local-search-result"></div>
+        
+        
+            <script type="text/javascript">
+                (function() {
+                    'use strict';
+                    function getMatchData(keyword, data) {
+                        var matchData = [];
+                        for(var i =0;i<data.length;i++){
+                            if(data[i].title.toLowerCase().indexOf(keyword)>=0) 
+                                matchData.push(data[i])
+                        }
+                        return matchData;
+                    }
+                    var $input = $('#local-search-input');
+                    var $resultContent = $('#local-search-result');
+                    $input.keyup(function(){
+                        $.ajax({
+                            url: '/search.json',
+                            dataType: "json",
+                            success: function( json ) {
+                                var str='<ul class=\"search-result-list\">';                
+                                var keyword = $input.val().trim().toLowerCase();
+                                $resultContent.innerHTML = "";
+                                if ($input.val().trim().length <= 0) {
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                }
+                                var results = getMatchData(keyword, json);
+                                if(results.length === 0){
+                                    $resultContent.empty();
+                                    $('#switch-area').show();
+                                    return;
+                                } 
+                                for(var i =0; i<results.length; i++){
+                                    str += "<li><a href='"+ results[i].url +"' class='search-result-title'>"+ results[i].title +"</a></li>";
+                                }
+                                str += "</ul>";
+                                $resultContent.empty();
+                                $resultContent.append(str);
+                                $('#switch-area').hide();
+                            }
+                        });
+                    });
+                })();
+            </script>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a  href="/archives/">所有文章</a></li>
+                        
+                            <li><a  href="/tags/">分类&amp;标签</a></li>
+                        
+                            <li><a  href="/books/">我的读书</a></li>
+                        
+                            <li><a  href="/movies/">我的电影</a></li>
+                        
+                            <li><a  href="/categories/tree/">树</a></li>
+                        
+                            <li><a  href="/categories/interview/">面试</a></li>
+                        
+                            <li><a  href="/categories/lists/">清单</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl github"  target="_blank" href="https://github.com/ZhaoGitHub1/" title="github">github</a>
+                            
+                                <a class="fl douban"  target="_blank" href="https://www.douban.com/people/174692469/" title="douban">douban</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/ConcurrentHashMap/" style="font-size: 10px;">ConcurrentHashMap</a> <a href="/tags/SpringData/" style="font-size: 10px;">SpringData</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hashmap/" style="font-size: 10px;">hashmap</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/java基础/" style="font-size: 10px;">java基础</a> <a href="/tags/kafka/" style="font-size: 10px;">kafka</a> <a href="/tags/linux/" style="font-size: 13.33px;">linux</a> <a href="/tags/linux命令/" style="font-size: 10px;">linux命令</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/orm/" style="font-size: 10px;">orm</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/spring/" style="font-size: 10px;">spring</a> <a href="/tags/springboot/" style="font-size: 13.33px;">springboot</a> <a href="/tags/springboot源码分析/" style="font-size: 10px;">springboot源码分析</a> <a href="/tags/优化/" style="font-size: 10px;">优化</a> <a href="/tags/分布式锁/" style="font-size: 10px;">分布式锁</a> <a href="/tags/单例模式/" style="font-size: 10px;">单例模式</a> <a href="/tags/命令/" style="font-size: 10px;">命令</a> <a href="/tags/在线工具/" style="font-size: 10px;">在线工具</a> <a href="/tags/多线程/" style="font-size: 10px;">多线程</a> <a href="/tags/安全/" style="font-size: 10px;">安全</a> <a href="/tags/工具/" style="font-size: 16.67px;">工具</a> <a href="/tags/性能/" style="font-size: 10px;">性能</a> <a href="/tags/总结/" style="font-size: 20px;">总结</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/框架/" style="font-size: 10px;">框架</a> <a href="/tags/算法/" style="font-size: 10px;">算法</a> <a href="/tags/素描/" style="font-size: 10px;">素描</a> <a href="/tags/编码艺术/" style="font-size: 10px;">编码艺术</a> <a href="/tags/网站地址/" style="font-size: 10px;">网站地址</a> <a href="/tags/读书/" style="font-size: 13.33px;">读书</a> <a href="/tags/转载/" style="font-size: 13.33px;">转载</a>
+                    </div>
+                </section>
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="https://blog.csdn.net/qq_25885525">我的csdn</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="https://github.com/ZhaoGitHub1">我的github</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="https://gitee.com/zhao-183479916">我的gitee</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="https://spring.io/">Spring官网</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://www.mybatis.org/mybatis-3/zh/index.html">Mybatis官网</a>
+                    
+                      <a target="_blank"  class="main-nav-link switch-friends-link" href="http://hibernate.org/">Hibernate官网</a>
+                    
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">一名普通的java 后台开发工程师~~  邮箱：183479916@qq.com</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">逸竹</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/logo.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">逸竹</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">未来不迎，当时不杂，过往不恋！</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">分类&amp;标签</a></li>
+                
+                    <li><a href="/books/">我的读书</a></li>
+                
+                    <li><a href="/movies/">我的电影</a></li>
+                
+                    <li><a href="/categories/tree/">树</a></li>
+                
+                    <li><a href="/categories/interview/">面试</a></li>
+                
+                    <li><a href="/categories/lists/">清单</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="github" target="_blank" href="https://github.com/ZhaoGitHub1/" title="github">github</a>
+                    
+                        <a class="douban" target="_blank" href="https://www.douban.com/people/174692469/" title="douban">douban</a>
+                    
+                </div>
+            </nav>
+        </header>
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-redis-summary" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a  href="/2018/09/12/redis-summary/" class="article-date">
+      <time datetime="2018-09-12T13:41:55.000Z" itemprop="datePublished">2018-09-12</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Redis总结
+    </h1>
+  
+
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/总结/">总结</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><strong> Redis总结：</strong> <excerpt in="" index="" |="" 首页摘要=""></excerpt></p>
+<a id="more"></a>
+<the rest="" of="" contents="" |="" 余下全文="">
+
+<p><img src="/2018/09/12/redis-summary/words13.jpg" alt=""></p>
+<blockquote>
+<p>资源列表:</p>
+<p><a href="http://doc.redisfans.com/" target="_blank" rel="noopener">Redis 命令参考</a></p>
+<p><a href="https://redis.io/commands" target="_blank" rel="noopener">Commands</a></p>
+</blockquote>
+<h2 id="Redis是什么"><a href="#Redis是什么" class="headerlink" title="Redis是什么"></a>Redis是什么</h2><p>　　<code>Redis</code>是一个开源(<code>BSD许可</code>)的内存中的数据结构存储，用作数据库、缓存和消息中间件。它支持多种数据结构，如<code>字符串</code>、<code>哈希表</code>、<code>列表</code>、<code>无序集合</code>、<code>有序集合</code>的范围查询，<code>位图</code>、<code>基数统计</code>和<code>地理空间索引</code>的与查询。Redis内置<code>复制</code>、<code>Lua脚本</code>、<code>LRU回收</code>、<code>事务</code>和不同级别的<code>磁盘持久化</code>，并通过<code>哨兵</code>和<code>自动分区</code>提供高可用性集群。</p>
+<h2 id="单线程结构"><a href="#单线程结构" class="headerlink" title="单线程结构"></a>单线程结构</h2><ul>
+<li>纯内存数据库，瓶颈不在内存，在于网络IO</li>
+<li>单线程，避免频繁切换上下文</li>
+<li>异步阻塞I/O（多路复用）</li>
+</ul>
+<h2 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h2><h3 id="RDB（Redis-DataBase）持久化"><a href="#RDB（Redis-DataBase）持久化" class="headerlink" title="RDB（Redis DataBase）持久化"></a>RDB（Redis DataBase）持久化</h3><ul>
+<li>快照</li>
+<li>优点：适合备份、还原、恢复数据快、最大化 Redis 的性能</li>
+<li>缺点：两次快照间的数据会丢失、数据集比较庞大时， <code>fork()</code> 可能会非常耗时</li>
+</ul>
+<h3 id="AOF（Append-Only-File）持久化"><a href="#AOF（Append-Only-File）持久化" class="headerlink" title="AOF（Append Only File）持久化"></a>AOF（Append Only File）持久化</h3><ul>
+<li>日志</li>
+<li>优点：数据完整性高、可读性高、可重写（重写后的新 AOF 文件包含了恢复当前数据集所需的最小命令集合）</li>
+<li>缺点：体积大、慢于RDB、有bug</li>
+</ul>
+<h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><p><code>multi</code>开启事务，<code>exec</code>执行事务</p>
+<p><img src="/2018/09/12/redis-summary/tx.png" alt="tx"></p>
+<p>　　可以看到，redis事务实现原理是将要执行的命令，存储到一个队列中，依次执行，报错时停止并取消事务，不报错则提交事务。</p>
+<blockquote>
+<p>例外：不会回滚的情况：</p>
+<p>当一个事务中某一条（多条）命令加入队列不报错，执行时才会报错，则redis会忽略错误继续执行。</p>
+</blockquote>
+<p>　　使用<code>watch</code>监视一个(或多个) key ，如果在事务执行之前这个(或这些) key 被其他命令所改动，那么事务将被打断。当<code>exec</code>被调用时， 不管事务是否成功执行， 对所有键的监视都会被取消。或者调用<code>unwatch</code>手动取消监控。</p>
+<h2 id="管道"><a href="#管道" class="headerlink" title="管道"></a>管道</h2><ul>
+<li><p>pipeline通过减少客户端与redis的通信次数来实现降低往返延时时间，而且Pipeline 实现的原理是队列，而队列的原理是时先进先出，这样就保证数据的顺序性。</p>
+</li>
+<li><p>适用场景：批量操作、可靠性要求不高、</p>
+</li>
+</ul>
+<h2 id="Lua脚本"><a href="#Lua脚本" class="headerlink" title="Lua脚本"></a>Lua脚本</h2><p>　　Lua是一个高效的轻量级脚本语言，用标准C语言编写并以源代码形式开放， 其设计目的是为了嵌入应用程序中，从而为应用程序提供灵活的扩展和定制功能，从定义上来说， Redis 中的脚本本身就是一种事务， 所以任何在事务里可以完成的事， 在脚本里面也能完成。 并且一般来说， 使用脚本要来得更简单，并且速度更快。</p>
+<ul>
+<li>通过lua脚本可以原子执行多条redis命令</li>
+<li>执行lua脚本期间，会阻塞所有命令操作</li>
+</ul>
+<h3 id="使用脚本的好处"><a href="#使用脚本的好处" class="headerlink" title="使用脚本的好处"></a>使用脚本的好处</h3><ul>
+<li>减少网络开销，在Lua脚本中可以把多个命令放在同一个脚本中运行</li>
+<li>原子操作，redis会将整个脚本作为一个整体执行，中间不会被其他命令插入。换句话说，编写脚本的过程中无需担心会出现竞态条件</li>
+<li>复用性，客户端发送的脚本会永远存储在redis中，这意味着其他客户端可以复用这一脚本来完成同样的逻辑</li>
+</ul>
+<h2 id="多数据库支持"><a href="#多数据库支持" class="headerlink" title="多数据库支持"></a>多数据库支持</h2><p>默认支持16个数据库；可以理解为一个命名空间</p>
+<p>跟关系型数据库不一样的点</p>
+<ol>
+<li><p>redis不支持自定义数据库名词</p>
+</li>
+<li><p>每个数据库不能单独设置授权</p>
+</li>
+<li><p>每个数据库之间并不是完全隔离的。 可以通过flushall命令清空redis实例面的所有数据库中的数据</p>
+</li>
+</ol>
+<blockquote>
+<p>通过  select dbid 去选择不同的数据库命名空间 。 dbid的取值范围默认是0 -15</p>
+</blockquote>
+<h2 id="分布式集群"><a href="#分布式集群" class="headerlink" title="分布式集群"></a>分布式集群</h2><p>　　Redis Cluster中，Sharding采用slot(槽)的概念，一共分成16384个槽，这有点儿类似前面讲的pre sharding思路。对于每个进入Redis的键值对，根据key进行散列，分配到这16384个slot中的某一个中。使用的hash算法也比较简单，就是CRC16后16384取模。Redis集群中的每个node(节点)负责分摊这16384个slot中的一部分，也就是说，每个slot都对应一个node负责处理。当动态添加或减少node节点时，需要将16384个槽做个再分配，槽中的键值也要迁移。当然，这一过程，在目前实现中，还处于半自动状态，需要人工介入。Redis集群，要保证16384个槽对应的node都正常工作，如果某个node发生故障，那它负责的slots也就失效，整个集群将不能工作。为了增加集群的可访问性，官方推荐的方案是将node配置成主从结构，即一个master主节点，挂n个slave从节点。这时，如果主节点失效，Redis Cluster会根据选举算法从slave节点中选择一个上升为主节点，整个集群继续对外提供服务。这非常类似服务器节点通过Sentinel监控架构成主从结构，只是Redis Cluster本身提供了故障转移容错的能力。</p>
+<ul>
+<li>redis sharding</li>
+<li>codis</li>
+<li>twemproxy</li>
+</ul>
+<h2 id="支持的数据类型、常用命令、常用场景"><a href="#支持的数据类型、常用命令、常用场景" class="headerlink" title="支持的数据类型、常用命令、常用场景"></a>支持的数据类型、常用命令、常用场景</h2><h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><blockquote>
+<p>默认存储最大容量为512M</p>
+<p>常用命令：<a href="http://doc.redisfans.com/string/set.html" target="_blank" rel="noopener">set</a>、<a href="http://doc.redisfans.com/string/get.html" target="_blank" rel="noopener">get</a>、<a href="http://doc.redisfans.com/string/incr.html" target="_blank" rel="noopener">incr</a>、<a href="http://doc.redisfans.com/string/decr.html" target="_blank" rel="noopener">decr</a>、<a href="http://doc.redisfans.com/string/append.html" target="_blank" rel="noopener">append</a>、<a href="http://doc.redisfans.com/string/strlen.html" target="_blank" rel="noopener">strlen</a>、<a href="http://doc.redisfans.com/string/mget.html" target="_blank" rel="noopener">mget</a>、<a href="http://doc.redisfans.com/string/setnx.html" target="_blank" rel="noopener">setnx</a></p>
+</blockquote>
+<ul>
+<li><p>set+get：缓存、单点登录</p>
+</li>
+<li><p>bitmap：用户上线次数统计</p>
+</li>
+<li>incr：计数器、限速器</li>
+</ul>
+<h3 id="List"><a href="#List" class="headerlink" title="List"></a>List</h3><blockquote>
+<p>有序，可重复</p>
+<p>常用命令：<a href="http://doc.redisfans.com/list/push.html" target="_blank" rel="noopener">lpush</a>、<a href="http://doc.redisfans.com/list/rpush.html" target="_blank" rel="noopener">rpush</a>、<a href="http://doc.redisfans.com/list/lpop.html" target="_blank" rel="noopener">lpop</a>、<a href="http://doc.redisfans.com/list/rpop.html" target="_blank" rel="noopener">rpop</a>、<a href="http://doc.redisfans.com/list/llen.html" target="_blank" rel="noopener">llen</a>、<a href="http://doc.redisfans.com/list/lrange.html" target="_blank" rel="noopener">lrange</a>、<a href="http://doc.redisfans.com/list/lrem.html" target="_blank" rel="noopener">lrem</a>、<a href="http://doc.redisfans.com/list/lset.html" target="_blank" rel="noopener">lset</a></p>
+</blockquote>
+<ul>
+<li>lpush+lpop：Stack(栈)  </li>
+<li>lpush+rpop：Queue（队列）  </li>
+<li>lpush+ltrim：Capped Collection（有限集合）  </li>
+<li>lpush+brpop：Message Queue（消息队列）</li>
+<li>blpop：事件提醒（替代轮询）</li>
+</ul>
+<h3 id="Hash"><a href="#Hash" class="headerlink" title="Hash"></a>Hash</h3><blockquote>
+<p>不支持数据类型的嵌套</p>
+<p>适合存储对象</p>
+<p>常用命令：<a href="http://doc.redisfans.com/hash/hset.html" target="_blank" rel="noopener">hset</a>、<a href="http://doc.redisfans.com/hash/hget.html" target="_blank" rel="noopener">hget</a>、<a href="http://doc.redisfans.com/hash/hmset
+,.html" target="_blank" rel="noopener">hmset</a>、<a href="http://doc.redisfans.com/hash/hmget.html" target="_blank" rel="noopener">hmget</a>、<a href="http://doc.redisfans.com/hash/hgetall.html" target="_blank" rel="noopener">hgetall</a>、<a href="http://doc.redisfans.com/hash/hexists.html" target="_blank" rel="noopener">hexists</a>、<a href="http://doc.redisfans.com/hash/hincryby.html" target="_blank" rel="noopener">hincrby</a>、<a href="http://doc.redisfans.com/hash/hsetnx.html" target="_blank" rel="noopener">hsetnx</a>、<a href="http://doc.redisfans.com/hash/hdel.html" target="_blank" rel="noopener">hdel</a></p>
+</blockquote>
+<h3 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h3><blockquote>
+<p>无序、不重复</p>
+<p>常用命令：<a href="http://doc.redisfans.com/set/sadd.html" target="_blank" rel="noopener">sadd</a>、<a href="http://doc.redisfans.com/set/srem.html" target="_blank" rel="noopener">srem</a>、<a href="http://doc.redisfans.com/set/smembers.html" target="_blank" rel="noopener">smembers</a>、<a href="http://doc.redisfans.com/set/sdiff.html" target="_blank" rel="noopener">sdiff</a>、<a href="http://doc.redisfans.com/set/sunion.html" target="_blank" rel="noopener">sunion</a>、<a href="http://doc.redisfans.com/set/sinter.html" target="_blank" rel="noopener">sinter</a></p>
+</blockquote>
+<ul>
+<li>sadd：标签</li>
+<li>sinter：交集</li>
+<li>sunion：并集</li>
+</ul>
+<h3 id="SortedSet"><a href="#SortedSet" class="headerlink" title="SortedSet"></a>SortedSet</h3><blockquote>
+<p>有序、不重复</p>
+<p>常用命令：<a href="http://doc.redisfans.com/sorted_set/zadd.html" target="_blank" rel="noopener">zadd</a>、<a href="http://doc.redisfans.com/sorted_set/zrange.html" target="_blank" rel="noopener">zrange</a></p>
+</blockquote>
+<ul>
+<li>zcount：统计信息</li>
+<li>zrevrange：排行榜</li>
+</ul>
+<h3 id="key"><a href="#key" class="headerlink" title="key"></a>key</h3><blockquote>
+<p> 常用命令：<a href="http://doc.redisfans.com/key/expire.html" target="_blank" rel="noopener">expire</a>、<a href="http://doc.redisfans.com/key/ttl.html" target="_blank" rel="noopener">ttl</a></p>
+</blockquote>
+<h3 id="Script"><a href="#Script" class="headerlink" title="Script"></a>Script</h3><blockquote>
+<p> 常用命令：<a href="http://redisdoc.com/script/eval.html" target="_blank" rel="noopener">eval</a></p>
+</blockquote>
+<h2 id="Redis安装"><a href="#Redis安装" class="headerlink" title="Redis安装"></a>Redis安装</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>首先，到redis官网找到要安装的redis版本，<a href="https://redis.io/download" target="_blank" rel="noopener">Redis下载页</a>，我们这里选用<code>v4.0.11</code>，依次执行下面命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> wget http://download.redis.io/releases/redis-4.0.11.tar.gz</span><br><span class="line"><span class="meta">#</span> tar xzf redis-4.0.11.tar.gz</span><br><span class="line"><span class="meta">#</span> cd redis-4.0.11</span><br><span class="line"><span class="meta">#</span> make</span><br></pre></td></tr></table></figure>
+<p>到此安装完成，然后可以通过<code>make test</code>测试编译状态</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> make test</span><br></pre></td></tr></table></figure>
+<p>无报错完成编译应该会有这样的输出：</p>
+<p><img src="/2018/09/12/redis-summary/redis-make-test.png" alt="make-test"></p>
+<blockquote>
+<p>报错：需要tcl 8.5以上来运行redis test</p>
+<p>You need tcl 8.5 or newer in order to run the Redis test<br>make: *** [test] Error 1</p>
+</blockquote>
+<p>下面安装<code>tcl8.6.1</code>：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> wget http://downloads.sourceforge.net/tcl/tcl8.6.1-src.tar.gz</span><br><span class="line"><span class="meta">#</span> sudo tar xzvf tcl8.6.1-src.tar.gz</span><br><span class="line"><span class="meta">#</span> cd tcl8.6.1/unix/</span><br><span class="line"><span class="meta">#</span> sudo ./configure</span><br><span class="line"><span class="meta">#</span> sudo make</span><br><span class="line"><span class="meta">#</span> sudo make install</span><br></pre></td></tr></table></figure>
+<p>再次运行<code>make test</code>，没问题之后，运行最后一步，完成安装：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> make install</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/09/12/redis-summary/redis-make-install.png" alt="redis-make-install"></p>
+<p>直接启动：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> ./redis-server ../redis.conf</span><br></pre></td></tr></table></figure>
+<p><img src="/2018/09/12/redis-summary/redis-server.png" alt="redis-server"></p>
+<p>后台启动redis，只需修改<code>redis.conf</code>配置文件的<code>daemonize yes</code>，再次启动即可。</p>
+<p><img src="/2018/09/12/redis-summary/daemonize.png" alt="daemonize"></p>
+<h3 id="安装启动相关命令"><a href="#安装启动相关命令" class="headerlink" title="安装启动相关命令"></a>安装启动相关命令</h3><h4 id="启动redis服务器："><a href="#启动redis服务器：" class="headerlink" title="启动redis服务器："></a>启动redis服务器：</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> ./redis-server ../redis.conf</span><br></pre></td></tr></table></figure>
+<h4 id="停止redis服务"><a href="#停止redis服务" class="headerlink" title="停止redis服务:"></a>停止redis服务:</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> ./redis-cli shutdown</span><br></pre></td></tr></table></figure>
+<h4 id="连接本地启动好的redis："><a href="#连接本地启动好的redis：" class="headerlink" title="连接本地启动好的redis："></a>连接本地启动好的redis：</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> redis-cli</span><br></pre></td></tr></table></figure>
+<h4 id="根据ip端口连接redis："><a href="#根据ip端口连接redis：" class="headerlink" title="根据ip端口连接redis："></a>根据ip端口连接redis：</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> redis-cli -h 127.0.0.1 -p 6379</span><br></pre></td></tr></table></figure>
+<h4 id="查看当前是否设置了密码"><a href="#查看当前是否设置了密码" class="headerlink" title="查看当前是否设置了密码"></a>查看当前是否设置了密码</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; config get requirepass</span><br><span class="line">1) "requirepass"</span><br><span class="line">2) ""</span><br></pre></td></tr></table></figure>
+<h4 id="设置密码"><a href="#设置密码" class="headerlink" title="设置密码"></a>设置密码</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; config set requirepass 123456 //密码是123456</span><br><span class="line">OK</span><br></pre></td></tr></table></figure>
+<h2 id="使用总结"><a href="#使用总结" class="headerlink" title="使用总结"></a>使用总结</h2><h3 id="关于key"><a href="#关于key" class="headerlink" title="关于key"></a>关于key</h3><ul>
+<li>建议key不要太长，不要超过1024字节，占用内存且会降低查询效率</li>
+<li>建议统一命名规则，例如：String:001:zhangsan:age</li>
+</ul>
+<h3 id="使用-bitmap-实现用户上线次数统计"><a href="#使用-bitmap-实现用户上线次数统计" class="headerlink" title="使用 bitmap 实现用户上线次数统计"></a>使用 bitmap 实现用户上线次数统计</h3><p>　　Bitmap 对于一些特定类型的计算非常有效。</p>
+<p>　　假设现在我们希望记录自己网站上的用户的上线频率，比如说，计算用户 A 上线了多少天，用户 B 上线了多少天，诸如此类，以此作为数据，从而决定让哪些用户参加 beta 测试等活动 —— 这个模式可以使用 <a href="http://doc.redisfans.com/string/setbit.html#setbit" target="_blank" rel="noopener"><em>SETBIT</em></a> 和 <a href="http://doc.redisfans.com/string/bitcount.html#bitcount" target="_blank" rel="noopener"><em>BITCOUNT</em></a> 来实现。</p>
+<p>　　比如说，每当用户在某一天上线的时候，我们就使用 <a href="http://doc.redisfans.com/string/setbit.html#setbit" target="_blank" rel="noopener"><em>SETBIT</em></a> ，以用户名作为 <code>key</code> ，将那天所代表的网站的上线日作为 <code>offset</code> 参数，并将这个 <code>offset</code> 上的为设置为 <code>1</code> 。</p>
+<p>　　举个例子，如果今天是网站上线的第 100 天，而用户 peter 在今天阅览过网站，那么执行命令 <code>SETBIT peter 100 1</code> ；如果明天 peter 也继续阅览网站，那么执行命令 <code>SETBIT peter 101 1</code> ，以此类推。</p>
+<p>　　当要计算 peter 总共以来的上线次数时，就使用 <a href="http://doc.redisfans.com/string/bitcount.html#bitcount" target="_blank" rel="noopener"><em>BITCOUNT</em></a> 命令：执行 <code>BITCOUNT peter</code> ，得出的结果就是 peter 上线的总天数。</p>
+<p>　　更详细的实现可以参考博文(墙外) <a href="http://blog.getspool.com/2011/11/29/fast-easy-realtime-metrics-using-redis-bitmaps/" target="_blank" rel="noopener">Fast, easy, realtime metrics using Redis bitmaps</a> 。</p>
+<h3 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h3><h4 id="缓存一致性"><a href="#缓存一致性" class="headerlink" title="缓存一致性"></a>缓存一致性</h4><ul>
+<li>先更新库数据，再删除缓存</li>
+</ul>
+<h4 id="缓存击穿和缓存雪崩"><a href="#缓存击穿和缓存雪崩" class="headerlink" title="缓存击穿和缓存雪崩"></a>缓存击穿和缓存雪崩</h4><h3 id="分布式锁的实现"><a href="#分布式锁的实现" class="headerlink" title="分布式锁的实现"></a>分布式锁的实现</h3><p><code>setnx</code>+<code>lua</code>实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RedisTool</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String LOCK_SUCCESS = <span class="string">"OK"</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String SET_IF_NOT_EXIST = <span class="string">"NX"</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String SET_WITH_EXPIRE_TIME = <span class="string">"PX"</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Long RELEASE_SUCCESS = <span class="number">1L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取锁</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">getLock</span><span class="params">(Jedis jedis, String lockKey, String requestId, <span class="keyword">int</span> expireTime)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        String result = jedis.set(lockKey, requestId, SET_IF_NOT_EXIST, SET_WITH_EXPIRE_TIME, expireTime);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (LOCK_SUCCESS.equals(result)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 释放锁</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">releaseLock</span><span class="params">(Jedis jedis, String lockKey, String requestId)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        String script = <span class="string">"if redis.call('get', KEYS[1]) == ARGV[1] then return redis.call('del', KEYS[1]) else return 0 end"</span>;</span><br><span class="line">        Object result = jedis.eval(script, Collections.singletonList(lockKey), Collections.singletonList(requestId));</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (RELEASE_SUCCESS.equals(result)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="抢红包，秒杀的实现"><a href="#抢红包，秒杀的实现" class="headerlink" title="抢红包，秒杀的实现"></a>抢红包，秒杀的实现</h3><p><code>incr</code>+<code>lua</code>脚本实现</p>
+<blockquote>
+<p>参考链接：</p>
+<p><a href="http://doc.redisfans.com" target="_blank" rel="noopener">http://doc.redisfans.com</a></p>
+<p><a href="https://blog.csdn.net/liqingtx/article/details/60330555" target="_blank" rel="noopener">https://blog.csdn.net/liqingtx/article/details/60330555</a></p>
+</blockquote>
+</the>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a  href="/2018/09/12/redis-summary/">Redis总结</a></p>
+        <p><span>文章作者:</span><a  href="/" title="访问 逸竹 的个人博客">逸竹</a></p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/09/12/redis-summary/" title="Redis总结">http://yizhuxiaozhan.site/2018/09/12/redis-summary/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yizhuxiaozhan.site/2018/09/12/redis-summary/　　作者: 逸竹" title=""></span>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a  href="/2018/09/13/tree-projects/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          项目树
+        
+      </div>
+    </a>
+  
+  
+    <a  href="/2018/09/11/about-Hexo/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hexo博客搭建相关</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis是什么"><span class="toc-number">1.</span> <span class="toc-text">Redis是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#单线程结构"><span class="toc-number">2.</span> <span class="toc-text">单线程结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#持久化"><span class="toc-number">3.</span> <span class="toc-text">持久化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#RDB（Redis-DataBase）持久化"><span class="toc-number">3.1.</span> <span class="toc-text">RDB（Redis DataBase）持久化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AOF（Append-Only-File）持久化"><span class="toc-number">3.2.</span> <span class="toc-text">AOF（Append Only File）持久化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#事务"><span class="toc-number">4.</span> <span class="toc-text">事务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#管道"><span class="toc-number">5.</span> <span class="toc-text">管道</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lua脚本"><span class="toc-number">6.</span> <span class="toc-text">Lua脚本</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用脚本的好处"><span class="toc-number">6.1.</span> <span class="toc-text">使用脚本的好处</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多数据库支持"><span class="toc-number">7.</span> <span class="toc-text">多数据库支持</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分布式集群"><span class="toc-number">8.</span> <span class="toc-text">分布式集群</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#支持的数据类型、常用命令、常用场景"><span class="toc-number">9.</span> <span class="toc-text">支持的数据类型、常用命令、常用场景</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#String"><span class="toc-number">9.1.</span> <span class="toc-text">String</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#List"><span class="toc-number">9.2.</span> <span class="toc-text">List</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hash"><span class="toc-number">9.3.</span> <span class="toc-text">Hash</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Set"><span class="toc-number">9.4.</span> <span class="toc-text">Set</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SortedSet"><span class="toc-number">9.5.</span> <span class="toc-text">SortedSet</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#key"><span class="toc-number">9.6.</span> <span class="toc-text">key</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Script"><span class="toc-number">9.7.</span> <span class="toc-text">Script</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis安装"><span class="toc-number">10.</span> <span class="toc-text">Redis安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装"><span class="toc-number">10.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装启动相关命令"><span class="toc-number">10.2.</span> <span class="toc-text">安装启动相关命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#启动redis服务器："><span class="toc-number">10.2.1.</span> <span class="toc-text">启动redis服务器：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#停止redis服务"><span class="toc-number">10.2.2.</span> <span class="toc-text">停止redis服务:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#连接本地启动好的redis："><span class="toc-number">10.2.3.</span> <span class="toc-text">连接本地启动好的redis：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#根据ip端口连接redis："><span class="toc-number">10.2.4.</span> <span class="toc-text">根据ip端口连接redis：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#查看当前是否设置了密码"><span class="toc-number">10.2.5.</span> <span class="toc-text">查看当前是否设置了密码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#设置密码"><span class="toc-number">10.2.6.</span> <span class="toc-text">设置密码</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用总结"><span class="toc-number">11.</span> <span class="toc-text">使用总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#关于key"><span class="toc-number">11.1.</span> <span class="toc-text">关于key</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用-bitmap-实现用户上线次数统计"><span class="toc-number">11.2.</span> <span class="toc-text">使用 bitmap 实现用户上线次数统计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缓存"><span class="toc-number">11.3.</span> <span class="toc-text">缓存</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#缓存一致性"><span class="toc-number">11.3.1.</span> <span class="toc-text">缓存一致性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#缓存击穿和缓存雪崩"><span class="toc-number">11.3.2.</span> <span class="toc-text">缓存击穿和缓存雪崩</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分布式锁的实现"><span class="toc-number">11.4.</span> <span class="toc-text">分布式锁的实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#抢红包，秒杀的实现"><span class="toc-number">11.5.</span> <span class="toc-text">抢红包，秒杀的实现</span></a></li></ol></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+    <link rel="stylesheet" type="text/css" href="/css/showshare.css"></head>
+    <div id="share" class="bdsharebuttonbox">
+        <button class="share-toggle-button"><i class="share-icon fa fa-share-alt"></i>
+        </button>
+        <ul class="share-items">
+            <li class="share-item"><a href="#" class="share-button fa fa-weibo" data-cmd="tsina" title="分享到新浪微博"></a></li>
+            <li class="share-item"><a href="#" class="share-button fa fa-weixin" data-cmd="weixin" title="分享到微信"></a></li>
+            <li class="share-item"><a href="#" class="share-button fa fa-qq" data-cmd="sqq" title="分享到QQ好友"></a></li>
+            <li class="share-item"><a href="#" class="share-button fa fa-facebook" data-cmd="fbook" title="分享到Facebook"></a></li>
+            <li class="share-item"><a href="#" class="share-button fa fa-twitter" data-cmd="twi" title="分享到Twitter"></a></li>
+            <li class="share-item"><a href="#" class="share-button fa fa-linkedin" data-cmd="linkedin" title="分享到linkedin"></a></li>
+        </ul>
+    </div>
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="800">
+        <defs>
+            <filter id="goo">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur" />
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 35 -15" result="goo" />
+                <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+            </filter>
+        </defs>
+    </svg>
+    <!-- 推荐开源CDN来选取需引用的外部JS //-->
+    <script type="text/javascript" src="http://cdn.gbtags.com/jquery/1.11.1/jquery.min.js"></script>
+    <script src="/js/TweenMax.min.js"></script>
+    <script src="/js/TweenMax.js"></script>
+<script>
+    window._bd_share_config = {
+    common : {
+                    bdText : '',
+                    //文本内容
+                    bdDesc : 'Luuman，90后，水瓶座普通男青年！爱折腾，爱运动，更爱游离于错综复杂的编码与逻辑中，无法自拔。相信编程是一门艺术，自诩为游弋在代码里的人生。',
+                    // 描述
+                    bdUrl : 'http://luuman.github.io/',
+                    // URL地址
+                    bdPic : 'https://hexo.io/build/screenshots/spfk-2b30506937.png'
+                    // 图片信息
+                },
+        share: [{
+            "bdSize": 24
+        }]
+    }
+    with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion=' + ~ (-new Date() / 36e5)];
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-33765729-1']);
+    _gaq.push(['_setDomainName', 'chuanke.com']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+
+    
+        <section id="comments">
+<link rel="stylesheet" href="/css/gitment.min.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: 'Redis总结', // 可选。默认为 location.href
+  owner: 'ZhaoGitHub1',
+  repo: 'ZhaoGitHub1.github.io',
+  oauth: {
+    client_id: '0959e9fdfc97cef82968',
+    client_secret: '126454836d441306e61dfbf9bb3ddc6cef1bf93d',
+  },
+})
+gitment.render('comments')
+</script>
+</section>
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a  href="/2018/09/13/tree-projects/" title="上一篇: 项目树">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a  href="/2018/09/11/about-Hexo/" title="下一篇: Hexo博客搭建相关">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/06/01/tool-idea/">IDEA使用总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/12/tool-recommend/">工具推荐</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/06/spring-data-jpa-summary/">spring-data-jpa使用总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/17/kafka-learn-and-summary/">Kafka学习和总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/10/list-books/">推荐书单整理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/01/redis-file-lock/">redis实现分布式文件夹锁</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/16/read-note-readable-code/">读书笔记---《编写可读代码的艺术》</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/27/hashmap/">HashMap源码阅读</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/28/java-code-optimize/">java代码优化建议</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/27/git-commands/">git常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-optimize/">面试之---安全与性能优化相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-tools/">面试之---工具使用相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-java-basic/">面试之---java基础相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-others/">面试之---其他细小知识点汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-db/">面试之---数据库相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-algorithm/">面试之---算法相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-framework/">面试之---框架相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/15/linux-commands/">linux常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/13/tree-projects/">项目树</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/12/redis-summary/">Redis总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/11/about-Hexo/">Hexo博客搭建相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/10/pattern-singleton/">设计模式之---单例模式(Singleton Pattern)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/09/list-sites/">常用网站清单</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/my-pictures/">我的画集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/thread-realize/">创建线程的几种方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/springboot-app-deploy/">SpringBoot项目打包发布Linux环境完整流程</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/pattern-all/">设计模式之---汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/concurrentHashMap-analyze/">【转载】ConcurrentHashMap原理分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/nginx-config/">【转载】nginx配置文件nginx.conf超详细讲解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/tree-skills/">技能树</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/06/springApplication-analyze/">SpringBoot源码分析之---SpringBoot项目启动类SpringApplication浅析</a></li></ul>
+    
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+    <script>
+        $(".post-list").addClass("toc-article");
+        // $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
+
+
+
+
+    <script>
+        
+    </script>
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2019 逸竹
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo &nbsp;&nbsp;</a><a href="https://github.com/ZhaoGitHub1" target="_blank">Blog</a> by 逸竹
+            </div>
+        </div>
+        
+    </div>
+</footer>
+
+    </div>
+    
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 8;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'xxxxx', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?eb7d8cefd581790a3213e8feb93ae89f";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>
