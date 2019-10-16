@@ -18,7 +18,8 @@
 <meta property="og:description" content="包含Xml、Jsp、Servlet、Web、表达式及其他java相关的面试知识点">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yizhuxiaozhan.site/2018/09/16/interview-others/interview.png">
-<meta property="og:updated_time" content="2019-07-07T12:50:12.044Z">
+<meta property="og:image" content="http://yizhuxiaozhan.site/2018/09/16/interview-others/tcp1.png">
+<meta property="og:updated_time" content="2019-07-15T14:09:41.361Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="面试之---其他细小知识点汇总">
 <meta name="twitter:description" content="包含Xml、Jsp、Servlet、Web、表达式及其他java相关的面试知识点">
@@ -187,6 +188,8 @@
                         
                             <li><a  href="/categories/lists/">清单</a></li>
                         
+                            <li><a  href="/aboutme/">关于我</a></li>
+                        
                         </ul>
                     </nav>
                     <nav class="header-nav">
@@ -273,6 +276,8 @@
                     <li><a href="/categories/interview/">面试</a></li>
                 
                     <li><a href="/categories/lists/">清单</a></li>
+                
+                    <li><a href="/aboutme/">关于我</a></li>
                 
                 <div class="clearfix"></div>
                 </ul>
@@ -421,6 +426,20 @@
 </blockquote>
 </li>
 </ol>
+<h2 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h2><h3 id="TCP的三次握手，四次挥手"><a href="#TCP的三次握手，四次挥手" class="headerlink" title="TCP的三次握手，四次挥手"></a>TCP的三次握手，四次挥手</h3><p>三次握手：</p>
+<ul>
+<li>第一次握手(SYN=1, seq=x)，发送完毕后，客户端进入 SYN_SEND 状态</li>
+<li>第二次握手(SYN=1, ACK=1, seq=y, ACKnum=x+1)， 发送完毕后，服务器端进入 SYN_RCVD 状态。</li>
+<li>第三次握手(ACK=1，ACKnum=y+1)，发送完毕后，客户端进入 ESTABLISHED 状态，当服务器端接收到这个包时，也进入 ESTABLISHED 状态，TCP 握手，即可以开始数据传输。</li>
+</ul>
+<p>四次挥手：</p>
+<ul>
+<li>第一次挥手(FIN=1，seq=a)，发送完毕后，客户端进入 FIN_WAIT_1 状态</li>
+<li>第二次挥手(ACK=1，ACKnum=a+1)，发送完毕后，服务器端进入 CLOSE_WAIT 状态，客户端接收到这个确认包之后，进入 FIN_WAIT_2 状态</li>
+<li>第三次挥手(FIN=1，seq=b)，发送完毕后，服务器端进入 LAST_ACK 状态，等待来自客户端的最后一个ACK。</li>
+<li>第四次挥手(ACK=1，ACKnum=b+1)，客户端接收到来自服务器端的关闭请求，发送一个确认包，并进入 TIME_WAIT状态，等待了某个固定时间（两个最大段生命周期，2MSL，2 Maximum Segment Lifetime）之后，没有收到服务器端的 ACK ，认为服务器端已经正常关闭连接，于是自己也关闭连接，进入 CLOSED 状态。服务器端接收到这个确认包之后，关闭连接，进入 CLOSED 状态。</li>
+</ul>
+<p><img src="/2018/09/16/interview-others/tcp1.png" alt=""></p>
 <h2 id="Others"><a href="#Others" class="headerlink" title="Others"></a>Others</h2><h3 id="谈一谈测试驱动开发（TDD）的好处以及你的理解。"><a href="#谈一谈测试驱动开发（TDD）的好处以及你的理解。" class="headerlink" title="谈一谈测试驱动开发（TDD）的好处以及你的理解。"></a>谈一谈测试驱动开发（TDD）的好处以及你的理解。</h3><p>TDD是指在编写真正的功能实现代码之前先写测试代码，然后根据需要重构实现代码。在JUnit的作者Kent Beck的大作《测试驱动开发：实战与模式解析》（Test-Driven Development: by Example）一书中有这么一段内容：“消除恐惧和不确定性是编写测试驱动代码的重要原因”。因为编写代码时的恐惧会让你小心试探，让你回避沟通，让你羞于得到反馈，让你变得焦躁不安，而TDD是消除恐惧、让Java开发者更加自信更加乐于沟通的重要手段。TDD会带来的好处可能不会马上呈现，但是你在某个时候一定会发现，这些好处包括： </p>
 <ul>
 <li>更清晰的代码 — 只写需要的代码 </li>
@@ -483,7 +502,22 @@
     
   </div>
   
-    
+    <div>
+	<article>文章主体内容</article>
+</div>
+<script src="https://my.openwrite.cn/js/readmore.js" type="text/javascript"></script>
+<script>
+    const btw = new BTWPlugin();
+    btw.init({
+        id: 'container',
+        blogId: '17152-1571148804484-212',
+        name: '逸竹小站',
+        qrcode: 'http://localhost:4000/aboutme/index/erweima.png',
+        keyword: '逸竹',
+    });
+</script>
+
+
     <div class="copyright">
         <p><span>本文标题:</span><a  href="/2018/09/16/interview-others/">面试之---其他细小知识点汇总</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问 逸竹 的个人博客">逸竹</a></p>
@@ -500,18 +534,18 @@
 
 <nav id="article-nav">
   
-    <a  href="/2018/09/16/interview-framework/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a  href="/2018/09/16/interview-tools/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          面试之---框架相关
+          面试之---工具使用相关
         
       </div>
     </a>
   
   
-    <a  href="/2018/09/16/interview-algorithm/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">面试之---算法相关</div>
+    <a  href="/2018/09/16/interview-optimize/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">面试之---安全与性能优化相关</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -523,7 +557,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#XML"><span class="toc-number">1.</span> <span class="toc-text">XML</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#XML文档定义有几种形式？它们之间有何本质区别？解析XML文档有哪几种方式？"><span class="toc-number">1.1.</span> <span class="toc-text">XML文档定义有几种形式？它们之间有何本质区别？解析XML文档有哪几种方式？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JSP"><span class="toc-number">2.</span> <span class="toc-text">JSP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么热加载技术没有广泛应用："><span class="toc-number">2.1.</span> <span class="toc-text">为什么热加载技术没有广泛应用：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JSP有哪些内置对象？作用分别是什么？"><span class="toc-number">2.2.</span> <span class="toc-text">JSP有哪些内置对象？作用分别是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JSP和Servlet是什么关系？"><span class="toc-number">2.3.</span> <span class="toc-text">JSP和Servlet是什么关系？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#讲解JSP中的四种作用域。"><span class="toc-number">2.4.</span> <span class="toc-text">讲解JSP中的四种作用域。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JSP中的静态包含和动态包含有什么区别？"><span class="toc-number">2.5.</span> <span class="toc-text">JSP中的静态包含和动态包含有什么区别？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Servlet"><span class="toc-number">3.</span> <span class="toc-text">Servlet</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Servlet接口中有哪些方法？"><span class="toc-number">3.1.</span> <span class="toc-text">Servlet接口中有哪些方法？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#过滤器有哪些作用和用法？"><span class="toc-number">3.2.</span> <span class="toc-text">过滤器有哪些作用和用法？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#监听器有哪些作用和用法？"><span class="toc-number">3.3.</span> <span class="toc-text">监听器有哪些作用和用法？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#服务器收到用户提交的表单数据，到底是调用Servlet的doGet-还是doPost-方法？"><span class="toc-number">3.4.</span> <span class="toc-text">服务器收到用户提交的表单数据，到底是调用Servlet的doGet()还是doPost()方法？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Servlet中如何获取用户提交的查询参数或表单数据？"><span class="toc-number">3.5.</span> <span class="toc-text">Servlet中如何获取用户提交的查询参数或表单数据？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Servlet中如何获取用户配置的初始化参数以及服务器上下文参数？"><span class="toc-number">3.6.</span> <span class="toc-text">Servlet中如何获取用户配置的初始化参数以及服务器上下文参数？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-number">4.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#web-xml文件中可以配置哪些内容？"><span class="toc-number">4.1.</span> <span class="toc-text">web.xml文件中可以配置哪些内容？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Others"><span class="toc-number">5.</span> <span class="toc-text">Others</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#谈一谈测试驱动开发（TDD）的好处以及你的理解。"><span class="toc-number">5.1.</span> <span class="toc-text">谈一谈测试驱动开发（TDD）的好处以及你的理解。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#get和post请求的区别？"><span class="toc-number">5.2.</span> <span class="toc-text">get和post请求的区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实现会话跟踪的技术有哪些？"><span class="toc-number">5.3.</span> <span class="toc-text">实现会话跟踪的技术有哪些？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#说一下表达式语言（EL）的隐式对象及其作用。"><span class="toc-number">5.4.</span> <span class="toc-text">说一下表达式语言（EL）的隐式对象及其作用。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何设置请求的编码以及响应内容的类型？"><span class="toc-number">5.5.</span> <span class="toc-text">如何设置请求的编码以及响应内容的类型？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释一下网络应用的模式及其特点。"><span class="toc-number">5.6.</span> <span class="toc-text">解释一下网络应用的模式及其特点。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如果让你设计一个XXX，你怎么做？"><span class="toc-number">5.7.</span> <span class="toc-text">如果让你设计一个XXX，你怎么做？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#遇到过什么比较难的问题，怎么解决的？"><span class="toc-number">5.8.</span> <span class="toc-text">遇到过什么比较难的问题，怎么解决的？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在哪个技术点研究的比较深入？"><span class="toc-number">5.9.</span> <span class="toc-text">在哪个技术点研究的比较深入？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#目前系统支撑的用户量是多少，假如用户量提升10倍，系统会出现什么样的问题，如何重新设计系统？"><span class="toc-number">5.10.</span> <span class="toc-text">目前系统支撑的用户量是多少，假如用户量提升10倍，系统会出现什么样的问题，如何重新设计系统？</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#XML"><span class="toc-number">1.</span> <span class="toc-text">XML</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#XML文档定义有几种形式？它们之间有何本质区别？解析XML文档有哪几种方式？"><span class="toc-number">1.1.</span> <span class="toc-text">XML文档定义有几种形式？它们之间有何本质区别？解析XML文档有哪几种方式？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JSP"><span class="toc-number">2.</span> <span class="toc-text">JSP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么热加载技术没有广泛应用："><span class="toc-number">2.1.</span> <span class="toc-text">为什么热加载技术没有广泛应用：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JSP有哪些内置对象？作用分别是什么？"><span class="toc-number">2.2.</span> <span class="toc-text">JSP有哪些内置对象？作用分别是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JSP和Servlet是什么关系？"><span class="toc-number">2.3.</span> <span class="toc-text">JSP和Servlet是什么关系？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#讲解JSP中的四种作用域。"><span class="toc-number">2.4.</span> <span class="toc-text">讲解JSP中的四种作用域。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JSP中的静态包含和动态包含有什么区别？"><span class="toc-number">2.5.</span> <span class="toc-text">JSP中的静态包含和动态包含有什么区别？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Servlet"><span class="toc-number">3.</span> <span class="toc-text">Servlet</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Servlet接口中有哪些方法？"><span class="toc-number">3.1.</span> <span class="toc-text">Servlet接口中有哪些方法？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#过滤器有哪些作用和用法？"><span class="toc-number">3.2.</span> <span class="toc-text">过滤器有哪些作用和用法？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#监听器有哪些作用和用法？"><span class="toc-number">3.3.</span> <span class="toc-text">监听器有哪些作用和用法？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#服务器收到用户提交的表单数据，到底是调用Servlet的doGet-还是doPost-方法？"><span class="toc-number">3.4.</span> <span class="toc-text">服务器收到用户提交的表单数据，到底是调用Servlet的doGet()还是doPost()方法？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Servlet中如何获取用户提交的查询参数或表单数据？"><span class="toc-number">3.5.</span> <span class="toc-text">Servlet中如何获取用户提交的查询参数或表单数据？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Servlet中如何获取用户配置的初始化参数以及服务器上下文参数？"><span class="toc-number">3.6.</span> <span class="toc-text">Servlet中如何获取用户配置的初始化参数以及服务器上下文参数？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-number">4.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#web-xml文件中可以配置哪些内容？"><span class="toc-number">4.1.</span> <span class="toc-text">web.xml文件中可以配置哪些内容？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP"><span class="toc-number">5.</span> <span class="toc-text">TCP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP的三次握手，四次挥手"><span class="toc-number">5.1.</span> <span class="toc-text">TCP的三次握手，四次挥手</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Others"><span class="toc-number">6.</span> <span class="toc-text">Others</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#谈一谈测试驱动开发（TDD）的好处以及你的理解。"><span class="toc-number">6.1.</span> <span class="toc-text">谈一谈测试驱动开发（TDD）的好处以及你的理解。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#get和post请求的区别？"><span class="toc-number">6.2.</span> <span class="toc-text">get和post请求的区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实现会话跟踪的技术有哪些？"><span class="toc-number">6.3.</span> <span class="toc-text">实现会话跟踪的技术有哪些？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#说一下表达式语言（EL）的隐式对象及其作用。"><span class="toc-number">6.4.</span> <span class="toc-text">说一下表达式语言（EL）的隐式对象及其作用。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何设置请求的编码以及响应内容的类型？"><span class="toc-number">6.5.</span> <span class="toc-text">如何设置请求的编码以及响应内容的类型？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解释一下网络应用的模式及其特点。"><span class="toc-number">6.6.</span> <span class="toc-text">解释一下网络应用的模式及其特点。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如果让你设计一个XXX，你怎么做？"><span class="toc-number">6.7.</span> <span class="toc-text">如果让你设计一个XXX，你怎么做？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#遇到过什么比较难的问题，怎么解决的？"><span class="toc-number">6.8.</span> <span class="toc-text">遇到过什么比较难的问题，怎么解决的？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在哪个技术点研究的比较深入？"><span class="toc-number">6.9.</span> <span class="toc-text">在哪个技术点研究的比较深入？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#目前系统支撑的用户量是多少，假如用户量提升10倍，系统会出现什么样的问题，如何重新设计系统？"><span class="toc-number">6.10.</span> <span class="toc-text">目前系统支撑的用户量是多少，假如用户量提升10倍，系统会出现什么样的问题，如何重新设计系统？</span></a></li></ol></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
@@ -589,18 +623,18 @@ gitment.render('comments')
 
     <div class="scroll" id="post-nav-button">
         
-            <a  href="/2018/09/16/interview-framework/" title="上一篇: 面试之---框架相关">
+            <a  href="/2018/09/16/interview-tools/" title="上一篇: 面试之---工具使用相关">
                 <i class="fa fa-angle-left"></i>
             </a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a  href="/2018/09/16/interview-algorithm/" title="下一篇: 面试之---算法相关">
+            <a  href="/2018/09/16/interview-optimize/" title="下一篇: 面试之---安全与性能优化相关">
                 <i class="fa fa-angle-right"></i>
             </a>
         
     </div>
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/06/01/tool-idea/">IDEA使用总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/12/tool-recommend/">工具推荐</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/06/spring-data-jpa-summary/">spring-data-jpa使用总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/17/kafka-learn-and-summary/">Kafka学习和总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/10/list-books/">推荐书单整理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/01/redis-file-lock/">redis实现分布式文件夹锁</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/16/read-note-readable-code/">读书笔记---《编写可读代码的艺术》</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/27/hashmap/">HashMap源码阅读</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/28/java-code-optimize/">java代码优化建议</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/27/git-commands/">git常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-framework/">面试之---框架相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-others/">面试之---其他细小知识点汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-algorithm/">面试之---算法相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-tools/">面试之---工具使用相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-java-basic/">面试之---java基础相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-optimize/">面试之---安全与性能优化相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-db/">面试之---数据库相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/15/linux-commands/">linux常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/13/tree-projects/">项目树</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/12/redis-summary/">Redis总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/11/about-Hexo/">Hexo博客搭建相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/10/pattern-singleton/">设计模式之---单例模式(Singleton Pattern)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/09/list-sites/">常用网站清单</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/my-pictures/">我的画集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/tree-skills/">技能树</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/concurrentHashMap-analyze/">【转载】ConcurrentHashMap原理分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/thread-realize/">创建线程的几种方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/springboot-app-deploy/">SpringBoot项目打包发布Linux环境完整流程</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/nginx-config/">【转载】nginx配置文件nginx.conf超详细讲解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/pattern-all/">设计模式之---汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/06/springApplication-analyze/">SpringBoot源码分析之---SpringBoot项目启动类SpringApplication浅析</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/06/01/tool-idea/">IDEA使用总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/12/tool-recommend/">工具推荐</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/06/spring-data-jpa-summary/">spring-data-jpa使用总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/17/kafka-learn-and-summary/">Kafka学习和总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/10/list-books/">推荐书单整理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/01/redis-file-lock/">redis实现分布式文件夹锁</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/16/read-note-readable-code/">读书笔记---《编写可读代码的艺术》</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/27/hashmap/">HashMap源码阅读</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/28/java-code-optimize/">java代码优化建议</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/27/git-commands/">git常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-tools/">面试之---工具使用相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-others/">面试之---其他细小知识点汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-optimize/">面试之---安全与性能优化相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-framework/">面试之---框架相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-java-basic/">面试之---java基础相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-algorithm/">面试之---算法相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-db/">面试之---数据库相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/15/linux-commands/">linux常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/13/tree-projects/">项目树</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/12/redis-summary/">Redis总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/11/about-Hexo/">Hexo博客搭建相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/10/pattern-singleton/">设计模式之---单例模式(Singleton Pattern)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/09/list-sites/">常用网站清单</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/my-pictures/">我的画集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/pattern-all/">设计模式之---汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/thread-realize/">创建线程的几种方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/tree-skills/">技能树</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/nginx-config/">【转载】nginx配置文件nginx.conf超详细讲解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/concurrentHashMap-analyze/">【转载】ConcurrentHashMap原理分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/springboot-app-deploy/">SpringBoot项目打包发布Linux环境完整流程</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/06/springApplication-analyze/">SpringBoot源码分析之---SpringBoot项目启动类SpringApplication浅析</a></li></ul>
     
 <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
 
@@ -754,4 +788,3 @@ MathJax.Hub.Queue(function() {
 
   </div>
 </body>
-</html>
