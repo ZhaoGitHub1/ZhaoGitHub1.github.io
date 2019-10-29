@@ -1,29 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://yizhuxiaozhan.site/2018/09/16/interview-java-basic/</loc>
+    <lastmod>2019-10-29</lastmod>
+  </url>  <url>
+    <loc>http://yizhuxiaozhan.site/2018/09/16/interview-framework/</loc>
+    <lastmod>2019-10-29</lastmod>
+  </url>  <url>
+    <loc>http://yizhuxiaozhan.site/2018/09/16/interview-spring/</loc>
+    <lastmod>2019-10-29</lastmod>
+  </url>  <url>
+    <loc>http://yizhuxiaozhan.site/2018/09/16/interview-middleware/</loc>
+    <lastmod>2019-10-29</lastmod>
+  </url>  <url>
+    <loc>http://yizhuxiaozhan.site/2018/09/16/interview-network/</loc>
+    <lastmod>2019-10-29</lastmod>
+  </url>  <url>
+    <loc>http://yizhuxiaozhan.site/2018/09/16/interview-optimize/</loc>
+    <lastmod>2019-10-29</lastmod>
+  </url>  <url>
+    <loc>http://yizhuxiaozhan.site/2018/09/16/interview-project/</loc>
+    <lastmod>2019-10-29</lastmod>
+  </url>  <url>
+    <loc>http://yizhuxiaozhan.site/2018/09/16/interview-web/</loc>
+    <lastmod>2019-10-29</lastmod>
+  </url>  <url>
+    <loc>http://yizhuxiaozhan.site/2018/09/16/interview-design-pattern/</loc>
+    <lastmod>2019-10-29</lastmod>
+  </url>  <url>
+    <loc>http://yizhuxiaozhan.site/2018/09/16/interview-data-structures/</loc>
+    <lastmod>2019-10-29</lastmod>
+  </url>  <url>
+    <loc>http://yizhuxiaozhan.site/2018/09/16/interview-others/</loc>
+    <lastmod>2019-10-29</lastmod>
+  </url>  <url>
+    <loc>http://yizhuxiaozhan.site/2018/09/16/interview-db/</loc>
+    <lastmod>2019-10-29</lastmod>
+  </url>  <url>
+    <loc>http://yizhuxiaozhan.site/2018/09/16/interview-tools/</loc>
+    <lastmod>2019-10-29</lastmod>
+  </url>  <url>
+    <loc>http://yizhuxiaozhan.site/2018/09/12/redis-summary/</loc>
+    <lastmod>2019-10-27</lastmod>
+  </url>  <url>
+    <loc>http://yizhuxiaozhan.site/2019/05/12/tool-recommend/</loc>
+    <lastmod>2019-10-27</lastmod>
+  </url>  <url>
     <loc>http://yizhuxiaozhan.site/2019/06/01/tool-idea/</loc>
     <lastmod>2019-10-22</lastmod>
   </url>  <url>
     <loc>http://yizhuxiaozhan.site/2018/09/07/pattern-all/</loc>
     <lastmod>2019-10-15</lastmod>
   </url>  <url>
-    <loc>http://yizhuxiaozhan.site/2018/09/16/interview-java-basic/</loc>
-    <lastmod>2019-07-15</lastmod>
-  </url>  <url>
-    <loc>http://yizhuxiaozhan.site/2018/09/16/interview-others/</loc>
-    <lastmod>2019-07-15</lastmod>
-  </url>  <url>
-    <loc>http://yizhuxiaozhan.site/2018/09/16/interview-framework/</loc>
-    <lastmod>2019-07-15</lastmod>
-  </url>  <url>
     <loc>http://yizhuxiaozhan.site/2018/09/07/thread-realize/</loc>
     <lastmod>2019-07-09</lastmod>
-  </url>  <url>
-    <loc>http://yizhuxiaozhan.site/2019/05/12/tool-recommend/</loc>
-    <lastmod>2019-07-09</lastmod>
-  </url>  <url>
-    <loc>http://yizhuxiaozhan.site/2018/09/16/interview-tools/</loc>
-    <lastmod>2019-07-07</lastmod>
   </url>  <url>
     <loc>http://yizhuxiaozhan.site/2018/09/06/springApplication-analyze/</loc>
     <lastmod>2019-06-15</lastmod>
@@ -46,9 +76,6 @@
     <loc>http://yizhuxiaozhan.site/2018/09/28/java-code-optimize/</loc>
     <lastmod>2019-05-11</lastmod>
   </url>  <url>
-    <loc>http://yizhuxiaozhan.site/2019/03/17/kafka-learn-and-summary/</loc>
-    <lastmod>2019-04-07</lastmod>
-  </url>  <url>
     <loc>http://yizhuxiaozhan.site/2019/03/10/list-books/</loc>
     <lastmod>2019-03-10</lastmod>
   </url>  <url>
@@ -61,14 +88,8 @@
     <loc>http://yizhuxiaozhan.site/2018/12/16/read-note-readable-code/</loc>
     <lastmod>2018-12-16</lastmod>
   </url>  <url>
-    <loc>http://yizhuxiaozhan.site/2018/09/16/interview-optimize/</loc>
-    <lastmod>2018-10-12</lastmod>
-  </url>  <url>
     <loc>http://yizhuxiaozhan.site/2018/09/07/my-pictures/</loc>
     <lastmod>2018-10-07</lastmod>
-  </url>  <url>
-    <loc>http://yizhuxiaozhan.site/2018/09/12/redis-summary/</loc>
-    <lastmod>2018-09-29</lastmod>
   </url>  <url>
     <loc>http://yizhuxiaozhan.site/2018/09/16/interview-algorithm/</loc>
     <lastmod>2018-09-28</lastmod>
@@ -81,9 +102,6 @@
   </url>  <url>
     <loc>http://yizhuxiaozhan.site/2018/09/27/git-commands/</loc>
     <lastmod>2018-09-27</lastmod>
-  </url>  <url>
-    <loc>http://yizhuxiaozhan.site/2018/09/16/interview-db/</loc>
-    <lastmod>2018-09-23</lastmod>
   </url>  <url>
     <loc>http://yizhuxiaozhan.site/2018/09/09/list-sites/</loc>
     <lastmod>2018-09-16</lastmod>
