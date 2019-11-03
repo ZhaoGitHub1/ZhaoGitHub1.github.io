@@ -2,7 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>http://yizhuxiaozhan.site/2018/09/16/interview-java-basic/</loc>
-    <lastmod>2019-10-30</lastmod>
+    <lastmod>2019-11-03</lastmod>
+  </url>  <url>
+    <loc>http://yizhuxiaozhan.site/2018/09/16/interview-db/</loc>
+    <lastmod>2019-11-03</lastmod>
+  </url>  <url>
+    <loc>http://yizhuxiaozhan.site/2018/09/16/interview-network/</loc>
+    <lastmod>2019-11-03</lastmod>
   </url>  <url>
     <loc>http://yizhuxiaozhan.site/2018/09/16/interview-tools/</loc>
     <lastmod>2019-10-30</lastmod>
@@ -22,9 +28,6 @@
     <loc>http://yizhuxiaozhan.site/2018/09/16/interview-middleware/</loc>
     <lastmod>2019-10-29</lastmod>
   </url>  <url>
-    <loc>http://yizhuxiaozhan.site/2018/09/16/interview-network/</loc>
-    <lastmod>2019-10-29</lastmod>
-  </url>  <url>
     <loc>http://yizhuxiaozhan.site/2018/09/16/interview-optimize/</loc>
     <lastmod>2019-10-29</lastmod>
   </url>  <url>
@@ -41,9 +44,6 @@
     <lastmod>2019-10-29</lastmod>
   </url>  <url>
     <loc>http://yizhuxiaozhan.site/2018/09/16/interview-others/</loc>
-    <lastmod>2019-10-29</lastmod>
-  </url>  <url>
-    <loc>http://yizhuxiaozhan.site/2018/09/16/interview-db/</loc>
     <lastmod>2019-10-29</lastmod>
   </url>  <url>
     <loc>http://yizhuxiaozhan.site/2018/09/12/redis-summary/</loc>

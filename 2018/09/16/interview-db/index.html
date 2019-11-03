@@ -18,7 +18,7 @@
 <meta property="og:description" content="包含关系型数据库mysql、oracle等相关面试知识汇总">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yizhuxiaozhan.site/2018/09/16/interview-db/interview.png">
-<meta property="og:updated_time" content="2019-10-29T12:37:06.649Z">
+<meta property="og:updated_time" content="2019-11-03T10:03:44.239Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="面试之---数据库相关">
 <meta name="twitter:description" content="包含关系型数据库mysql、oracle等相关面试知识汇总">
@@ -345,7 +345,30 @@
 <blockquote>
 <p>持续维护java面试题系列博文，发现好的面试题会更新进来。总结的并不只是如何回答面试官，而是这道题涉及到的知识点，明白了相关知识点和面试官要问的点，回答起来就不是问题了。</p>
 </blockquote>
-<h2 id="Mysql"><a href="#Mysql" class="headerlink" title="Mysql"></a>Mysql</h2><h2 id="Oracle"><a href="#Oracle" class="headerlink" title="Oracle"></a>Oracle</h2></the>
+<h2 id="综合"><a href="#综合" class="headerlink" title="综合"></a>综合</h2><h3 id="解释下什么是脏读、不可重复读和幻读？"><a href="#解释下什么是脏读、不可重复读和幻读？" class="headerlink" title="解释下什么是脏读、不可重复读和幻读？"></a>解释下什么是脏读、不可重复读和幻读？</h3><h2 id="Mysql"><a href="#Mysql" class="headerlink" title="Mysql"></a>Mysql</h2><h3 id="Mysql有哪几种事务隔离级别？"><a href="#Mysql有哪几种事务隔离级别？" class="headerlink" title="Mysql有哪几种事务隔离级别？"></a>Mysql有哪几种事务隔离级别？</h3><ul>
+<li>读未提交（read uncommitted）<ul>
+<li>存在脏读、不可重复读和幻读</li>
+</ul>
+</li>
+<li>读已提交（read committed）<ul>
+<li>存在不可重复读和幻读</li>
+</ul>
+</li>
+<li>可重复读（repeatable read）<ul>
+<li>存在幻读</li>
+</ul>
+</li>
+<li>序列化（serializable）</li>
+</ul>
+<h3 id="Mysql的默认事务隔离级别是什么？"><a href="#Mysql的默认事务隔离级别是什么？" class="headerlink" title="Mysql的默认事务隔离级别是什么？"></a>Mysql的默认事务隔离级别是什么？</h3><p>可重复读（repeatable read）</p>
+<h3 id="为什么不推荐使用select"><a href="#为什么不推荐使用select" class="headerlink" title="为什么不推荐使用select *"></a>为什么不推荐使用<code>select *</code></h3><blockquote>
+<p>如果查询列可通过索引节点中的关键字直接返回，则该索引称之为覆盖索引。</p>
+<p>覆盖索引可以减少数据库IO，将随机IO变为顺序IO，提高查询新能。</p>
+</blockquote>
+<p>避免使用<code>select *</code>语句，使覆盖索引的概率加大，以及减少数据传输。 </p>
+<p>例如：<code>select name,age from t_user where name  = ?</code>这个查询命中了<code>idx_name_age</code>的组合索引，则查找数据时不需要遍历到叶子结点拿到完整数据就可以提前返回，减少了数据库的IO次数。</p>
+<h3 id="select-from-t-user-where-name-like-“张三-”，一定会用到name的索引吗？"><a href="#select-from-t-user-where-name-like-“张三-”，一定会用到name的索引吗？" class="headerlink" title="select * from t_user where name like “张三%”，一定会用到name的索引吗？"></a>select * from t_user where name like “张三%”，一定会用到name的索引吗？</h3><p>不一定，当name的索引离散性很差时，优化器会放弃索引，进行全表扫描。</p>
+<h2 id="Oracle"><a href="#Oracle" class="headerlink" title="Oracle"></a>Oracle</h2></the>
       
     </div>
     
@@ -383,18 +406,18 @@
 
 <nav id="article-nav">
   
-    <a  href="/2018/09/16/interview-project/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a  href="/2018/09/16/interview-web/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          面试之---项目相关
+          面试之---web相关
         
       </div>
     </a>
   
   
-    <a  href="/2018/09/16/interview-network/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">面试之---网络相关</div>
+    <a  href="/2018/09/16/interview-design-pattern/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">面试之---设计模式相关</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -406,7 +429,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Mysql"><span class="toc-number">1.</span> <span class="toc-text">Mysql</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Oracle"><span class="toc-number">2.</span> <span class="toc-text">Oracle</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#综合"><span class="toc-number">1.</span> <span class="toc-text">综合</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#解释下什么是脏读、不可重复读和幻读？"><span class="toc-number">1.1.</span> <span class="toc-text">解释下什么是脏读、不可重复读和幻读？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mysql"><span class="toc-number">2.</span> <span class="toc-text">Mysql</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Mysql有哪几种事务隔离级别？"><span class="toc-number">2.1.</span> <span class="toc-text">Mysql有哪几种事务隔离级别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Mysql的默认事务隔离级别是什么？"><span class="toc-number">2.2.</span> <span class="toc-text">Mysql的默认事务隔离级别是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么不推荐使用select"><span class="toc-number">2.3.</span> <span class="toc-text">为什么不推荐使用select *</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#select-from-t-user-where-name-like-“张三-”，一定会用到name的索引吗？"><span class="toc-number">2.4.</span> <span class="toc-text">select * from t_user where name like “张三%”，一定会用到name的索引吗？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Oracle"><span class="toc-number">3.</span> <span class="toc-text">Oracle</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
@@ -472,18 +495,18 @@ gitment.render('comments')
 
     <div class="scroll" id="post-nav-button">
         
-            <a  href="/2018/09/16/interview-project/" title="上一篇: 面试之---项目相关">
+            <a  href="/2018/09/16/interview-web/" title="上一篇: 面试之---web相关">
                 <i class="fa fa-angle-left"></i>
             </a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a  href="/2018/09/16/interview-network/" title="下一篇: 面试之---网络相关">
+            <a  href="/2018/09/16/interview-design-pattern/" title="下一篇: 面试之---设计模式相关">
                 <i class="fa fa-angle-right"></i>
             </a>
         
     </div>
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/10/29/interview-general/">面试系列整理说明</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/01/tool-idea/">IDEA使用总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/12/tool-recommend/">工具推荐</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/06/spring-data-jpa-summary/">spring-data-jpa使用总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/10/list-books/">推荐书单整理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/01/redis-file-lock/">redis实现分布式文件夹锁</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/16/read-note-readable-code/">读书笔记---《编写可读代码的艺术》</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/27/hashmap/">HashMap源码阅读</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/28/java-code-optimize/">java代码优化建议</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/27/git-commands/">git常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-optimize/">面试之---安全和性能优化相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-project/">面试之---项目相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-db/">面试之---数据库相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-network/">面试之---网络相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-others/">面试之---其他细小知识点汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-spring/">面试之---Spring系列相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-data-structures/">面试之---数据结构相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-tools/">面试之---运维及工具使用相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-web/">面试之---web相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-design-pattern/">面试之---设计模式相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-framework/">面试之---框架相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-java-basic/">面试之---java基础相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-algorithm/">面试之---算法相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-middleware/">面试之---中间件相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/15/linux-commands/">linux常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/13/tree-projects/">项目树</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/12/redis-summary/">Redis总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/11/about-Hexo/">Hexo博客搭建相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/10/pattern-singleton/">设计模式之---单例模式(Singleton Pattern)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/09/list-sites/">常用网站清单</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/my-pictures/">我的画集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/nginx-config/">【转载】nginx配置文件nginx.conf超详细讲解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/concurrentHashMap-analyze/">【转载】ConcurrentHashMap原理分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/pattern-all/">设计模式之---汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/thread-realize/">创建线程的几种方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/tree-skills/">技能树</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/springboot-app-deploy/">SpringBoot项目打包发布Linux环境完整流程</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/06/springApplication-analyze/">SpringBoot源码分析之---SpringBoot项目启动类SpringApplication浅析</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/10/29/interview-general/">面试系列整理说明</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/01/tool-idea/">IDEA使用总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/05/12/tool-recommend/">工具推荐</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/06/spring-data-jpa-summary/">spring-data-jpa使用总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/10/list-books/">推荐书单整理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/01/redis-file-lock/">redis实现分布式文件夹锁</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/12/16/read-note-readable-code/">读书笔记---《编写可读代码的艺术》</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/27/hashmap/">HashMap源码阅读</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/28/java-code-optimize/">java代码优化建议</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/27/git-commands/">git常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-spring/">面试之---Spring系列相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-algorithm/">面试之---算法相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-data-structures/">面试之---数据结构相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-others/">面试之---其他细小知识点汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-project/">面试之---项目相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-tools/">面试之---运维及工具使用相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-web/">面试之---web相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-db/">面试之---数据库相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-design-pattern/">面试之---设计模式相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-framework/">面试之---框架相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-middleware/">面试之---中间件相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-optimize/">面试之---安全和性能优化相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-java-basic/">面试之---java基础相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/16/interview-network/">面试之---网络相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/15/linux-commands/">linux常用命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/13/tree-projects/">项目树</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/12/redis-summary/">Redis总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/11/about-Hexo/">Hexo博客搭建相关</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/10/pattern-singleton/">设计模式之---单例模式(Singleton Pattern)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/09/list-sites/">常用网站清单</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/my-pictures/">我的画集</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/concurrentHashMap-analyze/">【转载】ConcurrentHashMap原理分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/nginx-config/">【转载】nginx配置文件nginx.conf超详细讲解</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/springboot-app-deploy/">SpringBoot项目打包发布Linux环境完整流程</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/tree-skills/">技能树</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/pattern-all/">设计模式之---汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/07/thread-realize/">创建线程的几种方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/06/springApplication-analyze/">SpringBoot源码分析之---SpringBoot项目启动类SpringApplication浅析</a></li></ul>
     
 <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
 
