@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://yizhuxiaozhan.site/2018/09/16/interview-java-basic/</loc>
+    <lastmod>2019-11-15</lastmod>
+  </url>  <url>
+    <loc>http://yizhuxiaozhan.site/2018/09/16/interview-spring/</loc>
+    <lastmod>2019-11-14</lastmod>
+  </url>  <url>
+    <loc>http://yizhuxiaozhan.site/2018/09/16/interview-middleware/</loc>
+    <lastmod>2019-11-10</lastmod>
+  </url>  <url>
     <loc>http://yizhuxiaozhan.site/2018/09/16/interview-others/</loc>
     <lastmod>2019-11-09</lastmod>
   </url>  <url>
@@ -25,22 +34,13 @@
     <loc>http://yizhuxiaozhan.site/2018/09/16/interview-algorithm/</loc>
     <lastmod>2019-11-09</lastmod>
   </url>  <url>
-    <loc>http://yizhuxiaozhan.site/2018/09/16/interview-middleware/</loc>
-    <lastmod>2019-11-09</lastmod>
-  </url>  <url>
     <loc>http://yizhuxiaozhan.site/2018/09/16/interview-db/</loc>
     <lastmod>2019-11-09</lastmod>
   </url>  <url>
     <loc>http://yizhuxiaozhan.site/2018/09/16/interview-web/</loc>
     <lastmod>2019-11-09</lastmod>
   </url>  <url>
-    <loc>http://yizhuxiaozhan.site/2018/09/16/interview-spring/</loc>
-    <lastmod>2019-11-09</lastmod>
-  </url>  <url>
     <loc>http://yizhuxiaozhan.site/2018/09/16/interview-framework/</loc>
-    <lastmod>2019-11-09</lastmod>
-  </url>  <url>
-    <loc>http://yizhuxiaozhan.site/2018/09/16/interview-java-basic/</loc>
     <lastmod>2019-11-09</lastmod>
   </url>  <url>
     <loc>http://yizhuxiaozhan.site/2018/09/16/interview-general/</loc>
