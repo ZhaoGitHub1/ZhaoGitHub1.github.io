@@ -24,7 +24,7 @@ description: 总结搭建Hexo及安装各种插件，集成各种功能。
 
 ## 我的Hexo博客主页效果图
 
-欢迎来访~[逸竹小站](https://www.yizhuxiaozhan.site/)
+欢迎来访~[逸竹小站](https://userzhao.coding.me/)
 
 ![hexo-homepage](about-Hexo/homepage.png)
 

@@ -1,6 +1,4 @@
 ---
-
-   
 title: IDEA使用总结
 categories: 工具
 tag:
@@ -35,13 +33,21 @@ idea官方提供了windows、macOS、linux三种系统可供选择，每种操�
 
 ### 破解
 
+方法一：
+
 第一步，下载`JetbrainsIdesCrack-4.2-release`，百度云下载地址：https://pan.baidu.com/s/1PrTR_CQSMa82UiyDXxLk1Q 提取码: 65up
 
 第二步，将下载的jar扔到IDEA的bin目录下，如图![](tool-idea/crack1.jpg)
 
 第三步，如果电脑是64位的就编辑`idea64.exe.vmoptions`文件，32位编辑`idea.exe.vmoptions`这个文件，在最后面添加：`-javaagent:G:\IntelliJ IDEA 2019.1\bin\JetbrainsIdesCrack-4.2-release.jar`，bin前面替换成idea的安装目录，后面替换成下载到的jar名称。
 
-第四步，启动idea填写注册码。可以通过lanyu`s大神提供的在线生成注册码的工具生成注册码，地址是：http://idea.lanyus.com/， 点击下方“获取注册码”，即可获取注册码。
+第四步，启动idea填写注册码。将相同内容填写进去即可。
+
+方法二：
+
+通过lanyu`s大神提供的在线生成注册码的工具生成注册码，地址是：http://idea.lanyus.com/， 点击下方“获取注册码”，即可获取注册码。启动idea填写注册码即可。
+
+> 方法一有效期较长，但有些麻烦，方法二有效期短，但简单方便，请各自斟酌选择。
 
 ## 插件推荐
 
