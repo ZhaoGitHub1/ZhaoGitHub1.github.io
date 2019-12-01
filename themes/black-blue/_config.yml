@@ -42,7 +42,7 @@ subnav:
 #  mail: 183479916@qq.com
 #  qq: 183479916
 #  wechat: 16602139700
-#  zhihu:
+  zhihu: https://www.zhihu.com/people/yi-zhu-27-93/activities
 #  weibo:
 #  google:
 #  linkedin:
@@ -130,9 +130,6 @@ categorycloud: true
 
 # Blogroll, Link exchange | 友情链接
 friends:
-  我的csdn: https://blog.csdn.net/qq_25885525
-  我的github: https://github.com/ZhaoGitHub1
-  我的gitee: https://gitee.com/zhao-183479916
   Spring官网: https://spring.io/
   Mybatis官网: http://www.mybatis.org/mybatis-3/zh/index.html
   Hibernate官网: http://hibernate.org/
