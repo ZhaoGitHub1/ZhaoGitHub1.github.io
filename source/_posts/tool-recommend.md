@@ -27,6 +27,10 @@ GitHub是一个面向开源及私有软件项目的托管平台，因为只支�
 
 码云(*gitee*.com)是 OSCHINA.NET 推出的代码托管平台,支持 Git 和 SVN,提供免费的私有仓库托管。国内版GitHub.
 
+### [腾讯开发者平台](https://dev.tencent.com/)
+
+腾讯云开发者平台是腾讯云与 CODING 共同为开发者打造的云端工具平台，旨在为更多的开发者带去便捷、高效的开发体验，提供包括需求管理、代码编写、代码管理、代码运行的整套系统。
+
 ### [Stack Overflow](https://stackoverflow.com/)
 
 Stack Overflow是一个与程序相关的IT技术问答网站。
@@ -73,17 +77,29 @@ Google Chrome是一款由Google公司开发的网页浏览器，该浏览器基�
 
 ### [IDEA](https://www.jetbrains.com/idea/)
 
+> 可以在这里查看[IDEA使用总结](/2019/06/01/tool-idea/)查看我的总结
+
 IDEA 全称 IntelliJ IDEA，是java编程语言开发的集成环境。IntelliJ在业界被公认为最好的java开发工具之一，尤其在智能代码助手、代码自动提示、重构、J2EE支持、各类版本工具(git、svn等)、JUnit、CVS整合、代码分析、 创新的GUI设计等方面的功能可以说是超常的。IDEA是JetBrains公司的产品，这家公司总部位于捷克共和国的首都布拉格，开发人员以严谨著称的东欧程序员为主。它的旗舰版本还支持HTML，CSS，PHP，MySQL，Python等。免费版只支持Python等少数语言。
 
 #### IDEA插件
 
 ##### **Lombok**
 
-高效开发必备，自动生成getter/setter、toString、hash、equals等等方法
-
 ##### **Translate**
 
-快捷键：Ctrl+Shift+O，Ctrl+Shift+Y
+##### Maven Helper
+
+##### JRebel for IntelliJ
+
+##### GsonFormat
+
+##### GenerateAllSetter
+
+##### PlantUML
+
+##### Alibaba Cloud Toolkit
+
+
 
 ### [SecureCRT](https://www.vandyke.com/products/securecrt/)
 
