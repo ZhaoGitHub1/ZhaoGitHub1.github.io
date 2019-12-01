@@ -43,7 +43,7 @@ description: 设计模式总结及导读
 - `抽象工厂模式`(Abstract Factory)
 - `建造者模式`(Builder)
 - `原型模式`(Prototype)
-- [`单例模式`(Singleton)](https://www.yizhuxiaozhan.site/2018/09/10/pattern-singleton/)
+- [`单例模式`(Singleton)](/2018/09/10/pattern-singleton/)
 ### 结构型模式
 - `代理模式`(Proxy)
 - `适配器模式`(Adapter)

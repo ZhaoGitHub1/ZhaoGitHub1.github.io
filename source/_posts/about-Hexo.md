@@ -392,7 +392,7 @@ $ git add .
 $ git commit -m "提交备注"
 ```
 
-　　即可提交到本地仓库，不熟悉git命令的可以查看我的另一篇博文[Git命令汇总](https://www.yizhuxiaozhan.site/2018/09/27/git-commands/)
+　　即可提交到本地仓库，不熟悉git命令的可以查看我的另一篇博文[Git命令汇总](/2018/09/27/git-commands/)
 
 ### GitHub Pages配置
 

@@ -64,7 +64,7 @@ date: 2019-01-01 13:27:53
 
 ### redis实现分布式锁 
 
-详见[Redis总结](https://www.yizhuxiaozhan.site/2018/09/12/redis-summary/#分布式锁的实现)
+详见[Redis总结](/2018/09/12/redis-summary/#分布式锁的实现)
 
 ## 分布式文件夹锁实现过程
 
