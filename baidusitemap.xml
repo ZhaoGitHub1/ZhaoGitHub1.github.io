@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://userzhao.coding.me/2019/04/06/spring-data-jpa-summary/</loc>
+    <lastmod>2020-01-24</lastmod>
+  </url>  <url>
+    <loc>https://userzhao.coding.me/2018/09/12/redis-summary/</loc>
+    <lastmod>2020-01-24</lastmod>
+  </url>  <url>
+    <loc>https://userzhao.coding.me/2019/01/01/redis-file-lock/</loc>
+    <lastmod>2020-01-24</lastmod>
+  </url>  <url>
+    <loc>https://userzhao.coding.me/2018/09/15/linux-commands/</loc>
+    <lastmod>2020-01-24</lastmod>
+  </url>  <url>
+    <loc>https://userzhao.coding.me/2018/09/28/java-code-optimize/</loc>
+    <lastmod>2020-01-24</lastmod>
+  </url>  <url>
     <loc>https://userzhao.coding.me/2018/09/07/tree-skills/</loc>
     <lastmod>2019-12-02</lastmod>
   </url>  <url>
@@ -11,9 +26,6 @@
     <lastmod>2019-12-02</lastmod>
   </url>  <url>
     <loc>https://userzhao.coding.me/2018/09/07/pattern-all/</loc>
-    <lastmod>2019-12-01</lastmod>
-  </url>  <url>
-    <loc>https://userzhao.coding.me/2019/01/01/redis-file-lock/</loc>
     <lastmod>2019-12-01</lastmod>
   </url>  <url>
     <loc>https://userzhao.coding.me/2018/09/11/about-Hexo/</loc>
@@ -70,9 +82,6 @@
     <loc>https://userzhao.coding.me/2018/09/16/interview-general/</loc>
     <lastmod>2019-11-09</lastmod>
   </url>  <url>
-    <loc>https://userzhao.coding.me/2018/09/12/redis-summary/</loc>
-    <lastmod>2019-10-27</lastmod>
-  </url>  <url>
     <loc>https://userzhao.coding.me/2018/09/07/thread-realize/</loc>
     <lastmod>2019-07-09</lastmod>
   </url>  <url>
@@ -82,17 +91,8 @@
     <loc>https://userzhao.coding.me/2018/09/07/concurrentHashMap-analyze/</loc>
     <lastmod>2019-06-15</lastmod>
   </url>  <url>
-    <loc>https://userzhao.coding.me/2019/04/06/spring-data-jpa-summary/</loc>
-    <lastmod>2019-06-02</lastmod>
-  </url>  <url>
     <loc>https://userzhao.coding.me/2018/10/27/hashmap/</loc>
     <lastmod>2019-05-31</lastmod>
-  </url>  <url>
-    <loc>https://userzhao.coding.me/2018/09/15/linux-commands/</loc>
-    <lastmod>2019-05-12</lastmod>
-  </url>  <url>
-    <loc>https://userzhao.coding.me/2018/09/28/java-code-optimize/</loc>
-    <lastmod>2019-05-11</lastmod>
   </url>  <url>
     <loc>https://userzhao.coding.me/2019/03/10/list-books/</loc>
     <lastmod>2019-03-10</lastmod>
