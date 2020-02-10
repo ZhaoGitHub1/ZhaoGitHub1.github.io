@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://userzhao.coding.me/2018/09/07/tree-skills/</loc>
+    <lastmod>2020-02-10</lastmod>
+  </url>  <url>
+    <loc>https://userzhao.coding.me/2018/09/16/interview-java-basic/</loc>
+    <lastmod>2020-02-10</lastmod>
+  </url>  <url>
+    <loc>https://userzhao.coding.me/2018/09/07/nginx-config/</loc>
+    <lastmod>2020-02-10</lastmod>
+  </url>  <url>
+    <loc>https://userzhao.coding.me/2018/09/27/git-commands/</loc>
+    <lastmod>2020-02-10</lastmod>
+  </url>  <url>
     <loc>https://userzhao.coding.me/2019/04/06/spring-data-jpa-summary/</loc>
     <lastmod>2020-01-24</lastmod>
   </url>  <url>
@@ -15,9 +27,6 @@
   </url>  <url>
     <loc>https://userzhao.coding.me/2018/09/28/java-code-optimize/</loc>
     <lastmod>2020-01-24</lastmod>
-  </url>  <url>
-    <loc>https://userzhao.coding.me/2018/09/07/tree-skills/</loc>
-    <lastmod>2019-12-02</lastmod>
   </url>  <url>
     <loc>https://userzhao.coding.me/2018/09/13/tree-projects/</loc>
     <lastmod>2019-12-02</lastmod>
@@ -36,9 +45,6 @@
   </url>  <url>
     <loc>https://userzhao.coding.me/2019/06/01/tool-idea/</loc>
     <lastmod>2019-11-30</lastmod>
-  </url>  <url>
-    <loc>https://userzhao.coding.me/2018/09/16/interview-java-basic/</loc>
-    <lastmod>2019-11-15</lastmod>
   </url>  <url>
     <loc>https://userzhao.coding.me/2018/09/16/interview-spring/</loc>
     <lastmod>2019-11-14</lastmod>
@@ -102,12 +108,6 @@
   </url>  <url>
     <loc>https://userzhao.coding.me/2018/09/07/my-pictures/</loc>
     <lastmod>2018-10-07</lastmod>
-  </url>  <url>
-    <loc>https://userzhao.coding.me/2018/09/07/nginx-config/</loc>
-    <lastmod>2018-09-27</lastmod>
-  </url>  <url>
-    <loc>https://userzhao.coding.me/2018/09/27/git-commands/</loc>
-    <lastmod>2018-09-27</lastmod>
   </url>  <url>
     <loc>https://userzhao.coding.me/2018/09/09/list-sites/</loc>
     <lastmod>2018-09-16</lastmod>
