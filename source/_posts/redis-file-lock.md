@@ -1,9 +1,9 @@
 ---
-title: redis实现分布式文件夹锁
+title: Redis实现分布式文件夹锁
 categories: redis
 tag:
   - 分布式锁
-description: 使用redis实现文件夹级别的分布式锁
+description: 使用Redis实现文件夹级别的分布式锁
 date: 2019-01-01 13:27:53
 ---
 

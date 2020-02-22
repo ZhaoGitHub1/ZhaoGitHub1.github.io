@@ -1,5 +1,5 @@
 ---
-title: git常用命令
+title: Git常用命令
 categories: 总结
 tag:
   - git

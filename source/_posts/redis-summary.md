@@ -4,7 +4,7 @@ categories: 总结
 tags: 
   - redis
 date: 2018-09-12 21:41:55
-description: redis学习总结
+description: Redis学习总结
 ---
 
 ** {{ title }}：** <Excerpt in index | 首页摘要>

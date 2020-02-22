@@ -103,7 +103,7 @@ make & make install
 ```
     server {
         listen        80;
-        server_name   www.yizhuxiaozhan.club;
+        server_name   www.yzxz.site;
         index index.jsp index.html index.html index.shtml;
         location / {
                 proxy_pass http://localhost:8081;

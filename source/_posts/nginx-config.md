@@ -1,5 +1,5 @@
 ---
-title: 【转载】nginx配置文件nginx.conf超详细讲解
+title: 【转载】Nginx配置文件nginx.conf超详细讲解
 categories: 集成&运维
 tag: 
   - 转载
@@ -388,7 +388,7 @@ http {
 
     server {
         listen    80;
-        server_name    www.yizhuxiaozhan.site;
+        server_name    www.yzxz.site;
         index index.jsp    index.html index.html    index.shtml;
         location / {
             proxy_pass http://localhost:8081;

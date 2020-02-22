@@ -1,5 +1,5 @@
 ---
-title: spring-data-jpa使用总结
+title: Spring-Data-Jpa使用总结
 categories: 总结
 tag:
   - spring

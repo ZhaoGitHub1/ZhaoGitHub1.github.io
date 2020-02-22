@@ -13,7 +13,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://userzhao.coding.me/
+url: https://yzxz.site/
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -85,7 +85,7 @@ deploy:
   type: git
   repo: 
     github: git@github.com:ZhaoGitHub1/ZhaoGitHub1.github.io.git
-    coding: git@git.dev.tencent.com:userZhao/userZhao.git
+    coding: https://e.coding.net/userZhao/yz-site.git
   branch: master
   
 search:

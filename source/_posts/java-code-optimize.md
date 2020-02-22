@@ -1,5 +1,5 @@
 ---
-title: java代码优化建议
+title: Java代码优化建议
 categories: 总结
 tag:
   - 优化

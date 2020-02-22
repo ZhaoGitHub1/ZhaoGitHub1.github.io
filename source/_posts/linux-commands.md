@@ -1,10 +1,10 @@
 ---
-title: linux常用命令
+title: Linux常用命令
 categories: 集成&运维
 tags:
   - linux
   - 命令
-description: 记录下linux常用命令
+description: 记录下Linux常用命令
 date: 2018-09-15 12:09:07
 ---
 
