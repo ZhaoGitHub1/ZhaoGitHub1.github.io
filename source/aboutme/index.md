@@ -1,5 +1,5 @@
 ---
-title: 关于我
+title: 关于
 date: 2019-10-15 20:39:21
 ---
 
@@ -17,19 +17,7 @@ QQ：183479916
 
 邮箱：183479916@qq.com
 
-### 我的其他空间
-
-CSDN：https://blog.csdn.net/qq_25885525
-
-博客园：https://www.cnblogs.com/coder2017/
-
-掘金：https://juejin.im/user/5d2c89da6fb9a07ee16959c2
-
-SF：https://segmentfault.com/u/yizhuxiaozhan
-
-简书：https://www.jianshu.com/u/472363dc3481
-
-开源中国：https://my.oschina.net/u/4232355
+### 我的公众号
 
 公众号名称：逸竹小站
 

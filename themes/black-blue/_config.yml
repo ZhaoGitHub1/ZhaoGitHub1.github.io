@@ -6,13 +6,13 @@
 menu:
   所有文章: /archives/
   分类&标签: /tags/
-  我的读书: /books/
-  我的电影: /movies/
-##  我的豆瓣秀: /douban/
-  树: /categories/tree/
-  面试: /categories/interview/
-  清单: /categories/lists/
-  关于我: /aboutme/
+#  豆瓣读书: /books/
+#  豆瓣电影: /movies/
+#  我的豆瓣秀: /douban/
+#  树: /categories/tree/
+#  面试: /categories/interview/
+#  清单: /categories/lists/
+  关于: /aboutme/
 
 # Link to your avatar | 填写头像地址
 avatar: /img/logo.jpg
