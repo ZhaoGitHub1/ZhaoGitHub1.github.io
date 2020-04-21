@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://yzxz.site/2019/12/01/11-interview-record/</loc>
+    <lastmod>2020-04-12</lastmod>
+  </url>  <url>
+    <loc>https://yzxz.site/2018/09/11/about-Hexo/</loc>
+    <lastmod>2020-04-12</lastmod>
+  </url>  <url>
+    <loc>https://yzxz.site/2018/09/07/concurrentHashMap-analyze/</loc>
+    <lastmod>2020-04-12</lastmod>
+  </url>  <url>
+    <loc>https://yzxz.site/2018/09/27/git-commands/</loc>
+    <lastmod>2020-04-12</lastmod>
+  </url>  <url>
     <loc>https://yzxz.site/2020/02/01/tool-idea-shortcutKey/</loc>
     <lastmod>2020-04-12</lastmod>
   </url>  <url>
@@ -13,16 +25,10 @@
     <loc>https://yzxz.site/2018/09/07/nginx-config/</loc>
     <lastmod>2020-02-22</lastmod>
   </url>  <url>
-    <loc>https://yzxz.site/2019/12/01/11-interview-record/</loc>
-    <lastmod>2020-02-12</lastmod>
-  </url>  <url>
     <loc>https://yzxz.site/2018/09/07/tree-skills/</loc>
     <lastmod>2020-02-10</lastmod>
   </url>  <url>
     <loc>https://yzxz.site/2018/09/16/interview-java-basic/</loc>
-    <lastmod>2020-02-10</lastmod>
-  </url>  <url>
-    <loc>https://yzxz.site/2018/09/27/git-commands/</loc>
     <lastmod>2020-02-10</lastmod>
   </url>  <url>
     <loc>https://yzxz.site/2019/04/06/spring-data-jpa-summary/</loc>
@@ -47,9 +53,6 @@
     <lastmod>2019-12-02</lastmod>
   </url>  <url>
     <loc>https://yzxz.site/2018/09/07/pattern-all/</loc>
-    <lastmod>2019-12-01</lastmod>
-  </url>  <url>
-    <loc>https://yzxz.site/2018/09/11/about-Hexo/</loc>
     <lastmod>2019-12-01</lastmod>
   </url>  <url>
     <loc>https://yzxz.site/2019/05/12/tool-recommend/</loc>
@@ -101,9 +104,6 @@
     <lastmod>2019-07-09</lastmod>
   </url>  <url>
     <loc>https://yzxz.site/2018/09/06/springApplication-analyze/</loc>
-    <lastmod>2019-06-15</lastmod>
-  </url>  <url>
-    <loc>https://yzxz.site/2018/09/07/concurrentHashMap-analyze/</loc>
     <lastmod>2019-06-15</lastmod>
   </url>  <url>
     <loc>https://yzxz.site/2018/10/27/hashmap/</loc>
