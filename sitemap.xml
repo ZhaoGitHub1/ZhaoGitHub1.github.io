@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://yzxz.site/2018/09/11/about-Hexo/</loc>
+    <loc>https://yzxz.site/resume/index.html</loc>
     
-    <lastmod>2020-11-06T13:09:22.534Z</lastmod>
+    <lastmod>2020-11-08T09:48:47.299Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://yzxz.site/guide/index.html</loc>
     
-    <lastmod>2020-08-15T14:28:20.320Z</lastmod>
+    <lastmod>2020-11-08T07:19:58.132Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://yzxz.site/2018/09/11/about-Hexo/</loc>
+    
+    <lastmod>2020-11-06T13:09:22.534Z</lastmod>
     
   </url>
   
@@ -47,13 +54,6 @@
     <loc>https://yzxz.site/2019/06/01/tool-idea/</loc>
     
     <lastmod>2020-04-12T02:31:14.350Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://yzxz.site/resume/index.html</loc>
-    
-    <lastmod>2020-02-27T07:13:13.853Z</lastmod>
     
   </url>
   
